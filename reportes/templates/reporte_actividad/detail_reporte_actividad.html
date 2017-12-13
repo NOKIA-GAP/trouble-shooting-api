@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Detalle Reporte Actividad{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Detalle Reporte Actividad{</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>NI asignador</th>
+      <th>NI Ingeniero</th>
+      <th>Estacion</th>
+      <th>Actividad</th>
+      <th>Conceptos</th>
+      <th>Wp</th>
+      <th>Estado</th>
+      <th>Fecha Asignacion</th>
+      <th>Creado</th>
+      <th>Actualizado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ object.id }}</th>
+      <td>{{ object.npo_asignador }}</td>
+      <td>{{ object.npo_ingeniero }}</td>
+      <td>{{ object.estacion }}</td>
+      <td>{{ object.actividad }</td>
+      <td>{{ object.wp }}</td>
+      <td>{{ object.estado }}</td>
+      <td>{{ object.fecha_asignacion }}</td>
+      <td>{{ object.creado }}</td>
+      <td>{{ object.actualizado }}</td>
+      <th>
+        <a href="{% url 'asignaciones:update_asignacion_ni' object.pk %}" class="btn btn-success btn-sm" role="button">Actualizar</a>
+      </th>
+      <th>
+        <a href="{% url 'asignaciones:delete_asignacion_ni' object.pk %}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+      </th>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

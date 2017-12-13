@@ -1,0 +1,12 @@
+<tr>
+  <th>id</th>
+  <th>nombre</th>
+  <th>regional</th>
+  <th>ciudad</th>
+  <th>responsable</th>
+  <th>prioridad</th>
+  {% if perms.users.perm_gap_administrador %}
+  <th>actualizar</th>
+  {% else %}
+  {% endif %}
+</tr>

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Lista De Estaciones{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Lista De Estaciones <a href="{% url 'estaciones:export_estaciones' %}" class="btn btn-info btn-sm" role="button">Exportar</a></h1>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'estaciones:search_estacion' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar" required>
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block filter_left %}
+<form class="form-inline" action="{% url 'estaciones:filter_estacion' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <select class="form-control" name="field" required>
+      {% for field in estacion_fields %}
+      <option value="{{ field }}">{{ field }}</option>
+      {% endfor %}
+    </select>
+    <input type="text" class="form-control" name="value" placeholder="consulta">
+  </div>
+  <button type="submit" class="btn btn-default">Filtrar</button>
+</form>
+{% if result %}
+<p>Se encontraron {{ result }} estaciones</p>
+{% endif %}
+{% endblock filter_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "estacion/includes/partials/head_estacion.html" %}
+  </thead>
+  <tbody>
+    {% for estacion in object_list %}
+      {% include "estacion/includes/partials/body_estacion.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="update_estacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+var update_estacion_modal;
+function update_estacion(url){
+  update_estacion_modal = $('#update_estacion').modal({
+  }).modal('show').load(url)
+}
+</script>
+{% endblock extra_js %}

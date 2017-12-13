@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Lista De Asignacion NI{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Asignacion NI
+  <a href="{% url 'asignaciones:export_asignaciones_ni' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'asignaciones:search_asignacion_ni' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block filter_left %}
+<form class="form-inline" action="{% url 'asignaciones:list_asignacion_ni_fecha' user.perfil.slug %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="date" class="form-control" name="fecha" placeholder="" required>
+    <select class="form-control" name=estado_asignacion required>
+      <option value="Asignada">Asignada</option>
+      <option value="En monitoreo">En monitoreo</option>
+      <option value="Enviado a seguimiento">Enviado a seguimiento</option>
+      <option value="Requiere visita">Requiere visita</option>
+      <option value="No exitosa">No exitosa</option>
+      <option value="Escalado a claro">Escalado a claro</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock filter_left %}
+
+{% block nav_tab %}
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_a' or request.resolver_match.url_name == 'list_asignacion_ni_perfil' %}
+  class="active"
+  {% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_a' user.perfil.slug %}">Asignada</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_b' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_b' user.perfil.slug %}">En monitoreo</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_c' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_c' user.perfil.slug %}">Enviado a seguimiento</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_d' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_d' user.perfil.slug %}">Requiere visita</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_e' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_e' user.perfil.slug %}">No exitosa</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_f' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_f' user.perfil.slug %}">Escalado a claro</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_hoy' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_hoy' user.perfil.slug %}">Hoy</a>
+  </li>
+</ul>
+{% endblock nav_tab %}
+
+{% block nav_right %}
+{% endblock nav_right %}
+
+{% block content %}
+
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "asignacion_ni/includes/partials/head_asignacion_ni.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "asignacion_ni/includes/partials/body_asignacion_ni.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="update_asignacion_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_concepto_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_solicitudhw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+
+var update_asignacion_ni_modal;
+function update_asignacion_ni(url){
+  update_asignacion_ni_modal = $('#update_asignacion_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_concepto_ni_modal;
+function create_concepto_ni(url){
+  create_concepto_ni_modal = $('#create_concepto_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_solicitudhw_modal;
+function create_solicitudhw(url){
+  create_solicitudhw_modal = $('#create_solicitudhw').modal({
+  }).modal('show').load(url)
+}
+
+</script>
+{% endblock extra_js %}

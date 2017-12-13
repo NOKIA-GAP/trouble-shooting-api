@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle De Degradacion{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Detalle De Degradacion</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "degradacion/includes/partials/head_degradacion.html" %}
+  </thead>
+  <tbody>
+    {% include "degradacion/includes/partials/body_degradacion.html" %}
+  </tbody>
+</table>
+{% endblock content %}

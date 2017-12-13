@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Actualizar Actividad{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Actualizar Actividad</h1>
+{% endblock header_left%}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>wp</th>
+      <th>estacion</th>
+      <th>banda</th>
+      <th>proyecto</th>
+      <th>escenario</th>
+      <th>tipo trabajo</th>
+      <th>degradaciones</th>
+      <th>asignaciones npo</th>
+      <th>conceptos npo</th>
+      <th>asignaciones ni</th>
+      <th>concepto ni</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ object.id }}</th>
+      <td>{{ object.wp }}</td>
+      {% if object.estacion.pk %}
+          <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+      {% else %}
+          <td><a href="">{{ object.estacion }}</a></td>
+      {% endif %}
+      <td>{{ object.banda }}</td>
+      <td>{{ object.proyecto }}</td>
+      <td>{{ object.escenario }}</td>
+      <td>{{ object.tipo_trabajo }}</td>
+      <td>
+        {%  if object.degradaciones.all %}
+          <a href="{% url 'actividades:list_degradacion' object.pk %}">degradaciones</a>
+        {% else %}
+          None
+        {% endif %}
+      </td>
+      <td>
+        {%  if object.asignaciones_npo.all %}
+          <a href="{% url 'asignaciones:list_asignacion_npo_actividad' object.pk %}">asignaciones npo</a>
+        {% else %}
+          None
+        {% endif %}
+      </td>
+      <td>
+        {%  if object.conceptos_npo.all %}
+          <a href="{% url 'conceptos:list_concepto_npo_actividad' object.pk %}">conceptos npo</a>
+        {% else %}
+          None
+        {% endif %}
+      </td>
+      <td>
+        {%  if object.asignaciones_ni.all %}
+          <a href="{% url 'asignaciones:list_asignacion_ni_actividad' object.pk %}">asignaciones ni</a>
+        {% else %}
+          None
+        {% endif %}
+      </td>
+      <td>
+        {%  if object.conceptos_ni.all %}
+          <a href="{% url 'conceptos:list_concepto_ni_actividad' object.pk %}">conceptos ni</a>
+        {% else %}
+          None
+        {% endif %}
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}
+
+{% block content_left %}
+<form method="POST" class="">{% csrf_token %}
+    {{ form|crispy }}<br>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{% url 'actividades:list_actividad' %}"class="btn btn-default" role="button">Cancelar</a>
+</form>
+{% endblock content_left %}
+
+{% block content_center %}
+<a href="{% url 'asignaciones:create_asignacion_npo' object.pk %}" class="fm-create btn btn-primary" role="button" data-fm-head="Crear Asignacion NPO" data-fm-callback="reload">Asignacion NPO</a>
+{% endblock content_center %}
+
+{% block content_right %}
+<a href="{% url 'asignaciones:create_asignacion_ni' object.pk %}" class="fm-create btn btn-primary" role="button" data-fm-head="Crear Asignacion NI" data-fm-callback="reload">Asignacion NI</a>
+{% endblock content_right %}

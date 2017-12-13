@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Lista Reporte Actividad{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Lista Reporte Actividad
+  <a href="{% url 'reportes:export_reporte_actividad' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>wp</th>
+      <th>agrupador</th>
+      <th>estacion</th>
+      <th>regional</th>
+      <th>ciudad</th>
+      <th>banda</th>
+      <th>valor wp eur</th>
+      <th>proyecto</th>
+      <th>escenario</th>
+      <th>fecha integracion</th>
+
+      <th>grupo gap</th>
+      <th>tipo trabajo noc</th>
+      <th>estado noc</th>
+      <th>subestado noc</th>
+
+      <th>responsable ni</th>
+      <th>estado ni</th>
+      <th>concepto ni</th>
+      <th>tipo intervension ni</th>
+      <th>fecha asignacion ni</th>
+
+      <th>requiere hw</th>
+      <th>responsable actual</th>
+
+      <th>responsable npo</th>
+      <th>estado npo</th>
+      <th>concepto npo</th>
+      <th>tipo intervension npo</th>
+      <th>fecha asignacion npo</th>
+
+      <th>supervisor</th>
+      <th>fecha fc visita</th>
+      <th>id siteaccess</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+    <tr>
+      <td>{{ object.wp }}</td>
+      <td>{{ object.agrupador }}</td>
+      <td>{{ object.estacion }}</td>
+      <td>{{ object.regional }}</td>
+      <td>{{ object.ciudad }}</td>
+      <td>{{ object.banda }}</td>
+      <td>{{ object.valor_wp_eur }}</td>
+      <td>{{ object.proyecto }}</td>
+      <td>{{ object.escenario }}</td>
+      <td>{{ object.fecha_integracion }}</td>
+      <td>{{ object.grupo_gap }}</td>
+      <td>{{ object.tipo_trabajo_noc }}</td>
+      <td>{{ object.estado_noc }}</td>
+      <td>{{ object.subestado_noc }}</td>
+      <td>{{ object.responsable_ni }}</td>
+      <td>{{ object.estado_ni }}</td>
+      <td>{{ object.concepto_ni }}</td>
+      <td>{{ object.tipo_intervencion_ni }}</td>
+      <td>{{ object.fecha_asignacion_ni }}</td>
+      <td>{{ object.requiere_hw }}</td>
+      <td>{{ object.responsable_actual }}</td>
+      <td>{{ object.responsable_npo }}</td>
+      <td>{{ object.estado_npo }}</td>
+      <td>{{ object.concepto_npo }}</td>
+      <td>{{ object.tipo_intervencion_npo }}</td>
+      <td>{{ object.fecha_asignacion_npo }}</td>
+      <td>{{ object.supervisor }}</td>
+      <td>{{ object.fecha_fc_visita }}</td>
+      <td>{{ object.id_siteaccess }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}

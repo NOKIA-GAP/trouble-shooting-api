@@ -1,0 +1,92 @@
+<tr>
+  <th>
+    <!-- <a href="{% url 'actividades:update_actividad' object.pk %}" class="btn btn-success btn-sm" role="button">Actualizar</a> -->
+    <a onclick="return update_actividad('{% url 'actividades:update_actividad' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+  </th>
+  <th>
+    <!-- <a href="{% url 'actividades:create_degradacion' object.pk %}" class="fm-create btn btn-primary" role="button" data-fm-head="Crear Degradacion" data-fm-callback="reload">Degradacion</a> -->
+    <a onclick="return create_degradacion('{% url 'actividades:create_degradacion' object.pk %}')" class="btn btn-default btn-sm" role="button">Degradacion</a>
+  </th>
+  <th>
+    <a onclick="return create_asignacion_ni('{% url 'asignaciones:create_asignacion_ni' object.pk %}')" class="btn btn-default btn-sm" role="button">Asignar NI</a>
+  </th>
+  <th>
+    <a onclick="return create_asignacion_npo('{% url 'asignaciones:create_asignacion_npo' object.pk %}')" class="btn btn-default btn-sm" role="button">Asignar NPO</a>
+  </th>
+  <th scope="row">{{ object.id }}</th>
+  <td><a href="{% url 'actividades:detail_actividad' object.pk %}">{{ object.wp }}</a></td>
+  <td>{{ object.id_notificacion_noc }}</td>
+  <td>{{ object.agrupador}}</td>
+  <td>{{ object.service_supplier}}</td>
+  {% if object.estacion.pk %}
+      <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+  {% else %}
+      <td><a href="">{{ object.estacion }}</a></td>
+  {% endif %}
+  <td>{{ object.estacion.regional }}</td>
+  <td>{{ object.estacion.ciudad }}</td>
+  <td>{{ object.estacion.responsable }}</td>
+  <td>{{ object.estacion.prioridad }}</td>
+  <td>{{ object.banda }}</td>
+  <td>{{ object.valor_wp_eur }}</td>
+  <td>{{ object.proyecto }}</td>
+  <td>{{ object.escenario }}</td>
+  <td>{{ object.tipo_trabajo }}</td>
+  <td>{{ object.fecha_ingreso_onair }}</td>
+  <td>{{ object.realtifinish }}</td>
+  <td>{{ object.fecha_integracion }}</td>
+  <td>{{ object.grupo_gap }}</td>
+  <td>{{ object.ss_tbs }}</td>
+  <td>{{ object.po_solicitud }}</td>
+  <td>{{ object.fecha_estado_noc }}</td>
+  <td>{{ object.estado_noc }}</td>
+  <td>{{ object.subestado_noc }}</td>
+  <td>{{ object.impacto_degradacion }}</td>
+  <td>{{ object.fecha_fc_visita }}</td>
+  <td>{{ object.requiere_hw }}</td>
+  <td>{{ object.cantidad_hw }}</td>
+  <td>
+    {%  if object.degradaciones.all %}
+      <a href="{% url 'actividades:list_degradacion_actividad' object.pk %}">degradaciones</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>
+    {%  if object.asignaciones_npo.all %}
+      <a href="{% url 'asignaciones:list_asignacion_npo_actividad' object.pk %}">asignaciones npo</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>
+    {%  if object.conceptos_npo.all %}
+      <a href="{% url 'conceptos:list_concepto_npo_actividad' object.pk %}">conceptos npo</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>
+    {%  if object.asignaciones_ni.all %}
+      <a href="{% url 'asignaciones:list_asignacion_ni_actividad' object.pk %}">asignaciones ni</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>
+    {%  if object.conceptos_ni.all %}
+      <a href="{% url 'conceptos:list_concepto_ni_actividad' object.pk %}">conceptos ni</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>
+    {%  if object.solicitudeshw.all %}
+      <a href="{% url 'solicitudeshw:list_solicitudhw_actividad' object.pk %}">solicitudes hw</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
+  <td>{{ object.estado_ultimo }}</td>
+  <td>{{ object.estado_unico }}</td>
+</tr>

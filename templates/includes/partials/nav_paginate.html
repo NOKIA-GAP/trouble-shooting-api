@@ -1,0 +1,34 @@
+{% load filter_tags %}
+<nav aria-label="Page navigation">
+  {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="{% relative_url page_obj.previous_page_number 'page' request.GET.urlencode %}" aria-label="Anterior">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li>
+      {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    </li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+      <li><a href="{% relative_url i 'page' request.GET.urlencode %}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li>
+      <a href="{% relative_url page_obj.next_page_number 'page' request.GET.urlencode %}" aria-label="Siguiente">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+  {% endif %}
+</nav>

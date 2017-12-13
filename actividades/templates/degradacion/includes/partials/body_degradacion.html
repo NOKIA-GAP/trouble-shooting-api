@@ -1,0 +1,23 @@
+<tr>
+  <th scope="row">{{ object.id }}</th>
+  {% if object.perfil %}
+    <td><a href="{% url 'users:detail_perfil' object.perfil.slug %}">{{ object.perfil }}</a></td>
+  {% else %}
+    <td>{{ object.perfil }}</td>
+  {% endif %}
+  <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+  <td>{{ object.actividad }}</td>
+  <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
+  <td>{{ object.contenido }}</td>
+  <td>{{ object.creado }}</td>
+  <td>{{ object.actualizado }}</td>
+  {% if perms.users.perm_gap_administrador %}
+  <th>
+    <a onclick="return update_degradacion('{% url 'actividades:update_degradacion' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+  </th>
+  <!-- <th>
+    <a onclick="return delete_degradacion('{% url 'actividades:delete_degradacion' object.pk %}')" class="btn btn-danger btn-sm" role="button">Borrar</a>
+  </th> -->
+  {% else %}
+  {% endif %}
+</tr>

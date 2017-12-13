@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Borrar Concepto NPO{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Borrar Concepto NPO</h1>
+{% endblock header_left %}
+
+{% block content_left %}
+<form action="{% url 'conceptos:delete_concepto_npo' object.pk %}" method="post">{% csrf_token %}
+    <p>Estas seguro que quiers borrar el Concepto NPO "{{ object }}"?</p>
+    <input type="submit" value="Confirmar" class="btn btn-default" role="button"/>
+    <a href="{% url 'conceptos:list_concepto_npo' %}"class="btn btn-default" role="button">Cancelar</a>
+</form>
+{% endblock content_left %}

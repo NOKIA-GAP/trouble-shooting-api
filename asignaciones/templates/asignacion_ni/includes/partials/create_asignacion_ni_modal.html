@@ -1,0 +1,48 @@
+{% load crispy_forms_tags %}
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="myModalLabel">Crear Asignacion NI</h4>
+    </div>
+    <div class="modal-body">
+      <form method="POST" action="{% url 'asignaciones:create_asignacion_ni' actividad.pk %}" id="form_modal" class="">{% csrf_token %}
+        <div class="form-group">
+          {{ form|crispy }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var success_url = "{% url 'estaciones:detail_estacion' actividad.estacion.pk %}"
+var modal_body = $(".modal-body");
+var modal_load_error = "Error occurred while loading";
+
+$("#form_modal").submit(function(event) {
+  event.preventDefault();
+  $.ajax({
+    url : this.action,
+    type: "POST",
+    data: $(this).serialize(),
+    success: function (data) {
+      if ( $(data).find('div.alert.alert-block.alert-error').length > 0 ) {
+        error = $(data).find('div.alert.alert-block.alert-error')
+        modal_body.append(error);
+      } else {
+          window.location.href = success_url;
+      }
+    },
+    error: function () {
+      modal_body.text(modal_load_error);
+    }
+  });
+});
+
+</script>

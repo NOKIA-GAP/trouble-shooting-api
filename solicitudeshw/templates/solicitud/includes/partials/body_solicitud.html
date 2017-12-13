@@ -1,0 +1,22 @@
+<tr>
+  <th scope="row">{{ object.id }}</th>
+  {% if object.solicitudhw %}
+    <td><a href="{% url 'solicitudeshw:detail_solicitudhw' object.solicitudhw.pk %}">{{ object.solicitudhw }}</a></td>
+  {% else %}
+    <td>{{ object.solicitudhw }}</td>
+  {% endif %}
+  <td>{{ object.hardware }}</td>
+  <td>{{ object.cantidad }}</td>
+  <td>{{ object.descripcion }}</td>
+  <td>{{ object.creado }}</td>
+  <td>{{ object.actualizado }}</td>
+  {% if perms.users.perm_ni_ingeniero or perms.users.perm_fm_lider %}
+  <th>
+    <a onclick="return update_solicitud('{% url 'solicitudeshw:update_solicitud' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+  </th>
+  <th>
+    <a onclick="return delete_solicitud('{% url 'solicitudeshw:delete_solicitud' object.pk %}')" class="btn btn-danger btn-sm" role="button">Borrar</a>
+  </th>
+  {% else %}
+  {% endif %}
+</tr>

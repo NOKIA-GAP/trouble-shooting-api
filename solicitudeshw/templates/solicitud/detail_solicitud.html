@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Detalle De Solicitud{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Detalle De Solicitud</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      {% include "solicitud/includes/partials/head_solicitud.html" %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% include "solicitud/includes/partials/body_solicitud.html" %}
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

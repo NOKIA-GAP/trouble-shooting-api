@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Lista De Conceptos NI{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Solicitud HW
+  <a href="{% url 'solicitudeshw:export_solicitudeshw' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'solicitudeshw:search_solicitudhw' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "solicitudhw/includes/partials/head_solicitudhw.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "solicitudhw/includes/partials/body_solicitudhw.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="update_solicitudhw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="delete_solicitudhw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+
+var update_solicitudhw_modal;
+function update_solicitudhw(url){
+  update_solicitudhw_modal = $('#update_solicitudhw').modal({
+  }).modal('show').load(url)
+}
+
+var delete_solicitudhw_modal;
+function delete_solicitudhw(url){
+  delete_solicitudhw_modal = $('#delete_solicitudhw').modal({
+  }).modal('show').load(url)
+}
+
+</script>
+{% endblock extra_js %}

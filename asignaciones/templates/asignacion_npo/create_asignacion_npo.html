@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Create Asignacion Npo{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Crea Asignacion Npo</h1>
+{% endblock header_left %}
+
+{% block content_left %}
+<form method="POST" class="">{% csrf_token %}
+    {{ form|crispy }}<br>
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a href="{% url 'asignaciones:list_asignacion_npo' %}"class="btn btn-default" role="button">Cancelar</a>
+</form>
+{% endblock content_left %}

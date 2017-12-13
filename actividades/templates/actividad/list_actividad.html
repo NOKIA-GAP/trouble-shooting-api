@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+{% load filter_tags %}
+{% block title %}Lista De Actividades{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Lista De Actividades
+  <!-- <a href="{% url 'actividades:create_actividad' %}" class="btn btn-primary btn-sm" role="button">Crear</a> -->
+  <a onclick="return create_actividad('{% url 'actividades:create_actividad' %}')" class="btn btn-primary btn-sm" role="button">Crear</a>
+  <a href="{% url 'actividades:export_actividades' %}?{{query_dict|get_encoded_dict}}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'actividades:search_actividad' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar" required>
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block filter_left %}
+<form class="form-inline" action="{% url 'actividades:filter_actividad' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <select class="form-control" name="field" required>
+      {% for field in actividad_fields %}
+      <option value="{{ field }}">{{ field|replace_underscore:"_" }}</option>
+      {% endfor %}
+    </select>
+    <input type="text" class="form-control" name="value" placeholder="consulta">
+    <input type="date" class="form-control" name="date" placeholder="">
+  </div>
+  <button type="submit" class="btn btn-default">Filtrar</button>
+</form>
+{% if result %}
+<p>Se encontraron {{ result }} actividades</p>
+{% endif %}
+{% endblock filter_left %}
+
+{% block filter_right %}
+{% endblock filter_right %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "actividad/includes/partials/head_actividad.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "actividad/includes/partials/body_actividad.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="create_actividad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="update_actividad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_degradacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_asigancion_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_asigancion_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+var create_actividad_modal;
+function create_actividad(url){
+  create_actividad_modal = $('#create_actividad').modal({
+  }).modal('show').load(url)
+}
+
+var update_actividad_modal;
+function update_actividad(url){
+  update_actividad_modal = $('#update_actividad').modal({
+  }).modal('show').load(url)
+}
+
+var create_degradacion_modal;
+function create_degradacion(url){
+  create_degradacion_modal = $('#create_degradacion').modal({
+  }).modal('show').load(url)
+}
+
+var create_asignacion_ni_modal;
+function create_asignacion_ni(url){
+  create_asignacion_ni_modal = $('#create_asigancion_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_asignacion_npo_modal;
+function create_asignacion_npo(url){
+  create_asignacion_npo_modal = $('#create_asigancion_npo').modal({
+  }).modal('show').load(url)
+}
+</script>
+{% endblock extra_js %}

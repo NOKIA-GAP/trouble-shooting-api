@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Signin Users{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header %}
+<h1>Registrar Usuario</h1>
+{% endblock header %}
+
+{% block content_left %}
+<form method="POST" class="">{% csrf_token %}
+  <div class="form-group">
+    {{ form|crispy }}<br>
+    <button type="submit" class="btn btn-primary">Registar</button>
+  </div>
+</form>
+{% endblock content_left %}

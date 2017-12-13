@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Detalle De Asignacion NPO{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Detalle De Asignacion NPO</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "asignacion_npo/includes/partials/head_asignacion_npo.html" %}
+  </thead>
+  <tbody>
+    {% include "asignacion_npo/includes/partials/body_asignacion_npo.html" %}
+  </tbody>
+</table>
+{% endblock content %}

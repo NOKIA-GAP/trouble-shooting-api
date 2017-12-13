@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Lista De Conceptos NPO{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Conceptos NPO
+  <a href="{% url 'conceptos:export_conceptos_npo' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'conceptos:search_concepto_npo' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "concepto_npo/includes/partials/head_concepto_npo.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "concepto_npo/includes/partials/body_concepto_npo.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="update_concepto_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="delete_concepto_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+
+var update_concepto_npo_modal;
+function update_concepto_npo(url){
+  update_concepto_npo_modal = $('#update_concepto_npo').modal({
+  }).modal('show').load(url)
+}
+
+var delete_concepto_npo_modal;
+function delete_concepto_npo(url){
+  delete_concepto_npo_modal = $('#delete_concepto_npo').modal({
+  }).modal('show').load(url)
+}
+
+</script>
+{% endblock extra_js %}

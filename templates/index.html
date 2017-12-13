@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Trouble Shooting{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block content %}
+<div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Bienvenidos</h1>
+        <p>Esta es una aplicacion web para el control de actividades de Gap OnAir.</p>
+        {% if user.is_authenticated %}
+        <p>
+          <a class="btn btn-primary btn-lg" href="{% url 'estaciones:list_estacion' %}" role="button">Estaciones &raquo;</a>
+          <a class="btn btn-primary btn-lg" href="{% url 'actividades:list_actividad' %}" role="button">Actividades &raquo;</a>
+        </p>
+        {% else %}
+        <p>
+          <a class="btn btn-primary btn-lg" href="{% url 'users:login_user' %}" role="button">Entrar &raquo;</a>
+          <a class="btn btn-primary btn-lg" href="{% url 'users:signin_user' %}" role="button">Registrar &raquo;</a>
+        </p>
+        {% endif %}
+      </div>
+</div>
+{% endblock content %}
