@@ -12,7 +12,7 @@ CreateView,
 DeleteView
 )
 from django.urls import reverse_lazy
-from .forms import SolicitudHWForm, SolicitudForm, SolicitudFormSet
+from .forms import SolicitudHWForm, SolicitudForm, SolicitudHWUpdateForm, SolicitudFormSet
 from .models import SolicitudHW, Solicitud
 import operator
 from django.db.models import Q
@@ -113,7 +113,7 @@ class ListSolicitudHWAsignacion(ListSolicitudHW):
 class UpdateSolicitudHW(LoginRequiredMixin, UpdateView,):
     login_url = 'login_user'
     model = SolicitudHW
-    form_class = SolicitudHWForm
+    form_class = SolicitudHWUpdateForm
     template_name = 'solicitudhw/includes/partials/update_solicitudhw_modal.html'
 
     def get_context_data(self, **kwargs):
@@ -155,10 +155,6 @@ class SearchSolicitudHW(ListSolicitudHW):
                           (Q(actividad__id__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(wp__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                          (Q(hardware__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                          (Q(cantidad__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(estado_solicitud__icontains=q) for q in query_list)) |
                 reduce(operator.and_,

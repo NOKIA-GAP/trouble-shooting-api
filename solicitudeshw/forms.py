@@ -8,12 +8,21 @@ from django.forms.models import inlineformset_factory
 
 REQUIEREHW = 'Requiere HW'
 HWSOLICITADO = 'HW solicitado'
+HWRECIBIDO = 'HW recibido'
+
+class SolicitudHWUpdateForm(ModelForm):
+    estado_solicitud = forms.ChoiceField(choices=choices.ESTADO_SOLICITUD_CHOICES)
+
+    class Meta:
+        model = SolicitudHW
+        fields = ('estado_solicitud',)
 
 class SolicitudHWForm(ModelForm):
     estado_solicitud = forms.ChoiceField(choices=choices.ESTADO_SOLICITUD_CHOICES, required=False)
 
     def __init__(self, *args, **kwargs):
         self.asignacion_ni = kwargs.pop('asignacion_ni', None)
+        print(self.asignacion_ni)
         super(SolicitudHWForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -22,17 +31,13 @@ class SolicitudHWForm(ModelForm):
 
     def clean(self):
         cleaned_data = super(SolicitudHWForm, self).clean()
+        print(self.asignacion_ni)
         asignacion_ni = self.asignacion_ni
         solicitudes = asignacion_ni.solicitudeshw.all()
 
-        # if solicitudes:
-        #     for solicitud in solicitudes:
-        #         print solicitud.estado_solicitud
-        #         if solicitud.estado_solicitud == REQUIEREHW or solicitud.estado_solicitud == HWSOLICITADO:
-        #             raise forms.ValidationError('Para esta asignacion ya existe una Solicitud.')
         if solicitudes:
             for solicitud in solicitudes:
-                if (solicitud.estado_solicitud == 'HW recibido'):
+                if (solicitud.estado_solicitud == HWRECIBIDO):
                     pass
                 else:
                     raise forms.ValidationError('Para esta asignacion ya existe una Solicitud.')
