@@ -45,6 +45,21 @@ class DetailActividad(LoginRequiredMixin, DetailView):
     model = Actividad
     template_name = 'actividad/detail_actividad.html'
 
+class CreateActividad(LoginRequiredMixin, CreateView):
+    login_url = 'users:login_user'
+    form_class = ActividadForm
+    # template_name = 'actividad/create_actividad.html'
+    template_name = 'actividad/includes/partials/create_actividad_modal.html'
+    # success_url = reverse_lazy('actividades:list_actividad')
+
+    # def get_success_url(self, **kwargs):
+    #     return self.object.get_absolute_url()
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateActividad, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
 class UpdateActividad(LoginRequiredMixin, UpdateView):
     login_url = 'users:login_user'
     model = Actividad
@@ -67,21 +82,6 @@ class UpdateActividad(LoginRequiredMixin, UpdateView):
     #     context['actividad_form'] = self.get_form()
     #     context['concepto_npo_form'] = self.concepto_npo_form_class()
     #     return context
-
-class CreateActividad(LoginRequiredMixin, CreateView):
-    login_url = 'users:login_user'
-    form_class = ActividadForm
-    # template_name = 'actividad/create_actividad.html'
-    template_name = 'actividad/includes/partials/create_actividad_modal.html'
-    success_url = reverse_lazy('actividades:list_actividad')
-
-    # def get_success_url(self, **kwargs):
-    #     return self.object.get_absolute_url()
-
-    def get_form_kwargs(self):
-        kwargs = super(CreateActividad, self).get_form_kwargs()
-        kwargs.update({'user': self.request.user})
-        return kwargs
 
 class DeleteActividad(LoginRequiredMixin, DeleteView):
     login_url = 'users:login_user'

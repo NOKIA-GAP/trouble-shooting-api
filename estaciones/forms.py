@@ -6,4 +6,5 @@ from .models import Estacion
 class EstacionForm(ModelForm):
     class Meta:
         model = Estacion
-        fields = ('responsable', 'prioridad')
+        # fields = ('responsable', 'prioridad')
+        fields = '__all__'

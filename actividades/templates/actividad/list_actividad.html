@@ -11,11 +11,18 @@
 {% endblock nav %}
 
 {% block header_left %}
+{% if perms.users.perm_gap_administrador %}
 <h1>Lista De Actividades
   <!-- <a href="{% url 'actividades:create_actividad' %}" class="btn btn-primary btn-sm" role="button">Crear</a> -->
   <a onclick="return create_actividad('{% url 'actividades:create_actividad' %}')" class="btn btn-primary btn-sm" role="button">Crear</a>
   <a href="{% url 'actividades:export_actividades' %}?{{query_dict|get_encoded_dict}}" class="btn btn-info btn-sm" role="button">Exportar</a>
 </h1>
+{% else %}
+<h1>Lista De Actividades
+  <!-- <a href="{% url 'actividades:create_actividad' %}" class="btn btn-primary btn-sm" role="button">Crear</a> -->
+  <a href="{% url 'actividades:export_actividades' %}?{{query_dict|get_encoded_dict}}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endif %}
 {% endblock header_left %}
 
 {% block header_right %}

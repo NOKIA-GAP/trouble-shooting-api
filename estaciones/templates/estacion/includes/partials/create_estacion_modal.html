@@ -3,10 +3,10 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="myModalLabel">Crear Actividad</h4>
+      <h4 class="modal-title" id="myModalLabel">Crear Estacion</h4>
     </div>
     <div class="modal-body">
-      <form method="POST" action="{% url 'actividades:create_actividad' %}" class="">{% csrf_token %}
+      <form method="POST" action="{% url 'estaciones:create_estacion' %}" class="">{% csrf_token %}
         <div class="form-group">
           {{ form|crispy }}
         </div>

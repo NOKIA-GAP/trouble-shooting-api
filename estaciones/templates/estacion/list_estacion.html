@@ -6,7 +6,16 @@
 {% endblock nav %}
 
 {% block header_left %}
-<h1>Lista De Estaciones <a href="{% url 'estaciones:export_estaciones' %}" class="btn btn-info btn-sm" role="button">Exportar</a></h1>
+{% if perms.users.perm_gap_administrador %}
+<h1>Lista De Estaciones
+  <a onclick="return create_estacion('{% url 'estaciones:create_estacion' %}')" class="btn btn-primary btn-sm" role="button">Crear</a>
+  <a href="{% url 'estaciones:export_estaciones' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% else %}
+<h1>Lista De Estaciones
+  <a href="{% url 'estaciones:export_estaciones' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1>
+{% endif %}
 {% endblock header_left %}
 
 {% block header_right %}
@@ -46,6 +55,7 @@
     {% endfor %}
   </tbody>
 </table>
+<div class="modal fade" id="create_estacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <div class="modal fade" id="update_estacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 {% endblock content %}
 
@@ -55,6 +65,12 @@
 
 {% block extra_js %}
 <script>
+var create_estacion_modal;
+function create_estacion(url){
+  create_estacion_modal = $('#create_estacion').modal({
+  }).modal('show').load(url)
+}
+
 var update_estacion_modal;
 function update_estacion(url){
   update_estacion_modal = $('#update_estacion').modal({

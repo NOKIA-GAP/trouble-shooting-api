@@ -38,6 +38,16 @@ class DetailEstacion(LoginRequiredMixin, DetailView):
     model = Estacion
     template_name = 'estacion/detail_estacion.html'
 
+class CreateEstacion(LoginRequiredMixin, CreateView):
+    login_url = 'users:login_user'
+    form_class = EstacionForm
+    # template_name = 'estacion/create_estacion.html'
+    template_name = 'estacion/includes/partials/create_estacion_modal.html'
+    # success_url = reverse_lazy('estaciones:list_estacion')
+
+    # def get_success_url(self, **kwargs):
+    #     return self.object.get_absolute_url()
+
 class UpdateEstacion(LoginRequiredMixin, UpdateView):
     login_url = 'users:login_user'
     model = Estacion
@@ -48,12 +58,6 @@ class UpdateEstacion(LoginRequiredMixin, UpdateView):
 
     # def get_success_url(self, **kwargs):
     #     return self.object.get_absolute_url()
-
-class CreateEstacion(LoginRequiredMixin, CreateView):
-    login_url = 'users:login_user'
-    form_class = EstacionForm
-    template_name = 'estacion/create_estacion.html'
-    success_url = reverse_lazy('estaciones:list_estacion')
 
 class DeleteEstacion(LoginRequiredMixin, DeleteView):
     login_url = 'users:login_user'
