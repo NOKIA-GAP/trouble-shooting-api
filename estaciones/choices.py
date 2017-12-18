@@ -3,8 +3,11 @@
 REGIONAL_CHOICES = (
     ('Centro', 'Centro'),
     ('Costa', 'Costa'),
-    ('Nor Occidente', 'Nor Occidente'),
+    ('Oriente', 'Oriente'),
+    ('Occidente', 'Occidente'),
     ('Nor Oriente', 'Nor Oriente'),
+    ('Nor Occidente', 'Nor Occidente'),
+    ('Sur Oriente', 'Sur Oriente'),
     ('Sur Occidente', 'Sur Occidente'),
 )
 
@@ -39,6 +42,7 @@ CIUDAD_CHOICES = (
     ('Norte de Santander', 'Norte de Santander'),
     ('Pasto', 'Pasto'),
     ('Pereira', 'Pereira'),
+    ('Popayan', 'Popayan'),
     ('Quindio', 'Quindio'),
     ('Risaralda', 'Risaralda'),
     ('Sincelejo', 'Sincelejo'),
