@@ -70,6 +70,8 @@ CIUDAD_CHOICES = (
     ('Armenia', 'Armenia'),
     ('Valle del Cauca', 'Valle del Cauca'),
     ('Jamundi', 'Jamundi'),
+    ('Monteria', 'Monteria'),
+    ('Nariño', 'Nariño'),
 )
 
 """ RESPONSABLE_CHOICES  """

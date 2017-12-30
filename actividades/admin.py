@@ -42,8 +42,6 @@ class ActividadAdmin(ImportExportModelAdmin):
     'subestado_noc',
     'impacto_degradacion',
     'fecha_fc_visita',
-    'requiere_hw',
-    'cantidad_hw',
     'estado',
     'subestado',
     )

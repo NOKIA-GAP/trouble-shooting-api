@@ -84,12 +84,6 @@ class ActividadResource(resources.ModelResource):
         column_name='fecha fc visita',
         attribute='fecha_fc_visita',
         widget=DateWidget(format='%d/%m/%Y'))
-    requiere_hw = fields.Field(
-        column_name='requiere hw',
-        attribute='requiere_hw',)
-    cantidad_hw = fields.Field(
-        column_name='cantidad hw',
-        attribute='cantidad_hw',)
 
     # asignaciones npo
     npo_ingeniero = fields.Field(
@@ -98,9 +92,6 @@ class ActividadResource(resources.ModelResource):
     npo_estado_asignacion = fields.Field(
         column_name='npo estado asignacion',
         attribute='npo_estado_asignacion',)
-    npo_posible_causa = fields.Field(
-        column_name='npo posible causa',
-        attribute='npo_posible_causa',)
     npo_concepto = fields.Field(
         column_name='npo concepto',
         attribute='npo_concepto',)
@@ -122,6 +113,9 @@ class ActividadResource(resources.ModelResource):
     ni_estado_asignacion = fields.Field(
         column_name='ni estado asignacion',
         attribute='ni_estado_asignacion',)
+    ni_origen_falla = fields.Field(
+        column_name='ni origen falla',
+        attribute='ni_origen_falla',)
     ni_concepto = fields.Field(
         column_name='ni concepto',
         attribute='ni_concepto',)
@@ -182,12 +176,9 @@ class ActividadResource(resources.ModelResource):
         'subestado_noc',
         'impacto_degradacion',
         'fecha_fc_visita',
-        'requiere_hw',
-        'cantidad_hw',
         # asignaciones npo
         'npo_ingeniero',
         'npo_estado_asignacion',
-        'npo_posible_causa',
         'npo_concepto',
         'npo_tipo_intervencion',
         'npo_fecha_asignacion',
@@ -195,6 +186,7 @@ class ActividadResource(resources.ModelResource):
         # asignaciones ni
         'ni_ingeniero',
         'ni_estado_asignacion',
+        'ni_origen_falla',
         'ni_concepto',
         'ni_estado_solicitud_hw',
         'ni_tipo_intervencion',

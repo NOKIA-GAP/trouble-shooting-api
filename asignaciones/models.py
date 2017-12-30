@@ -32,7 +32,6 @@ class AsignacionNpo(models.Model):
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='asignaciones_npo')
     wp = models.BigIntegerField(blank=True, null=True)
     estado_asignacion = models.CharField(max_length=255, choices=choices.ESTADO_ASIGNACION_CHOICES, default='Asignada', blank=True, null=True)
-    posible_causa = models.CharField(max_length=255, choices=choices.POSIBLE_CAUSA_CHOICES, blank=True, null=True)
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
     fecha_asignacion = models.DateField(blank=True, null=True)
     estado = models.BooleanField(default=False)
@@ -69,10 +68,6 @@ class AsignacionNpo(models.Model):
             _actividad.npo_estado_asignacion = self.estado_asignacion
         except Exception:
             _actividad.npo_estado_asignacion = None
-        try:
-            _actividad.npo_posible_causa = self.posible_causa
-        except Exception:
-            _actividad.npo_posible_causa = None
         try:
             _actividad.npo_concepto = self.npo_concepto
         except Exception:
@@ -167,6 +162,7 @@ class AsignacionNi(models.Model):
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='asignaciones_ni')
     wp = models.BigIntegerField(blank=True, null=True)
     estado_asignacion = models.CharField(max_length=255, choices=choices.ESTADO_ASIGNACION_CHOICES, default='Asignada', blank=True, null=True)
+    origen_falla = models.CharField(max_length=255, choices=choices.ORIGEN_FALLA_CHOICES, blank=True, null=True)
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
     fecha_asignacion = models.DateField(blank=True, null=True)
     estado = models.BooleanField(default=False)
@@ -204,6 +200,10 @@ class AsignacionNi(models.Model):
             _actividad.ni_estado_asignacion = self.estado_asignacion
         except Exception:
             _actividad.ni_estado_asignacion = None
+        try:
+            _actividad.ni_origen_falla = self.origen_falla
+        except Exception:
+            _actividad.ni_origen_falla = None
         try:
             _actividad.ni_concepto = self.ni_concepto
         except Exception:

@@ -57,9 +57,6 @@ class AsignacionNpoResource(resources.ModelResource):
     estado_asignacion = fields.Field(
         column_name='estado asignacion',
         attribute='estado_asignacion',)
-    posible_causa = fields.Field(
-        column_name='posible causa',
-        attribute='posible_causa',)
     npo_concepto = fields.Field(
         column_name='npo concepto',
         attribute='npo_concepto',)
@@ -108,7 +105,6 @@ class AsignacionNpoResource(resources.ModelResource):
         'escenario',
         'tipo_trabajo',
         'estado_asignacion',
-        'posible_causa',
         'npo_concepto',
         'tipo_intervencion',
         'fecha_asignacion',
@@ -165,6 +161,9 @@ class AsignacionNiResource(resources.ModelResource):
     estado_asignacion = fields.Field(
         column_name='estado asignacion',
         attribute='estado_asignacion',)
+    origen_falla = fields.Field(
+        column_name='origen falla',
+        attribute='origen_falla',)
     ni_concepto = fields.Field(
         column_name='ni concepto',
         attribute='ni_concepto',)
@@ -207,6 +206,7 @@ class AsignacionNiResource(resources.ModelResource):
         'escenario',
         'tipo_trabajo',
         'estado_asignacion',
+        'origen_falla',
         'ni_concepto',
         'tipo_intervencion',
         'fecha_asignacion',

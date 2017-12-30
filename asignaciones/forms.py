@@ -163,11 +163,10 @@ class AsignacionNpoAsiganadorForm(ModelForm):
 
 class AsignacionNpoIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
-    posible_causa = forms.ChoiceField(choices=choices.POSIBLE_CAUSA_CHOICES, required=True)
 
     class Meta:
         model = AsignacionNpo
-        fields = ('estado_asignacion', 'posible_causa')
+        fields = ('estado_asignacion',)
 
     def clean(self):
         cleaned_data = super(AsignacionNpoIngenieroForm, self).clean()
@@ -319,10 +318,12 @@ class AsignacionNiAsignadorForm(ModelForm):
 
 class AsignacionNiIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
+    origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=True)
+    # origen_falla = forms.ChoiceField(widget=forms.HiddenInput(), choices=choices.ORIGEN_FALLA_CHOICES, required=False)
 
     class Meta:
         model = AsignacionNi
-        fields = ('estado_asignacion',)
+        fields = ('estado_asignacion', 'origen_falla')
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
@@ -332,3 +333,16 @@ class AsignacionNiIngenieroForm(ModelForm):
             raise forms.ValidationError('La asignacion no tiene un Concepto.')
 
         return cleaned_data
+
+# <div class="form-group">
+# {{ form|crispy }}
+# {% for visible_field in form.visible_fields %}
+# {{ visible_field }}
+# {% if visible_field.value == "Asignada" %}
+# <h1>{{ visible_field.value }}</h1>
+# {% endif %}
+# {% endfor %}
+# {% for hidden_field in form.hidden_fields %}
+# {{ hidden_field }}
+# {% endfor %}
+# </div>

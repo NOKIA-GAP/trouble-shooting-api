@@ -203,6 +203,7 @@ SERVICE_SUPPLIER_CHOICES = (
     ('CLARO', 'CLARO'),
     ('OIN (CLARO)', 'OIN (CLARO)'),
     ('SFERA', 'SFERA'),
+    ('MSI', 'MSI'),
 )
 
 """ SS_TBS_CHOICES  """

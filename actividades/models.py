@@ -33,8 +33,6 @@ class Actividad(models.Model):
     subestado_noc = models.CharField(max_length=255, choices=choices.SUBESTADO_NOC_CHOICES, blank=True, null=True)
     impacto_degradacion = models.CharField(max_length=255, choices=choices.IMPACTO_DEGRADACION_CHOICES, blank=True, null=True)
     fecha_fc_visita = models.DateField(blank=True, null=True)
-    requiere_hw = models.CharField(max_length=255, choices=choices.REQUIERE_HW_CHOICES, blank=True, null=True)
-    cantidad_hw = models.CharField(max_length=255, blank=True, null=True)
     estado = models.BooleanField(default=False, editable=False)
     subestado = models.BooleanField(default=False, editable=False)
     creado = models.DateTimeField(auto_now_add=True)
@@ -45,7 +43,6 @@ class Actividad(models.Model):
     # asignaciones npo
     npo_ingeniero = models.CharField(max_length=255, blank=True, null=True, editable=False)
     npo_estado_asignacion = models.CharField(max_length=255, blank=True, null=True, editable=False)
-    npo_posible_causa = models.CharField(max_length=255, blank=True, null=True, editable=False)
     npo_concepto = models.TextField(blank=True, null=True, editable=False)
     npo_tipo_intervencion = models.CharField(max_length=255, blank=True, null=True, editable=False)
     npo_fecha_asignacion = models.DateField(blank=True, null=True, editable=False)
@@ -53,6 +50,7 @@ class Actividad(models.Model):
     # asignaciones ni
     ni_ingeniero = models.CharField(max_length=255, blank=True, null=True, editable=False)
     ni_estado_asignacion = models.CharField(max_length=255, blank=True, null=True, editable=False)
+    ni_origen_falla = models.CharField(max_length=255, blank=True, null=True, editable=False)
     ni_concepto = models.TextField(blank=True, null=True, editable=False)
     ni_estado_solicitud_hw = models.CharField(max_length=255, blank=True, null=True, editable=False)
     ni_tipo_intervencion = models.CharField(max_length=255, blank=True, null=True, editable=False)

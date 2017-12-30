@@ -49,8 +49,6 @@ class ActividadForm(ModelForm):
                 self.fields.pop('impacto_degradacion')
                 self.fields.pop('fecha_fc_visita')
                 self.fields.pop('tipo_intervencion')
-                self.fields.pop('requiere_hw')
-                self.fields.pop('cantidad_hw')
                 # self.fields.pop('estado')
                 # self.fields.pop('subestado')
 
@@ -85,8 +83,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('requiere_hw')
-            # self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
@@ -113,8 +109,6 @@ class ActividadForm(ModelForm):
             # self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            self.fields.pop('requiere_hw')
-            self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
@@ -141,8 +135,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             # self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('requiere_hw')
-            self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
@@ -169,8 +161,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             # self.fields.pop('impacto_degradacion')
             # self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('requiere_hw')
-            self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
@@ -198,8 +188,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('impacto_degradacion')
             # self.fields.pop('fecha_fc_visita')
             # self.fields.pop('tipo_intervencion')
-            # self.fields.pop('requiere_hw')
-            # self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
@@ -226,8 +214,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            self.fields.pop('requiere_hw')
-            self.fields.pop('cantidad_hw')
             # self.fields.pop('estado')
             # self.fields.pop('subestado')
 
