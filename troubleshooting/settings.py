@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -147,7 +147,10 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 CROSPY_TEMPLATE_PACK = 'bootstrap3'
 DATE_INPUT_FORMATS = ('%d/%m/%y', '%d/%m/%Y', '%y-%m-%d', '%Y-%m-%d')
 AUTH_PROFILE_MODULE = 'users.Perfil'
-BUCKET_NAME = os.getenv('STORAGE_BUCKET')
+BUCKET_NAME = os.getenv('BUCKET_NAME')
+
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 try:
     from local_settings import *

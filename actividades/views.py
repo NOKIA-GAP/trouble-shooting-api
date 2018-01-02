@@ -122,11 +122,7 @@ class SearchActividad(ListActividad):
                 reduce(operator.and_,
                           (Q(subestado_noc__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(impacto_degradacion__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                          (Q(requiere_hw__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
-                          (Q(cantidad_hw__icontains=q) for q in query_list))
+                          (Q(impacto_degradacion__icontains=q) for q in query_list))
             )
         return result
 

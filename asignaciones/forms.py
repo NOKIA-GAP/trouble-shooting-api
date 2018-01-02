@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django import forms
 from django.forms import ModelForm
+from django.core.mail import send_mail
 from .models import (
 AsignacionNpo,
 AsignacionNi,
@@ -16,6 +17,9 @@ ENVIADO_A_SEGUIMIENTO = 'Enviado a seguimiento'
 REQUIERE_VISITA = 'Requiere visita'
 NO_EXITOSA = 'No exitosa'
 ESCALADO_A_CLARO = 'Escalado a claro'
+
+INSTALACION = 'Instalacion'
+INTEGRACION = 'Integracion'
 
 NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
@@ -328,9 +332,31 @@ class AsignacionNiIngenieroForm(ModelForm):
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
         conceptos = self.instance.conceptos_ni.all()
+        estado_asignacion = self.cleaned_data.get('estado_asignacion')
+        origen_falla = self.cleaned_data.get('origen_falla')
 
         if not conceptos:
             raise forms.ValidationError('La asignacion no tiene un Concepto.')
+
+        if estado_asignacion == REQUIERE_VISITA:
+
+            send_mail(
+                'Requiere visita',
+                'Este es un mensaje de prueba para el estado de asignacion Requiere visita.',
+                'jbri.gap@nokia.com',
+                ['jucebridu@gmail.com', 'jbri.gap@nokia.com', 'juan.andrade@nokia.com'],
+                fail_silently=False,
+            )
+
+        if origen_falla == INSTALACION or origen_falla == INTEGRACION:
+
+            send_mail(
+                'Instalacion o Integracion',
+                'Este es un mensaje de prueba para origen falla Instalacion o Integracion.',
+                'jbri.gap@nokia.com',
+                ['jucebridu@gmail.com', 'jbri.gap@nokia.com', 'juan.andrade@nokia.com'],
+                fail_silently=False,
+            )
 
         return cleaned_data
 
