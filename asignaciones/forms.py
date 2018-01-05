@@ -334,6 +334,8 @@ class AsignacionNiIngenieroForm(ModelForm):
         conceptos = self.instance.conceptos_ni.all()
         estado_asignacion = self.cleaned_data.get('estado_asignacion')
         origen_falla = self.cleaned_data.get('origen_falla')
+        estacion = self.instance.estacion
+        actividad = self.instance.actividad
 
         if not conceptos:
             raise forms.ValidationError('La asignacion no tiene un Concepto.')
@@ -341,20 +343,80 @@ class AsignacionNiIngenieroForm(ModelForm):
         if estado_asignacion == REQUIERE_VISITA:
 
             send_mail(
-                'Requiere visita',
-                'Este es un mensaje de prueba para el estado de asignacion Requiere visita.',
+                'Estado Asignacion Requiere Visita' +' '+
+                estacion.nombre +' '+
+                actividad.banda +' '+
+                actividad.proyecto +' '+
+                actividad.escenario,
+
+                conceptos.last().contenido +'\n'+
+                '''
+                Este es un mensaje de prueba para el estado de asignacion Requiere visita.
+                Esta es una lista  provisional sera oficial en la semana dos.
+                ''',
+
                 'jbri.gap@nokia.com',
-                ['jucebridu@gmail.com', 'jbri.gap@nokia.com', 'juan.andrade@nokia.com'],
+
+                ['jbri.gap@nokia.com',
+                'juan.andrade@nokia.com',
+                'jorge.baracaldo@nokia.com',
+                'ivan.jimenez_robayo@nokia.com',
+                'integrador24.claro@nokia.com',
+                'onair1.claro@nokia.com'],
                 fail_silently=False,
             )
 
-        if origen_falla == INSTALACION or origen_falla == INTEGRACION:
+        if origen_falla == INSTALACION:
 
             send_mail(
-                'Instalacion o Integracion',
-                'Este es un mensaje de prueba para origen falla Instalacion o Integracion.',
+                'Origen Falla Instalacion' +' '+
+                estacion.nombre +' '+
+                actividad.banda +' '+
+                actividad.proyecto +' '+
+                actividad.escenario,
+
+                conceptos.last().contenido +'\n'+
+
+                '''
+                Este es un mensaje de prueba para origen falla Instalacion.
+                Esta es una lista  provisional sera oficial en la semana dos.
+                ''',
+
                 'jbri.gap@nokia.com',
-                ['jucebridu@gmail.com', 'jbri.gap@nokia.com', 'juan.andrade@nokia.com'],
+
+                ['jbri.gap@nokia.com',
+                'juan.andrade@nokia.com',
+                'jorge.baracaldo@nokia.com',
+                'ivan.jimenez_robayo@nokia.com',
+                'integrador24.claro@nokia.com',
+                'onair1.claro@nokia.com'],
+                fail_silently=False,
+            )
+
+        if origen_falla == INTEGRACION:
+
+            send_mail(
+                'Origen Falla Integracion' +' '+
+                estacion.nombre +' '+
+                actividad.banda +' '+
+                actividad.proyecto +' '+
+                actividad.escenario,
+
+                conceptos.last().contenido +'\n'+
+
+                '''
+                Este es un mensaje de prueba para origen falla Integracion.
+                Esta es una lista  provisional sera oficial en la semana dos.
+                ''',
+
+                'jbri.gap@nokia.com',
+
+                ['jbri.gap@nokia.com',
+                'juan.andrade@nokia.com',
+                'jorge.baracaldo@nokia.com',
+                'ivan.jimenez_robayo@nokia.com',
+                'integrador24.claro@nokia.com',
+                'onair1.claro@nokia.com'],
                 fail_silently=False,
             )
 

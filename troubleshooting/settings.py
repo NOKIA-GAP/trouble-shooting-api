@@ -99,7 +99,6 @@ if os.getenv('GAE_INSTANCE'):
 else:
     DATABASES['default']['HOST'] = '127.0.0.1'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -132,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 if os.getenv('GAE_INSTANCE'):
@@ -148,8 +146,7 @@ CROSPY_TEMPLATE_PACK = 'bootstrap3'
 DATE_INPUT_FORMATS = ('%d/%m/%y', '%d/%m/%Y', '%y-%m-%d', '%Y-%m-%d')
 AUTH_PROFILE_MODULE = 'users.Perfil'
 BUCKET_NAME = os.getenv('BUCKET_NAME')
-
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 try:

@@ -26,3 +26,4 @@ class PerfilAdmin(ImportExportModelAdmin):
     'creado',
     'actualizado',
     )
+    search_fields = ['nombre_completo']
