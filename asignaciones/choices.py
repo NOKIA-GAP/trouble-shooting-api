@@ -44,8 +44,8 @@ ORIGEN_FALLA_CHOICES = (
 """ SOLVER_CHOICES  """
 SOLVER_CHOICES = (
     ('', '---------'),
-    ('NOKIA', 'NOKIA'),
-    ('SERVICE SUPPLIER', 'SERVICE SUPPLIER'),
+    ('Nokia', 'Nokia'),
+    ('Service suplier', 'Service suplier'),
 )
 
 """ TIPO_INTERVENCION_CHOICES  """
