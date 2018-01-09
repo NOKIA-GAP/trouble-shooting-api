@@ -163,6 +163,7 @@ class AsignacionNi(models.Model):
     wp = models.BigIntegerField(blank=True, null=True)
     estado_asignacion = models.CharField(max_length=255, choices=choices.ESTADO_ASIGNACION_CHOICES, default='Asignada', blank=True, null=True)
     origen_falla = models.CharField(max_length=255, choices=choices.ORIGEN_FALLA_CHOICES, blank=True, null=True)
+    solver = models.CharField(max_length=255, choices=choices.SOLVER_CHOICES, blank=True, null=True)
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
     fecha_asignacion = models.DateField(blank=True, null=True)
     estado = models.BooleanField(default=False)
@@ -204,6 +205,10 @@ class AsignacionNi(models.Model):
             _actividad.ni_origen_falla = self.origen_falla
         except Exception:
             _actividad.ni_origen_falla = None
+        try:
+            _actividad.ni_solver = self.solver
+        except Exception:
+            _actividad.ni_solver = None
         try:
             _actividad.ni_concepto = self.ni_concepto
         except Exception:

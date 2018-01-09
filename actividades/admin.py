@@ -35,8 +35,6 @@ class ActividadAdmin(ImportExportModelAdmin):
     'realtifinish',
     'fecha_integracion',
     'grupo_gap',
-    'ss_tbs',
-    'po_solicitud',
     'fecha_estado_noc',
     'estado_noc',
     'subestado_noc',

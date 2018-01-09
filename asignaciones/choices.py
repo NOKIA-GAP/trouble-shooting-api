@@ -41,6 +41,13 @@ ORIGEN_FALLA_CHOICES = (
     ('Otra causa', 'Otra causa'),
 )
 
+""" SOLVER_CHOICES  """
+SOLVER_CHOICES = (
+    ('', '---------'),
+    ('NOKIA', 'NOKIA'),
+    ('SERVICE SUPPLIER', 'SERVICE SUPPLIER'),
+)
+
 """ TIPO_INTERVENCION_CHOICES  """
 TIPO_INTERVENCION_CHOICES = (
     ('', '---------'),

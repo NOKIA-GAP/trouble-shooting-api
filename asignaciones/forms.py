@@ -324,18 +324,22 @@ class AsignacionNiIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
     origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=True)
     # origen_falla = forms.ChoiceField(widget=forms.HiddenInput(), choices=choices.ORIGEN_FALLA_CHOICES, required=False)
+    solver = forms.ChoiceField(choices=choices.SOLVER_CHOICES, required=False)
 
     class Meta:
         model = AsignacionNi
-        fields = ('estado_asignacion', 'origen_falla')
+        fields = ('estado_asignacion', 'origen_falla', 'solver')
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
         conceptos = self.instance.conceptos_ni.all()
-        estado_asignacion = self.cleaned_data.get('estado_asignacion')
-        origen_falla = self.cleaned_data.get('origen_falla')
+        estado_asignacion = cleaned_data.get('estado_asignacion')
+        origen_falla = cleaned_data.get('origen_falla')
+        solver = cleaned_data.get('solver')
         estacion = self.instance.estacion
         actividad = self.instance.actividad
+        service_supplier = self.instance.actividad.service_supplier
+        ni_ingeniero = self.instance.ni_ingeniero
 
         if not conceptos:
             raise forms.ValidationError('La asignacion no tiene un Concepto.')
@@ -343,13 +347,19 @@ class AsignacionNiIngenieroForm(ModelForm):
         if estado_asignacion == REQUIERE_VISITA:
 
             send_mail(
-                'Estado Asignacion Requiere Visita' +' '+
+                'Requiere Visita' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                conceptos.last().contenido +'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
+                conceptos.last().contenido +'\n'+'\n'+
+                'Service Supplier: '+ service_supplier +'\n'+'\n'+
+
+                'El Equipo Nokia realizará visita. De encontrarse una falla de \
+                instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.'
+
                 '''
                 Este es un mensaje de prueba para el estado de asignacion Requiere visita.
                 Esta es una lista  provisional sera oficial en la semana dos.
@@ -366,16 +376,19 @@ class AsignacionNiIngenieroForm(ModelForm):
                 fail_silently=False,
             )
 
-        if origen_falla == INSTALACION:
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INSTALACION:
 
             send_mail(
-                'Origen Falla Instalacion' +' '+
+                'Instalacion' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                conceptos.last().contenido +'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
+                conceptos.last().contenido +'\n'+'\n'+
+                'Service Supplier: '+ service_supplier +'\n'+'\n'+
+                'Solver: '+ solver +'\n'+'\n'+
 
                 '''
                 Este es un mensaje de prueba para origen falla Instalacion.
@@ -393,16 +406,18 @@ class AsignacionNiIngenieroForm(ModelForm):
                 fail_silently=False,
             )
 
-        if origen_falla == INTEGRACION:
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTEGRACION:
 
             send_mail(
-                'Origen Falla Integracion' +' '+
+                'Integracion' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                conceptos.last().contenido +'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
+                conceptos.last().contenido +'\n'+'\n'+
+                'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
                 '''
                 Este es un mensaje de prueba para origen falla Integracion.

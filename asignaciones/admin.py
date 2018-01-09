@@ -55,6 +55,7 @@ class AsignacionNiAdmin(ImportExportModelAdmin):
     'wp',
     'estado_asignacion',
     'origen_falla',
+    'solver',
     'tipo_intervencion',
     'fecha_asignacion',
     'estado',

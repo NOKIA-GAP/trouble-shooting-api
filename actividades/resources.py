@@ -60,13 +60,6 @@ class ActividadResource(resources.ModelResource):
     grupo_gap = fields.Field(
         column_name='grupo gap',
         attribute='grupo_gap',)
-    ss_tbs = fields.Field(
-        column_name='ss tbs',
-        attribute='ss_tbs',)
-    po_solicitud = fields.Field(
-        column_name='po solicitud',
-        attribute='po_solicitud',
-        widget=DateWidget(format='%d/%m/%Y'))
     fecha_estado_noc = fields.Field(
         column_name='fecha estado noc',
         attribute='fecha_estado_noc',
@@ -116,6 +109,9 @@ class ActividadResource(resources.ModelResource):
     ni_origen_falla = fields.Field(
         column_name='ni origen falla',
         attribute='ni_origen_falla',)
+    ni_solver = fields.Field(
+        column_name='ni solver',
+        attribute='ni_solver',)
     ni_concepto = fields.Field(
         column_name='ni concepto',
         attribute='ni_concepto',)
@@ -169,8 +165,6 @@ class ActividadResource(resources.ModelResource):
         'realtifinish',
         'fecha_integracion',
         'grupo_gap',
-        'ss_tbs',
-        'po_solicitud',
         'fecha_estado_noc',
         'estado_noc',
         'subestado_noc',
@@ -187,6 +181,7 @@ class ActividadResource(resources.ModelResource):
         'ni_ingeniero',
         'ni_estado_asignacion',
         'ni_origen_falla',
+        'ni_solver',
         'ni_concepto',
         'ni_estado_solicitud_hw',
         'ni_tipo_intervencion',

@@ -141,12 +141,6 @@ VISITA_SUPERVISOR_CHOICES = (
     ('Manuel Garcia', 'Manuel Garcia'),
 )
 
-""" REQUIERE_HW_CHOICES  """
-REQUIERE_HW_CHOICES = (
-    ('OK', 'OK'),
-    ('NOK', 'NOK'),
-)
-
 """ IMPACTO_DEGRADACION_CHOICES  """
 IMPACTO_DEGRADACION_CHOICES = (
     ('Leve', 'Leve'),
@@ -204,28 +198,4 @@ SERVICE_SUPPLIER_CHOICES = (
     ('OIN (CLARO)', 'OIN (CLARO)'),
     ('SFERA', 'SFERA'),
     ('MSI', 'MSI'),
-)
-
-""" SS_TBS_CHOICES  """
-SS_TBS_CHOICES = (
-    ('UNION', 'UNION'),
-    ('CONSTRUTECH', 'CONSTRUTECH'),
-    ('FIBRATERRA', 'FIBRATERRA'),
-    ('SAI', 'SAI'),
-    ('SERVINTELCO', 'SERVINTELCO'),
-    ('INGYTELCOM', 'INGYTELCOM'),
-    ('REDES Y SERVICIOS', 'REDES Y SERVICIOS'),
-    ('ZOOM', 'ZOOM'),
-    ('INGYTELCOM', 'INGYTELCOM'),
-    ('INGETEL', 'INGETEL'),
-    ('ADSM', 'ADSM'),
-    ('GAMMA', 'GAMMA'),
-    ('SITCOM', 'SITCOM'),
-)
-
-""" RESPONSABLE_CHOICES  """
-RESPONSABLE_CHOICES = (
-    ('GAP1', 'GAP1'),
-    ('GAP2', 'GAP2'),
-    ('ZTE', 'ZTE'),
 )

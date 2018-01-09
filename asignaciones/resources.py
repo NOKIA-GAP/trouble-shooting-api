@@ -164,6 +164,9 @@ class AsignacionNiResource(resources.ModelResource):
     origen_falla = fields.Field(
         column_name='origen falla',
         attribute='origen_falla',)
+    solver = fields.Field(
+        column_name='solver',
+        attribute='solver',)
     ni_concepto = fields.Field(
         column_name='ni concepto',
         attribute='ni_concepto',)
@@ -207,6 +210,7 @@ class AsignacionNiResource(resources.ModelResource):
         'tipo_trabajo',
         'estado_asignacion',
         'origen_falla',
+        'solver',
         'ni_concepto',
         'tipo_intervencion',
         'fecha_asignacion',
