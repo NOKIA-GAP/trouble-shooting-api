@@ -284,8 +284,6 @@ class SearchAsignacionNpo(ListAsignacionNpo):
                 reduce(operator.and_,
                           (Q(estado_asignacion__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(posible_causa__icontains=q) for q in query_list)) |
-                reduce(operator.and_,
                           (Q(tipo_intervencion__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(creado__icontains=q) for q in query_list)) |

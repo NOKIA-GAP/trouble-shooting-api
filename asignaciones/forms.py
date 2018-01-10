@@ -322,19 +322,20 @@ class AsignacionNiAsignadorForm(ModelForm):
 
 class AsignacionNiIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
-    origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=True)
+    origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=False)
     # origen_falla = forms.ChoiceField(widget=forms.HiddenInput(), choices=choices.ORIGEN_FALLA_CHOICES, required=False)
     solver = forms.ChoiceField(choices=choices.SOLVER_CHOICES, required=False)
 
     class Meta:
         model = AsignacionNi
-        fields = ('estado_asignacion', 'origen_falla', 'solver')
+        fields = ('estado_asignacion', 'origen_falla', 'detalle_falla_instalacion','solver')
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
         conceptos = self.instance.conceptos_ni.all()
         estado_asignacion = cleaned_data.get('estado_asignacion')
         origen_falla = cleaned_data.get('origen_falla')
+        detalle_falla_instalacion = cleaned_data.get('detalle_falla_instalacion')
         solver = cleaned_data.get('solver')
         estacion = self.instance.estacion
         actividad = self.instance.actividad
@@ -386,7 +387,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.escenario,
 
                 'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
-                conceptos.last().contenido +'\n'+'\n'+
+                'Detalle falla instalacion: '+ detalle_falla_instalacion +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
                 'Solver: '+ solver +'\n'+'\n'+
 
@@ -396,7 +397,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ''',
 
                 'jbri.gap@nokia.com',
-
+                
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
                 'jorge.baracaldo@nokia.com',

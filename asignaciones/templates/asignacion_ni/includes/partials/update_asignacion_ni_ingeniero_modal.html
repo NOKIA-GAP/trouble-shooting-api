@@ -21,6 +21,63 @@
 
 <script>
 
+var estado_asignacion = $('#id_estado_asignacion');
+var origen_falla = $('#id_origen_falla');
+var detalle_falla_instalacion = $('#id_detalle_falla_instalacion');
+var solver = $('#id_solver');
+var div_origen_falla = $('#div_id_origen_falla');
+var div_detalle_falla_instalacion = $('#div_id_detalle_falla_instalacion');
+var div_solver = $('#div_id_solver');
+
+div_origen_falla.hide()
+div_detalle_falla_instalacion.hide()
+div_solver.hide()
+
+$('#id_estado_asignacion').on('change', function()
+{
+  if (this.value === 'Enviado a seguimiento') {
+    div_origen_falla.show()
+    $('#id_origen_falla').attr('required', true)
+  } else {
+    div_origen_falla.hide()
+    $('#id_origen_falla').removeAttr('required')
+    if (origen_falla.val()) {
+      origen_falla.val('')
+    }
+    div_detalle_falla_instalacion.hide()
+    $('#id_detalle_falla_instalacion').removeAttr('required')
+    if (detalle_falla_instalacion.val()) {
+      detalle_falla_instalacion.val('')
+    }
+    div_solver.hide()
+    $('#id_solver').removeAttr('required')
+    if (solver.val()) {
+      solver.val('')
+    }
+  }
+});
+
+$('#id_origen_falla').on('change', function()
+{
+  if (this.value === 'Instalacion') {
+    div_detalle_falla_instalacion.show()
+    $('#id_detalle_falla_instalacion').attr('required', true)
+    div_solver.show()
+    $('#id_solver').attr('required', true)
+  } else {
+    div_detalle_falla_instalacion.hide()
+    $('#id_detalle_falla_instalacion').removeAttr('required')
+    if (detalle_falla_instalacion.val()) {
+      detalle_falla_instalacion.val('')
+    }
+    div_solver.hide()
+    $('#id_solver').removeAttr('required')
+    if (solver.val()) {
+      solver.val('')
+    }
+  }
+});
+
 var success_url = "{% url 'asignaciones:list_asignacion_ni_perfil' user.perfil.slug %}"
 var modal_body = $(".modal-body");
 var modal_load_error = "Error occurred while loading";
