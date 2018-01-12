@@ -18,6 +18,7 @@ class PerfilAdmin(ImportExportModelAdmin):
     'user',
     'slug',
     'perfil_usuario',
+    'par',
     'nombre',
     'apellido',
     'nombre_completo',

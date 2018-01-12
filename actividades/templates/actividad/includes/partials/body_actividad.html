@@ -41,8 +41,6 @@
   <td>{{ object.subestado_noc }}</td>
   <td>{{ object.impacto_degradacion }}</td>
   <td>{{ object.fecha_fc_visita }}</td>
-  <td>{{ object.requiere_hw }}</td>
-  <td>{{ object.cantidad_hw }}</td>
   <td>
     {%  if object.degradaciones.all %}
       <a href="{% url 'actividades:list_degradacion_actividad' object.pk %}">degradaciones</a>

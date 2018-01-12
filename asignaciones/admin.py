@@ -58,6 +58,7 @@ class AsignacionNiAdmin(ImportExportModelAdmin):
     'solver',
     'tipo_intervencion',
     'fecha_asignacion',
+    'asignar_par',
     'estado',
     'subestado',
     'creado',

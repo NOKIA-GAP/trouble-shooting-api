@@ -167,6 +167,7 @@ class AsignacionNi(models.Model):
     solver = models.CharField(max_length=255, choices=choices.SOLVER_CHOICES, blank=True, null=True)
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
     fecha_asignacion = models.DateField(blank=True, null=True)
+    asignar_par = models.BooleanField(default=False)
     estado = models.BooleanField(default=False)
     subestado = models.BooleanField(default=False)
     creado = models.DateTimeField(auto_now_add=True)

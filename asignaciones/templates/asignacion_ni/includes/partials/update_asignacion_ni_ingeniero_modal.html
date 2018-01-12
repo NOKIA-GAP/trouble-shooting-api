@@ -35,7 +35,7 @@ div_solver.hide()
 
 $('#id_estado_asignacion').on('change', function()
 {
-  if (this.value === 'Enviado a seguimiento') {
+  if (this.value === 'Enviado a seguimiento' || this.value === 'Escalado a claro') {
     div_origen_falla.show()
     $('#id_origen_falla').attr('required', true)
   } else {

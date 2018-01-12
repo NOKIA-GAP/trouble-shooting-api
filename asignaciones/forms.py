@@ -69,24 +69,6 @@ class AsignacionNpoForm(ModelForm):
             raise forms.ValidationError('la Actividad se encuentra en monitoreo.')
         except AsignacionNpo.DoesNotExist:
             pass
-        try:
-            asignacion_npo_asignada = AsignacionNpo.objects.get(
-            actividad=actividad,
-            npo_ingeniero=npo_ingeniero,
-            estado_asignacion=ASIGNADA,
-            )
-            raise forms.ValidationError('para este NPO ingeniero la Actividad ya fue asignada.')
-        except AsignacionNpo.DoesNotExist:
-            pass
-        try:
-            asignacion_npo_en_monitoreo = AsignacionNpo.objects.get(
-            actividad=actividad,
-            npo_ingeniero=npo_ingeniero,
-            estado_asignacion=EN_MONITOREO,
-            )
-            raise forms.ValidationError('para este NPO ingeniero la Actividad se encuentra en monitoreo.')
-        except AsignacionNpo.DoesNotExist:
-            pass
         return cleaned_data
 
 class AsignacionNpoAsiganadorForm(ModelForm):
@@ -186,6 +168,7 @@ class AsignacionNiForm(ModelForm):
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     fecha_asignacion = forms.DateField(widget=forms.DateInput(attrs={'class':'form-inline','type':'date'}), input_formats=settings.DATE_INPUT_FORMATS, required=True)
+    asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
         self.actividad = kwargs.pop('actividad', None)
@@ -194,11 +177,12 @@ class AsignacionNiForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion')
+        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'asignar_par')
 
     def clean(self):
         cleaned_data = super(AsignacionNiForm, self).clean()
         ni_ingeniero = cleaned_data.get('ni_ingeniero')
+        asignar_par = cleaned_data.get('asignar_par')
         actividad = self.actividad
         ni_asignador = self.ni_asignador
 
@@ -225,31 +209,31 @@ class AsignacionNiForm(ModelForm):
             raise forms.ValidationError('la Actividad se encuentra en monitoreo')
         except AsignacionNi.DoesNotExist:
             pass
-        try:
-            asignacion_ni_asignada = AsignacionNi.objects.get(
-            actividad=actividad,
-            ni_ingeniero=ni_ingeniero,
-            estado_asignacion=ASIGNADA,
-            )
-            raise forms.ValidationError('para este NI ingeniero la Actividad ya fue asignada')
-        except AsignacionNi.DoesNotExist:
-            pass
-        try:
-            asignacion_ni_en_monitoreo = AsignacionNi.objects.get(
-            actividad=actividad,
-            ni_ingeniero=ni_ingeniero,
-            estado_asignacion=EN_MONITOREO,
-            )
-            raise forms.ValidationError('para este NI ingeniero la Actividad se encuentra en monitoreo')
-        except AsignacionNi.DoesNotExist:
-            pass
+        if asignar_par:
+            try:
+                asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
+                actividad=actividad,
+                estado_asignacion=ASIGNADA,
+                )
+                raise forms.ValidationError('la Actividad ya fue asignada a par NPO')
+            except AsignacionNpo.DoesNotExist:
+                pass
+            try:
+                asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
+                actividad=actividad,
+                estado_asignacion=EN_MONITOREO,
+                )
+                raise forms.ValidationError('la Actividad ya fue asignada a par NPO y se encuentra en monitoreo')
+            except AsignacionNpo.DoesNotExist:
+                pass
         return cleaned_data
 
 class AsignacionNiAsignadorForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
-    fecha_asignacion = forms.DateField(widget=forms.DateInput(attrs={'class':'form-inline','type':'date'}), input_formats=settings.DATE_INPUT_FORMATS, required=True)
+    fecha_asignacion = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=True)
+    asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
         self.actividad = kwargs.pop('actividad', None)
@@ -258,11 +242,15 @@ class AsignacionNiAsignadorForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion')
+        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'asignar_par')
+        widgets = {
+            'fecha_asignacion': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date'}),
+        }
 
     def clean(self):
         cleaned_data = super(AsignacionNiAsignadorForm, self).clean()
         ni_ingeniero = cleaned_data.get('ni_ingeniero')
+        asignar_par = cleaned_data.get('asignar_par')
         actividad = self.actividad
         ni_asignador = self.ni_asignador
         pk = self.instance.pk
@@ -318,6 +306,23 @@ class AsignacionNiAsignadorForm(ModelForm):
             raise forms.ValidationError('la Actividad se encuentra Escalado a claro.')
         except AsignacionNi.DoesNotExist:
             pass
+        if asignar_par:
+            try:
+                asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
+                actividad=actividad,
+                estado_asignacion=ASIGNADA,
+                )
+                raise forms.ValidationError('la Actividad ya fue asignada a par NPO')
+            except AsignacionNpo.DoesNotExist:
+                pass
+            try:
+                asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
+                actividad=actividad,
+                estado_asignacion=EN_MONITOREO,
+                )
+                raise forms.ValidationError('la Actividad ya fue asignada a par NPO y se encuentra en monitoreo')
+            except AsignacionNpo.DoesNotExist:
+                pass
         return cleaned_data
 
 class AsignacionNiIngenieroForm(ModelForm):
@@ -328,7 +333,7 @@ class AsignacionNiIngenieroForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('estado_asignacion', 'origen_falla', 'detalle_falla_instalacion','solver')
+        fields = ('estado_asignacion', 'origen_falla', 'detalle_falla_instalacion', 'solver')
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
@@ -380,7 +385,7 @@ class AsignacionNiIngenieroForm(ModelForm):
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INSTALACION:
 
             send_mail(
-                'Instalacion' +' '+
+                'Falla Instalacion' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
@@ -397,7 +402,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ''',
 
                 'jbri.gap@nokia.com',
-                
+
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
                 'jorge.baracaldo@nokia.com',
@@ -410,7 +415,7 @@ class AsignacionNiIngenieroForm(ModelForm):
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTEGRACION:
 
             send_mail(
-                'Integracion' +' '+
+                'Falla Integracion' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
@@ -437,16 +442,3 @@ class AsignacionNiIngenieroForm(ModelForm):
             )
 
         return cleaned_data
-
-# <div class="form-group">
-# {{ form|crispy }}
-# {% for visible_field in form.visible_fields %}
-# {{ visible_field }}
-# {% if visible_field.value == "Asignada" %}
-# <h1>{{ visible_field.value }}</h1>
-# {% endif %}
-# {% endfor %}
-# {% for hidden_field in form.hidden_fields %}
-# {{ hidden_field }}
-# {% endfor %}
-# </div>

@@ -375,6 +375,7 @@ class CreateAsignacionNi(LoginRequiredMixin, CreateView):
         actividad = Actividad.objects.get(pk=self.kwargs['pk'])
         ni_ingeniero = form.cleaned_data['ni_ingeniero']
         fm_supervisor = form.cleaned_data['fm_supervisor']
+        asignar_par = form.cleaned_data['asignar_par']
         form.instance.estacion = actividad.estacion
         form.instance.actividad = actividad
         form.instance.wp = actividad.wp
@@ -394,6 +395,16 @@ class CreateAsignacionNi(LoginRequiredMixin, CreateView):
             form.instance.fm_supervisor_empresa = fm_supervisor.empresa
         except Exception:
             pass
+        if asignar_par:
+            AsignacionNpo.objects.create(
+                npo_asignador=self.request.user.perfil,
+                npo_ingeniero=ni_ingeniero.par.perfil,
+                estacion=actividad.estacion,
+                actividad=actividad,
+                wp=actividad.wp,
+                tipo_intervencion=form.instance.tipo_intervencion,
+                fecha_asignacion=form.instance.fecha_asignacion
+            )
         return super(CreateAsignacionNi, self).form_valid(form)
 
     def get_form_kwargs(self):
@@ -638,6 +649,22 @@ class UpdateAsignacionNiAsignador(LoginRequiredMixin, UpdateView):
 
     # def get_success_url(self, **kwargs):
     #     return self.object.get_absolute_url()
+
+    def form_valid(self, form):
+        actividad = self.object.actividad
+        ni_ingeniero = form.cleaned_data['ni_ingeniero']
+        asignar_par = form.cleaned_data['asignar_par']
+        if asignar_par:
+            AsignacionNpo.objects.create(
+                npo_asignador=self.request.user.perfil,
+                npo_ingeniero=ni_ingeniero.par.perfil,
+                estacion=actividad.estacion,
+                actividad=actividad,
+                wp=actividad.wp,
+                tipo_intervencion=form.instance.tipo_intervencion,
+                fecha_asignacion=form.instance.fecha_asignacion
+            )
+        return super(UpdateAsignacionNiAsignador, self).form_valid(form)
 
     def get_form_kwargs(self):
         kwargs = super(UpdateAsignacionNiAsignador, self).get_form_kwargs()

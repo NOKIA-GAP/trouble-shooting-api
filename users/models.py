@@ -14,6 +14,7 @@ class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=30)
     perfil_usuario = models.CharField(max_length=255, choices=choices.PERFIL_USUARIO_CHOICES, blank=True, null=True)
+    par = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='par', blank=True, null=True)
     nombre = models.CharField(max_length=255)
     apellido = models.CharField(max_length=255)
     nombre_completo = models.CharField(max_length=255, blank=True, null=True)
