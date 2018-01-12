@@ -74,6 +74,8 @@ class Actividad(models.Model):
     def save(self, *args, **kwargs):
         if self.grupo_gap == None and self.estado_noc == PRODUCCION:
             self.grupo_gap = self.estacion.responsable
+        if self.estado_noc == PRODUCCION:
+            self.estado_unico = PRODUCCION
         super(Actividad, self).save(*args, **kwargs)
 
 
