@@ -232,7 +232,7 @@ class AsignacionNiAsignadorForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
-    fecha_asignacion = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=True)
+    # fecha_asignacion = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -244,7 +244,7 @@ class AsignacionNiAsignadorForm(ModelForm):
         model = AsignacionNi
         fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'asignar_par')
         widgets = {
-            'fecha_asignacion': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date'}),
+            'fecha_asignacion': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'required':'true'}),
         }
 
     def clean(self):
