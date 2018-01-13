@@ -24,17 +24,30 @@
 var estado_asignacion = $('#id_estado_asignacion');
 var origen_falla = $('#id_origen_falla');
 var detalle_falla_instalacion = $('#id_detalle_falla_instalacion');
+var detalle_solicitud_visita = $('#id_detalle_solicitud_visita');
 var solver = $('#id_solver');
 var div_origen_falla = $('#div_id_origen_falla');
 var div_detalle_falla_instalacion = $('#div_id_detalle_falla_instalacion');
+var div_detalle_solicitud_visita = $('#div_id_detalle_solicitud_visita');
 var div_solver = $('#div_id_solver');
 
 div_origen_falla.hide()
 div_detalle_falla_instalacion.hide()
+div_detalle_solicitud_visita.hide()
 div_solver.hide()
 
 $('#id_estado_asignacion').on('change', function()
 {
+  if (this.value === 'Requiere visita') {
+    div_detalle_solicitud_visita.show()
+    $('#id_detalle_solicitud_visita').attr('required', true)
+  } else {
+    div_detalle_solicitud_visita.hide()
+    $('#id_detalle_solicitud_visita').removeAttr('required')
+    if (detalle_solicitud_visita.val()) {
+      detalle_solicitud_visita.val('')
+    }
+  }
   if (this.value === 'Enviado a seguimiento' || this.value === 'Escalado a claro') {
     div_origen_falla.show()
     $('#id_origen_falla').attr('required', true)

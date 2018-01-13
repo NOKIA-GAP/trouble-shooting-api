@@ -333,7 +333,11 @@ class AsignacionNiIngenieroForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('estado_asignacion', 'origen_falla', 'detalle_falla_instalacion', 'solver')
+        fields = ('estado_asignacion',
+                  'origen_falla',
+                  'detalle_falla_instalacion',
+                  'detalle_solicitud_visita',
+                  'solver')
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()
@@ -341,6 +345,7 @@ class AsignacionNiIngenieroForm(ModelForm):
         estado_asignacion = cleaned_data.get('estado_asignacion')
         origen_falla = cleaned_data.get('origen_falla')
         detalle_falla_instalacion = cleaned_data.get('detalle_falla_instalacion')
+        detalle_solicitud_visita = cleaned_data.get('detalle_solicitud_visita')
         solver = cleaned_data.get('solver')
         estacion = self.instance.estacion
         actividad = self.instance.actividad
@@ -360,7 +365,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.escenario,
 
                 'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
-                conceptos.last().contenido +'\n'+'\n'+
+                'Detalle solicitud visita: '+ detalle_solicitud_visita +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
                 'El Equipo Nokia realizará visita. De encontrarse una falla de \
@@ -371,7 +376,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 Esta es una lista  provisional sera oficial en la semana dos.
                 ''',
 
-                'jbri.gap@nokia.com',
+                'notification_onair.noreply@nokia.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
@@ -401,7 +406,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 Esta es una lista  provisional sera oficial en la semana dos.
                 ''',
 
-                'jbri.gap@nokia.com',
+                'notification_onair.noreply@nokia.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
@@ -430,7 +435,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 Esta es una lista  provisional sera oficial en la semana dos.
                 ''',
 
-                'jbri.gap@nokia.com',
+                'notification_onair.noreply@nokia.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
