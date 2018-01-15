@@ -38,6 +38,7 @@ ORIGEN_FALLA_CHOICES = (
     ('Interferencia externa', 'Interferencia externa'),
     ('Cambio diseno', 'Cambio diseno'),
     ('Mal rechazo', 'Mal rechazo'),
+    ('TX', 'TX'),
     ('Otra causa', 'Otra causa'),
 )
 
