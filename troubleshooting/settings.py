@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'asignaciones.apps.AsignacionesConfig',
     'conceptos.apps.ConceptosConfig',
     'reportes.apps.ReportesConfig',
+    'notificaciones.apps.NotificacionesConfig',
     'django_filters',
     'import_export',
     'crispy_forms',

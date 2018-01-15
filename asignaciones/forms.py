@@ -10,6 +10,11 @@ AsignacionNi,
 from users.models import Perfil
 from . import choices
 from troubleshooting import settings
+from notificaciones.models import (
+NotificacionRequiereVisita,
+NotificacionFallaInstalacion,
+NotificacionFallaIntegracion,
+)
 
 ASIGNADA = 'Asignada'
 EN_MONITOREO = 'En monitoreo'
@@ -386,6 +391,18 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'onair1.claro@nokia.com'],
                 fail_silently=False,
             )
+            NotificacionRequiereVisita.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                detalle_solicitud_visita=detalle_solicitud_visita,
+            )
 
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INSTALACION:
 
@@ -416,6 +433,19 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'onair1.claro@nokia.com'],
                 fail_silently=False,
             )
+            NotificacionFallaInstalacion.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                detalle_falla_instalacion=detalle_solicitud_visita,
+                solver=solver,
+            )
 
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTEGRACION:
 
@@ -444,6 +474,18 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'integrador24.claro@nokia.com',
                 'onair1.claro@nokia.com'],
                 fail_silently=False,
+            )
+            NotificacionFallaIntegracion.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
             )
 
         return cleaned_data
