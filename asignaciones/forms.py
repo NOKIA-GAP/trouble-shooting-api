@@ -369,6 +369,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
+                'Buen día,' +'\n'+'\n'+
                 'Detalle solicitud visita: '+ detalle_solicitud_visita +'\n'+'\n'+
                 'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
@@ -411,6 +412,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
+                'Buen día,' +'\n'+'\n'+
                 'Detalle falla instalacion: '+ detalle_falla_instalacion +'\n'+'\n'+
                 'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
@@ -452,7 +454,8 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                conceptos.last().contenido +'\n'+'\n'+
+                'Buen día,' +'\n'+'\n'+
+                'Concepto: '+ conceptos.last().contenido +'\n'+'\n'+
                 'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
