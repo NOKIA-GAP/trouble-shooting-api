@@ -369,16 +369,22 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Buen día,' +'\n'+'\n'+
+                'Buen día Señores '+ service_supplier +'\n'+'\n'+
+                'Se informa que el equipo Nokia realizará visita correctiva atendiendo es escalamiento del NOC producto de la actividad mencionada en el asunto. \
+                De encontrarse falla de instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.' +'\n'+'\n'+
+
+                'Detalle Solicitud Visita:' +'\n'+'\n'+
+
                 detalle_solicitud_visita +'\n'+'\n'+
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
-                'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
-                'NOTA 1: El Equipo Nokia realizará visita. De encontrarse una falla de \
-                instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.' +'\n'+'\n'+
+                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
 
-                'NOTA 2: Este es un mensaje de prueba para el estado de asignacion Requiere visita. \
-                Y esta es una lista  provisional sera oficial en la semana cuatro.',
+                'Cordial Saludo,' +'\n'+'\n'+
+
+                'OnAir Team' +'\n'+'\n'+
+
+                'NOTA: Este es un mensaje de prueba para el estado de asignacion Requiere visita. \
+                Y esta es una lista provisional será oficial en W4.',
 
                 'notification_onair.noreply@nokia.com',
 
@@ -412,14 +418,20 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Buen día,' +'\n'+'\n'+
+                'Buen día Señores '+ service_supplier +'\n'+'\n'+
+
                 detalle_falla_instalacion +'\n'+'\n'+
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
-                'Service Supplier: '+ service_supplier +'\n'+'\n'+
+
+                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+
                 'Solver: '+ solver +'\n'+'\n'+
 
+                'Cordial Saludo,' +'\n'+'\n'+
+
+                'OnAir Team' +'\n'+'\n'+
+
                 'NOTA: Este es un mensaje de prueba para origen falla Instalacion. \
-                Y esta es una lista  provisional sera oficial en la semana cuatro.',
+                Y esta es una lista provisional será oficial en W4.',
 
                 'notification_onair.noreply@nokia.com',
 
@@ -454,13 +466,20 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Buen día,' +'\n'+'\n'+
+                'Buen día Ivan Jimenez' +'\n'+'\n'+
+                
                 conceptos.last().contenido +'\n'+'\n'+
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+
+                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
+                'Cordial Saludo,' +'\n'+'\n'+
+
+                'OnAir Team' +'\n'+'\n'+
+
                 'NOTA: Este es un mensaje de prueba para origen falla Integracion. \
-                Y esta es una lista  provisional sera oficial en la semana cuatro.',
+                Y esta es una lista provisional será oficial en W4.',
 
                 'notification_onair.noreply@nokia.com',
 
