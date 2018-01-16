@@ -21,6 +21,7 @@ from actividades import urls as actividades_urls
 from solicitudeshw import urls as solicitudeshw_urls
 from estaciones import urls as estaciones_urls
 from asignaciones import urls as asignaciones_urls
+from notificaciones import urls as notificaciones_urls
 from conceptos import urls as conceptos_urls
 from reportes import urls as reportes_urls
 from .views import IndexView
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^solicitudeshw/', include(solicitudeshw_urls, namespace='solicitudeshw')),
     url(r'^estaciones/', include(estaciones_urls, namespace='estaciones')),
     url(r'^asignaciones/', include(asignaciones_urls, namespace='asignaciones')),
+    url(r'^notificaciones/', include(notificaciones_urls, namespace='notificaciones')),
     url(r'^conceptos/', include(conceptos_urls, namespace='conceptos')),
     url(r'^reportes/', include(reportes_urls, namespace='reportes')),
 ]

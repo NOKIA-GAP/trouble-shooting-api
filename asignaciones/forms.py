@@ -369,17 +369,15 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
                 'Detalle solicitud visita: '+ detalle_solicitud_visita +'\n'+'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
-                'El Equipo Nokia realizará visita. De encontrarse una falla de \
-                instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.'
+                'NOTA 1: El Equipo Nokia realizará visita. De encontrarse una falla de \
+                instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.' +'\n'+'\n'+
 
-                '''
-                Este es un mensaje de prueba para el estado de asignacion Requiere visita.
-                Esta es una lista  provisional sera oficial en la semana dos.
-                ''',
+                'NOTA 2: Este es un mensaje de prueba para el estado de asignacion Requiere visita. \
+                Y esta es una lista  provisional sera oficial en la semana cuatro.',
 
                 'notification_onair.noreply@nokia.com',
 
@@ -387,8 +385,8 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'juan.andrade@nokia.com',
                 'jorge.baracaldo@nokia.com',
                 'ivan.jimenez_robayo@nokia.com',
-                'integrador24.claro@nokia.com',
-                'onair1.claro@nokia.com'],
+                'dtor.onair_claro@nokia.com',
+                'jsan.onair_claro@nokia.com'],
                 fail_silently=False,
             )
             NotificacionRequiereVisita.objects.create(
@@ -413,15 +411,13 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
                 'Detalle falla instalacion: '+ detalle_falla_instalacion +'\n'+'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
                 'Solver: '+ solver +'\n'+'\n'+
 
-                '''
-                Este es un mensaje de prueba para origen falla Instalacion.
-                Esta es una lista  provisional sera oficial en la semana dos.
-                ''',
+                'NOTA: Este es un mensaje de prueba para origen falla Instalacion. \
+                Y esta es una lista  provisional sera oficial en la semana cuatro.',
 
                 'notification_onair.noreply@nokia.com',
 
@@ -429,8 +425,8 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'juan.andrade@nokia.com',
                 'jorge.baracaldo@nokia.com',
                 'ivan.jimenez_robayo@nokia.com',
-                'integrador24.claro@nokia.com',
-                'onair1.claro@nokia.com'],
+                'dtor.onair_claro@nokia.com',
+                'jsan.onair_claro@nokia.com'],
                 fail_silently=False,
             )
             NotificacionFallaInstalacion.objects.create(
@@ -443,7 +439,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 proyecto=actividad.proyecto,
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
-                detalle_falla_instalacion=detalle_solicitud_visita,
+                detalle_falla_instalacion=detalle_falla_instalacion,
                 solver=solver,
             )
 
@@ -456,14 +452,12 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.proyecto +' '+
                 actividad.escenario,
 
-                'Ingeniero NI: '+ ni_ingeniero.nombre_completo +'\n'+'\n'+
                 conceptos.last().contenido +'\n'+'\n'+
+                'Ingeniero NI: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
                 'Service Supplier: '+ service_supplier +'\n'+'\n'+
 
-                '''
-                Este es un mensaje de prueba para origen falla Integracion.
-                Esta es una lista  provisional sera oficial en la semana dos.
-                ''',
+                'NOTA: Este es un mensaje de prueba para origen falla Integracion. \
+                Y esta es una lista  provisional sera oficial en la semana cuatro.',
 
                 'notification_onair.noreply@nokia.com',
 
@@ -471,8 +465,8 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'juan.andrade@nokia.com',
                 'jorge.baracaldo@nokia.com',
                 'ivan.jimenez_robayo@nokia.com',
-                'integrador24.claro@nokia.com',
-                'onair1.claro@nokia.com'],
+                'dtor.onair_claro@nokia.com',
+                'jsan.onair_claro@nokia.com'],
                 fail_silently=False,
             )
             NotificacionFallaIntegracion.objects.create(
