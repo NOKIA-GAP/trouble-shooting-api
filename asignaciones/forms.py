@@ -370,7 +370,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.escenario,
 
                 'Buen día Señores '+ service_supplier +'\n'+'\n'+
-                'Se informa que el equipo Nokia realizará visita correctiva atendiendo es escalamiento del NOC producto de la actividad mencionada en el asunto. \
+                'Se informa que el equipo Nokia realizará visita correctiva atendiendo escalamiento del NOC producto de la actividad mencionada en el asunto. \
                 De encontrarse falla de instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.' +'\n'+'\n'+
 
                 'Detalle Solicitud Visita:' +'\n'+'\n'+
@@ -467,7 +467,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 actividad.escenario,
 
                 'Buen día Ivan Jimenez' +'\n'+'\n'+
-                
+
                 conceptos.last().contenido +'\n'+'\n'+
 
                 'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
