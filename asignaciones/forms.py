@@ -363,7 +363,7 @@ class AsignacionNiIngenieroForm(ModelForm):
         if estado_asignacion == REQUIERE_VISITA:
 
             send_mail(
-                'Requiere Visita' +' '+
+                'Notificación Escalamiento NOC' +' '+
                 estacion.nombre +' '+
                 actividad.banda +' '+
                 actividad.proyecto +' '+
