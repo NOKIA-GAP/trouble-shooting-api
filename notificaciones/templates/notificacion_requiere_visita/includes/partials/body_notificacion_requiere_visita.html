@@ -1,0 +1,15 @@
+<tr>
+  <th scope="row">{{ object.id }}</th>
+  <td><a href="{% url 'asignaciones:detail_asignacion_ni' object.asignacion_ni.pk %}">{{ object.asignacion_ni }}</a></td>
+  <td>{{ object.actividad }}</td>
+  <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
+  <td>{{ object.service_supplier }}</td>
+  <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+  <td>{{ object.banda }}</td>
+  <td>{{ object.proyecto }}</td>
+  <td>{{ object.escenario }}</td>
+  <td><a href="{% url 'users:detail_perfil' object.ni_ingeniero.slug %}">{{ object.ni_ingeniero }}</a></td>
+  <td>{{ object.detalle_solicitud_visita }}</td>
+  <td>{{ object.creado }}</td>
+  <td>{{ object.actualizado }}</td>
+</tr>
