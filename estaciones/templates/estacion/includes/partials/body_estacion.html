@@ -7,8 +7,7 @@
   <td>{{ estacion.prioridad }}</td>
   {% if perms.users.perm_gap_administrador %}
   <th>
-    <!-- <a href="{% url 'estaciones:update_estacion' estacion.pk %}" class="btn btn-success btn-sm" role="button">Actualizar</a> -->
-    <a onclick="return update_estacion('{% url 'estaciones:update_estacion' estacion.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+    <a onclick="return update_estacion('{% url 'estaciones:update_estacion' estacion.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
   </th>
   <!-- <th>
     <a href="{% url 'estaciones:delete_estacion' estacion.pk %}" class="btn btn-danger btn-sm" role="button">Borrar</a>

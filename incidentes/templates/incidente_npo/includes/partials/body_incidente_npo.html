@@ -1,0 +1,26 @@
+<tr>
+  <th scope="row">{{ object.id }}</th>
+  <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+  <td>{{ object.actividad }}</td>
+  <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
+  <td>{{ object.estado_incidente }}</td>
+  <td><a href="{% url 'users:detail_perfil' object.npo_ingeniero.slug %}">{{ object.npo_ingeniero }}</a></td>
+  <td>{{ object.comentario }}</td>
+  <td>{{ object.creado }}</td>
+  <td>{{ object.actualizado }}</td>
+  {% if object.estado_incidente == 'Abierto' %}
+
+    {% if perms.users.perm_npo_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
+      <th>
+        <a onclick="return update_incidente_npo('{% url 'incidentes:update_incidente_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
+      </th>
+    {% elif perms.users.perm_npo_ingeniero %}
+      <th>
+        <a onclick="return update_incidente_npo('{% url 'incidentes:update_incidente_ingeniero_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
+      </th>
+    {% else %}
+    {% endif %}
+
+  {% else %}
+  {% endif %}
+</tr>

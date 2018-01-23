@@ -1,17 +1,18 @@
 <tr>
   <th>
-    <!-- <a href="{% url 'actividades:update_actividad' object.pk %}" class="btn btn-success btn-sm" role="button">Actualizar</a> -->
-    <a onclick="return update_actividad('{% url 'actividades:update_actividad' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
-  </th>
-  <th>
-    <!-- <a href="{% url 'actividades:create_degradacion' object.pk %}" class="fm-create btn btn-primary" role="button" data-fm-head="Crear Degradacion" data-fm-callback="reload">Degradacion</a> -->
-    <a onclick="return create_degradacion('{% url 'actividades:create_degradacion' object.pk %}')" class="btn btn-default btn-sm" role="button">Degradacion</a>
-  </th>
-  <th>
-    <a onclick="return create_asignacion_ni('{% url 'asignaciones:create_asignacion_ni' object.pk %}')" class="btn btn-default btn-sm" role="button">Asignar NI</a>
-  </th>
-  <th>
-    <a onclick="return create_asignacion_npo('{% url 'asignaciones:create_asignacion_npo' object.pk %}')" class="btn btn-default btn-sm" role="button">Asignar NPO</a>
+    <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Accion <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a onclick="return update_actividad('{% url 'actividades:update_actividad' object.pk %}')">Actualizar</a></li>
+      <li><a onclick="return create_degradacion('{% url 'actividades:create_degradacion' object.pk %}')">Degradacion</a></li>
+      <li><a onclick="return create_asignacion_npo('{% url 'asignaciones:create_asignacion_npo' object.pk %}')">Asignar NPO</a></li>
+      <li><a onclick="return create_asignacion_ni('{% url 'asignaciones:create_asignacion_ni' object.pk %}')">Asignar NI</a></li>
+      <li><a onclick="return create_incidente_npo('{% url 'incidentes:create_incidente_npo' object.pk %}')">Incidente NPO</a></li>
+      <li><a onclick="return create_incidente_ni('{% url 'incidentes:create_incidente_ni' object.pk %}')">Incidente NI</a></li>
+    </ul>
+    </div>
   </th>
   <th scope="row">{{ object.id }}</th>
   <td><a href="{% url 'actividades:detail_actividad' object.pk %}">{{ object.wp }}</a></td>

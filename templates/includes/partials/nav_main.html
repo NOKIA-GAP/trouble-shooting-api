@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{% url 'index' %}"><img style="	width: 16px;" src="{% static 'img/favicon.png' %}" alt=""> Trouble Shooting</a>
+      <a class="navbar-brand" href="{% url 'index' %}"><img style="	width: 16px;" src="{% static 'img/favicon.png' %}" alt=""> Gap OnAir</a>
     </div>
     {% if user.is_authenticated %}
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -18,8 +18,13 @@
           <ul class="dropdown-menu">
             <li><a href="{% url 'estaciones:list_estacion' %}">Estaciones</a></li>
             <li><a href="{% url 'actividades:list_actividad' %}">Actividades</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{% url 'asignaciones:list_asignacion_npo_perfil' user.perfil.slug %}">Asignaciones NPO</a></li>
             <li><a href="{% url 'asignaciones:list_asignacion_ni_perfil' user.perfil.slug  %}">Asignaciones NI</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO</a></li>
+            <li><a href="{% url 'incidentes:list_incidente_ni'  %}">Incidentes NI</a></li>
+            <li role="separator" class="divider"></li>
             <li><a href="{% url 'notificaciones:list_notificacion_requiere_visita' %}">Notificaciones</a></li>
           </ul>
         </li>

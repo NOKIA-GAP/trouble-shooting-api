@@ -18,7 +18,7 @@
   <td>{{ object.actualizado }}</td>
   {% if perms.users.perm_npo_ingeniero %}
   <th>
-    <a onclick="return update_concepto_npo('{% url 'conceptos:update_concepto_npo' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+    <a onclick="return update_concepto_npo('{% url 'conceptos:update_concepto_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
   </th>
   <!-- <th>
     <a onclick="return delete_concepto_npo('{% url 'conceptos:delete_concepto_npo' object.pk %}')" class="btn btn-danger btn-sm" role="button">Borrar</a>

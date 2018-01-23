@@ -38,6 +38,7 @@
 <form class="form-inline" action="{% url 'actividades:filter_actividad' %}" method="get" accept-charset="utf-8">
   <div class="form-group">
     <select class="form-control" name="field" required>
+      <option value="">campo</option>
       {% for field in actividad_fields %}
       <option value="{{ field }}">{{ field|replace_underscore:"_" }}</option>
       {% endfor %}
@@ -69,8 +70,10 @@
 <div class="modal fade" id="create_actividad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <div class="modal fade" id="update_actividad" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <div class="modal fade" id="create_degradacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-<div class="modal fade" id="create_asigancion_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
-<div class="modal fade" id="create_asigancion_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_asignacion_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_asignacion_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_incidente_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_incidente_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 {% endblock content %}
 
 {% block nav_paginate %}
@@ -99,13 +102,25 @@ function create_degradacion(url){
 
 var create_asignacion_ni_modal;
 function create_asignacion_ni(url){
-  create_asignacion_ni_modal = $('#create_asigancion_ni').modal({
+  create_asignacion_ni_modal = $('#create_asignacion_ni').modal({
   }).modal('show').load(url)
 }
 
 var create_asignacion_npo_modal;
 function create_asignacion_npo(url){
-  create_asignacion_npo_modal = $('#create_asigancion_npo').modal({
+  create_asignacion_npo_modal = $('#create_asignacion_npo').modal({
+  }).modal('show').load(url)
+}
+
+var create_incidente_ni_modal;
+function create_incidente_ni(url){
+  create_incidente_ni_modal = $('#create_incidente_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_incidente_npo_modal;
+function create_incidente_npo(url){
+  create_incidente_npo_modal = $('#create_incidente_npo').modal({
   }).modal('show').load(url)
 }
 </script>

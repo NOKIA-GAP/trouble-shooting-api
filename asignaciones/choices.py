@@ -11,22 +11,7 @@ ESTADO_ASIGNACION_CHOICES = (
     ('Escalado a claro', 'Escalado a claro'),
 )
 
-""" POSIBLE_CAUSA_CHOICES  """
-POSIBLE_CAUSA_CHOICES = (
-    ('', '---------'),
-    ('Instalacion', 'Instalacion'),
-    ('Software', 'Software'),
-    ('Hardware', 'Hardware'),
-    ('Datafill', 'Datafill'),
-    ('Ajuste Potencia', 'Ajuste Potencia'),
-    ('Integracion', 'Integracion'),
-    ('Interferencia externa', 'Interferencia externa'),
-    ('Cambio diseno', 'Cambio diseno'),
-    ('Mal rechazo', 'Mal rechazo'),
-    ('Otra causa', 'Otra causa'),
-)
-
-""" POSIBLE_CAUSA_CHOICES  """
+""" ORIGEN_FALLA_CHOICES  """
 ORIGEN_FALLA_CHOICES = (
     ('', '---------'),
     ('Instalacion', 'Instalacion'),
@@ -38,8 +23,7 @@ ORIGEN_FALLA_CHOICES = (
     ('Interferencia externa', 'Interferencia externa'),
     ('Cambio diseno', 'Cambio diseno'),
     ('Mal rechazo', 'Mal rechazo'),
-    ('TX', 'TX'),
-    ('Otra causa', 'Otra causa'),
+    ('TX', 'TX')
 )
 
 """ SOLVER_CHOICES  """

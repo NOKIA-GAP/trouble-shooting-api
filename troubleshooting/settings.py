@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'conceptos.apps.ConceptosConfig',
     'reportes.apps.ReportesConfig',
     'notificaciones.apps.NotificacionesConfig',
+    'incidentes.apps.IncidentesConfig',
     'django_filters',
     'import_export',
     'crispy_forms',

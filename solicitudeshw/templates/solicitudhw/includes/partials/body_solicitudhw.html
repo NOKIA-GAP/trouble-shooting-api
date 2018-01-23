@@ -25,7 +25,7 @@
   <td>{{ object.actualizado }}</td>
   {% if perms.users.perm_fm_lider %}
   <th>
-    <a onclick="return update_solicitudhw('{% url 'solicitudeshw:update_solicitudhw' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+    <a onclick="return update_solicitudhw('{% url 'solicitudeshw:update_solicitudhw' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
   </th>
   <th>
     <a onclick="return delete_solicitudhw('{% url 'solicitudeshw:delete_solicitudhw' object.pk %}')" class="btn btn-danger btn-sm" role="button">Borrar</a>

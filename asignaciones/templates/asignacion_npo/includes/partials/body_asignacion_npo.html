@@ -40,20 +40,22 @@
     {% if perms.users.perm_npo_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
       <th>
         <!-- <a href="{% url 'asignaciones:update_asignacion_npo' object.pk %}" class="fm-update btn btn-success btn-sm" role="button" data-fm-head="Actualizar Asignacion NI" data-fm-callback="reload">Actualizar</a> -->
-        <a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_asignador' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
+        <a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_asignador' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
       </th>
     {% elif perms.users.perm_npo_ingeniero %}
-      <th>
-        <!-- <a href="{% url 'conceptos:create_concepto_npo' object.pk %}" class="fm-create btn btn-primary btn-sm" role="button" data-fm-head="Crear Concepto NPO" data-fm-callback="reload">Concepto</a> -->
-        <a onclick="return create_concepto_npo('{% url 'conceptos:create_concepto_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Concepto</a>
-      </th>
-      <th>
-        <!-- <a href="{% url 'asignaciones:update_asignacion_npo_ingeniero' object.pk %}" class="fm-update btn btn-success btn-sm" role="button" data-fm-head="Actualizar Asignacion NPO" data-fm-callback="reload">Actualizar</a> -->
-        <a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_ingeniero' object.pk %}')" class="btn btn-success btn-sm" role="button">Actualizar</a>
-      </th>
+    <th>
+      <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Accion <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a onclick="return create_concepto_npo('{% url 'conceptos:create_concepto_npo' object.pk %}')">Concepto</a></li>
+        <li><a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_ingeniero' object.pk %}')">Actualizar</a></li>
+      </ul>
+      </div>
+    </th>
     {% else %}
     {% endif %}
-
   {% else %}
   {% endif %}
 </tr>

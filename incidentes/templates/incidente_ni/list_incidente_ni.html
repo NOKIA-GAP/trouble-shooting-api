@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Lista De Incidente NI{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block nav_nav %}
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_ni' %}class="active"{% endif %}>
+    <a href="{% url 'incidentes:list_incidente_ni' %}">abierto</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_cerrado_ni' %}class="active"{% endif %}>
+    <a href="{% url 'incidentes:list_incidente_cerrado_ni' %}">cerrado</a>
+  </li>
+</ul><br>
+{% endblock nav_nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Incidente NI
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'incidentes:search_incidente_ni' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block filter_left %}
+
+{% endblock filter_left %}
+
+{% block nav_tab %}
+
+{% endblock nav_tab %}
+
+{% block nav_right %}
+{% endblock nav_right %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "incidente_ni/includes/partials/head_incidente_ni.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "incidente_ni/includes/partials/body_incidente_ni.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+<div class="modal fade" id="update_incidente_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}
+
+{% block extra_js %}
+<script>
+
+var update_incidente_ni_modal;
+function update_incidente_ni(url){
+  update_incidente_ni_modal = $('#update_incidente_ni').modal({
+  }).modal('show').load(url)
+}
+
+</script>
+{% endblock extra_js %}
