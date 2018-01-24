@@ -54,6 +54,7 @@
   </tbody>
 </table>
 <div class="modal fade" id="update_incidente_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_comentario_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 {% endblock content %}
 
 {% block nav_paginate %}
@@ -66,6 +67,12 @@
 var update_incidente_npo_modal;
 function update_incidente_npo(url){
   update_incidente_npo_modal = $('#update_incidente_npo').modal({
+  }).modal('show').load(url)
+}
+
+var create_comentario_npo_modal;
+function create_comentario_npo(url){
+  create_comentario_npo_modal = $('#create_comentario_npo').modal({
   }).modal('show').load(url)
 }
 

@@ -24,6 +24,7 @@ from asignaciones import urls as asignaciones_urls
 from notificaciones import urls as notificaciones_urls
 from conceptos import urls as conceptos_urls
 from incidentes import urls as incidentes_urls
+from comentarios import urls as comentarios_urls
 from reportes import urls as reportes_urls
 from .views import IndexView
 
@@ -38,5 +39,6 @@ urlpatterns = [
     url(r'^notificaciones/', include(notificaciones_urls, namespace='notificaciones')),
     url(r'^conceptos/', include(conceptos_urls, namespace='conceptos')),
     url(r'^incidentes/', include(incidentes_urls, namespace='incidentes')),
+    url(r'^comentarios/', include(comentarios_urls, namespace='comentarios')),
     url(r'^reportes/', include(reportes_urls, namespace='reportes')),
 ]

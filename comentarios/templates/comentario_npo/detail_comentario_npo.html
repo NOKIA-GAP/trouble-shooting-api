@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Detalle De Comentario NPO{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block header_left %}
+<h1>Detalle De Comentario NPO</h1>
+{% endblock header_left %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>NPO Ingeniero</th>
+      <th>Estacion</th>
+      <th>Actividad</th>
+      <th>Wp</th>
+      <th>Contenido</th>
+      <th>Creado</th>
+      <th>Actualizado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ object.id }}</th>
+      <td>{{ object.npo_ingeniero }}</td>
+      <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+      <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.actividad }}</a></td>
+      <td>{{ object.wp }}</td>
+      <td>{{ object.contenido }}</td>
+      <td>{{ object.creado }}</td>
+      <td>{{ object.actualizado }}</td>
+      <th>
+        <a href="{% url 'comentarios:update_comentario_npo' object.pk %}" class="btn btn-success btn-sm" role="button">Actualizar</a>
+      </th>
+      <th>
+        <a href="{% url 'comentarios:delete_comentario_npo' object.pk %}" class="btn btn-danger btn-sm" role="button">Borrar</a>
+      </th>
+    </tr>
+  </tbody>
+</table>
+{% endblock content %}

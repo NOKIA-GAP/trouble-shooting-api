@@ -6,6 +6,13 @@
   <td>{{ object.estado_incidente }}</td>
   <td><a href="{% url 'users:detail_perfil' object.npo_ingeniero.slug %}">{{ object.npo_ingeniero }}</a></td>
   <td>{{ object.comentario }}</td>
+  <td>
+    {%  if object.comentarios_npo.all %}
+      <a href="{% url 'comentarios:list_comentario_npo_incidente' object.pk %}">comentarios npo</a>
+    {% else %}
+      None
+    {% endif %}
+  </td>
   <td>{{ object.creado }}</td>
   <td>{{ object.actualizado }}</td>
   {% if object.estado_incidente == 'Abierto' %}
@@ -16,7 +23,15 @@
       </th>
     {% elif perms.users.perm_npo_ingeniero %}
       <th>
-        <a onclick="return update_incidente_npo('{% url 'incidentes:update_incidente_ingeniero_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
+        <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Accion <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a onclick="return create_comentario_npo('{% url 'comentarios:create_comentario_npo' object.pk %}')">Comentario</a></li>
+          <li><a onclick="return update_incidente_npo('{% url 'incidentes:update_incidente_ingeniero_npo' object.pk %}')">Actualizar</a></li>
+        </ul>
+        </div>
       </th>
     {% else %}
     {% endif %}

@@ -1,0 +1,28 @@
+<tr>
+  <th scope="row">{{ object.id }}</th>
+  {% if object.npo_ingeniero %}
+    <td><a href="{% url 'users:detail_perfil' object.npo_ingeniero.slug %}">{{ object.npo_ingeniero }}</a></td>
+  {% else %}
+    <td>{{ object.npo_ingeniero }}</td>
+  {% endif %}
+  {% if object.incidente_npo %}
+    <td><a href="{% url 'incidentes:detail_incidente_npo' object.incidente_npo.pk %}">{{ object.incidente_npo }}</a></td>
+  {% else %}
+    <td>{{ object.incidente_npo }}</td>
+  {% endif %}
+  <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
+  <td>{{ object.actividad }}</td>
+  <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
+  <td>{{ object.contenido }}</td>
+  <td>{{ object.creado }}</td>
+  <td>{{ object.actualizado }}</td>
+  {% if perms.users.perm_npo_ingeniero %}
+  <th>
+    <a onclick="return update_comentario_npo('{% url 'comentarios:update_comentario_npo' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
+  </th>
+  <!-- <th>
+    <a onclick="return delete_comentario_npo('{% url 'comentarios:delete_comentario_npo' object.pk %}')" class="btn btn-danger btn-sm" role="button">Borrar</a>
+  </th> -->
+  {% else %}
+  {% endif %}
+</tr>

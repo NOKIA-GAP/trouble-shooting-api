@@ -7,9 +7,9 @@ from users.models import Perfil
 
 class ComentarioNpo(models.Model):
     npo_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
+    incidente_npo = models.ForeignKey(IncidenteNpo, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
-    incidente_npo = models.ForeignKey(IncidenteNpo, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
     wp = models.BigIntegerField(blank=True, null=True)
     contenido = models.TextField(blank=True, null=True)
 
@@ -26,14 +26,14 @@ class ComentarioNpo(models.Model):
     def __str__(self):
         return str(self.id)
 
-    # def get_absolute_url(self):
-    #     return reverse('comentarios:detail_comentario_npo', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('comentarios:detail_comentario_npo', kwargs={'pk': self.pk})
 
 class ComentarioNi(models.Model):
-    npo_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
-    estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
-    actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
-    incidente_npo = models.ForeignKey(IncidenteNi, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_npo')
+    ni_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_ni')
+    incidente_ni = models.ForeignKey(IncidenteNi, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_ni')
+    estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_ni')
+    actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='comentarios_ni')
     wp = models.BigIntegerField(blank=True, null=True)
     contenido = models.TextField(blank=True, null=True)
 
@@ -50,5 +50,5 @@ class ComentarioNi(models.Model):
     def __str__(self):
         return str(self.id)
 
-    # def get_absolute_url(self):
-    #     return reverse('comentarios:detail_comentario_ni', kwargs={'pk': self.pk})
+    def get_absolute_url(self):
+        return reverse('comentarios:detail_comentario_ni', kwargs={'pk': self.pk})

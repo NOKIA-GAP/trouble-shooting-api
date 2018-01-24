@@ -53,6 +53,7 @@
   </tbody>
 </table>
 <div class="modal fade" id="update_incidente_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_comentario_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 {% endblock content %}
 
 {% block nav_paginate %}
@@ -65,6 +66,12 @@
 var update_incidente_ni_modal;
 function update_incidente_ni(url){
   update_incidente_ni_modal = $('#update_incidente_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_comentario_ni_modal;
+function create_comentario_ni(url){
+  create_comentario_ni_modal = $('#create_comentario_ni').modal({
   }).modal('show').load(url)
 }
 

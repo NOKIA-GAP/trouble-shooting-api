@@ -48,11 +48,20 @@ class IncidenteNpoForm(ModelForm):
 
 class IncidenteIngenieroNpoForm(ModelForm):
     estado_incidente = forms.ChoiceField(choices=choices.ESTADO_INCIDENTE_CHOICES, required=True)
-    comentario = forms.CharField(widget=forms.Textarea, required=True)
+    # comentario = forms.CharField(widget=forms.Textarea, required=True)
 
     class Meta:
         model = IncidenteNpo
-        fields = ('estado_incidente', 'comentario')
+        fields = ('estado_incidente',)
+
+    def clean(self):
+        cleaned_data = super(IncidenteIngenieroNpoForm, self).clean()
+        comentarios = self.instance.comentarios_npo.all()
+
+        if not comentarios:
+            raise forms.ValidationError('El incidente no tiene un Comentario.')
+
+        return cleaned_data
 
 class IncidenteNiForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
@@ -97,8 +106,17 @@ class IncidenteNiForm(ModelForm):
 
 class IncidenteIngenieroNiForm(ModelForm):
     estado_incidente = forms.ChoiceField(choices=choices.ESTADO_INCIDENTE_CHOICES, required=True)
-    comentario = forms.CharField(widget=forms.Textarea, required=True)
+    # comentario = forms.CharField(widget=forms.Textarea, required=True)
 
     class Meta:
         model = IncidenteNi
-        fields = ('estado_incidente', 'comentario')
+        fields = ('estado_incidente',)
+
+    def clean(self):
+        cleaned_data = super(IncidenteIngenieroNiForm, self).clean()
+        comentarios = self.instance.comentarios_ni.all()
+
+        if not comentarios:
+            raise forms.ValidationError('El incidente no tiene un Comentario.')
+
+        return cleaned_data
