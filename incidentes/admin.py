@@ -34,6 +34,7 @@ class IncidenteNiAdmin(ImportExportModelAdmin):
     list_display = (
     'id',
     'ni_ingeniero',
+    'asignar_par',
     'estacion',
     'actividad',
     'wp',

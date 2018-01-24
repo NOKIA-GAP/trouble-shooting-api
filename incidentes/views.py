@@ -168,9 +168,17 @@ class CreateIncidenteNi(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         actividad = Actividad.objects.get(pk=self.kwargs['pk'])
         ni_ingeniero = form.cleaned_data['ni_ingeniero']
+        asignar_par = form.cleaned_data['asignar_par']
         form.instance.estacion = actividad.estacion
         form.instance.actividad = actividad
         form.instance.wp = actividad.wp
+        if asignar_par:
+            IncidenteNpo.objects.create(
+                estacion=actividad.estacion,
+                actividad=actividad,
+                wp=actividad.wp,
+                npo_ingeniero=ni_ingeniero.par.perfil,
+            )
         return super(CreateIncidenteNi, self).form_valid(form)
 
 class ListIncidenteNi(LoginRequiredMixin, ListView):

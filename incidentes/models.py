@@ -34,6 +34,7 @@ class IncidenteNi(models.Model):
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='incidentes_ni')
     wp = models.BigIntegerField(blank=True, null=True)
     ni_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='incidentes_ni')
+    asignar_par = models.BooleanField(default=False)
     estado_incidente = models.CharField(max_length=255, choices=choices.ESTADO_INCIDENTE_CHOICES, default='Abierto', blank=True, null=True)
     comentario = models.TextField(blank=True, null=True)
 

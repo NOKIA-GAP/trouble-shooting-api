@@ -46,6 +46,7 @@ class IncidenteIngenieroNpoForm(ModelForm):
 
 class IncidenteNiForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
+    asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
         self.asignador = kwargs.pop('asignador', None)
@@ -53,7 +54,7 @@ class IncidenteNiForm(ModelForm):
 
     class Meta:
         model = IncidenteNi
-        fields = ('ni_ingeniero',)
+        fields = ('ni_ingeniero', 'asignar_par')
 
     def clean(self):
         cleaned_data = super(IncidenteNiForm, self).clean()
@@ -63,7 +64,6 @@ class IncidenteNiForm(ModelForm):
         else:
             raise forms.ValidationError('Su perfil no esta habilitado para asignar.')
         return cleaned_data
-
 
 class IncidenteIngenieroNiForm(ModelForm):
     estado_incidente = forms.ChoiceField(choices=choices.ESTADO_INCIDENTE_CHOICES, required=True)
