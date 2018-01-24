@@ -71,6 +71,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'incidentes.context_processors.incidentes_npo',
+                'incidentes.context_processors.incidentes_ni',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

@@ -49,6 +49,8 @@ class CreateIncidenteNpo(LoginRequiredMixin, CreateView):
     def get_form_kwargs(self):
         kwargs = super(CreateIncidenteNpo, self).get_form_kwargs()
         asignador = Perfil.objects.get(user=self.request.user)
+        actividad = Actividad.objects.get(pk=self.kwargs['pk'])
+        kwargs.update({'actividad': actividad})
         kwargs.update({'asignador': asignador})
         return kwargs
 
@@ -162,6 +164,8 @@ class CreateIncidenteNi(LoginRequiredMixin, CreateView):
     def get_form_kwargs(self):
         kwargs = super(CreateIncidenteNi, self).get_form_kwargs()
         asignador = Perfil.objects.get(user=self.request.user)
+        actividad = Actividad.objects.get(pk=self.kwargs['pk'])
+        kwargs.update({'actividad': actividad})
         kwargs.update({'asignador': asignador})
         return kwargs
 

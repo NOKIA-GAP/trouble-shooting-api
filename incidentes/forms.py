@@ -7,7 +7,7 @@ IncidenteNi,
 from users.models import Perfil
 from . import choices
 
-ASIGNADA = 'Asignada'
+ABIERTO = 'Abierto'
 CERRADO = 'Cerrado'
 
 NI_INGENIERO = 'NI Ingeniero'
@@ -20,6 +20,7 @@ class IncidenteNpoForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.asignador = kwargs.pop('asignador', None)
+        self.actividad = kwargs.pop('actividad', None)
         super(IncidenteNpoForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -29,10 +30,19 @@ class IncidenteNpoForm(ModelForm):
     def clean(self):
         cleaned_data = super(IncidenteNpoForm, self).clean()
         asignador = self.asignador
+        actividad = self.actividad
         if (asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
             raise forms.ValidationError('Su perfil no esta habilitado para asignar.')
+        try:
+            incidente_npo_asignanada_actividad = IncidenteNpo.objects.get(
+            actividad=actividad,
+            estado_incidente=ABIERTO,
+            )
+            raise forms.ValidationError('la Actividad tiene un incidente NPO Abierto.')
+        except IncidenteNpo.DoesNotExist:
+            pass
         return cleaned_data
 
 
@@ -50,6 +60,7 @@ class IncidenteNiForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.asignador = kwargs.pop('asignador', None)
+        self.actividad = kwargs.pop('actividad', None)
         super(IncidenteNiForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -59,10 +70,29 @@ class IncidenteNiForm(ModelForm):
     def clean(self):
         cleaned_data = super(IncidenteNiForm, self).clean()
         asignador = self.asignador
+        actividad = self.actividad
+        asignar_par = cleaned_data.get('asignar_par')
         if (asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
             raise forms.ValidationError('Su perfil no esta habilitado para asignar.')
+        try:
+            incidente_ni_asignanada_actividad = IncidenteNi.objects.get(
+            actividad=actividad,
+            estado_incidente=ABIERTO,
+            )
+            raise forms.ValidationError('la Actividad tiene un incidente NI Abierto.')
+        except IncidenteNi.DoesNotExist:
+            pass
+        if asignar_par:
+            try:
+                incidente_ni_asignanada_actividad = IncidenteNpo.objects.get(
+                actividad=actividad,
+                estado_incidente=ABIERTO,
+                )
+                raise forms.ValidationError('el par tiene un incidente NPO Abierto para esta actividad.')
+            except IncidenteNpo.DoesNotExist:
+                pass
         return cleaned_data
 
 class IncidenteIngenieroNiForm(ModelForm):
