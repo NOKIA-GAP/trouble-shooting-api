@@ -37,6 +37,8 @@
 <div class="modal fade" id="create_degradacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <div class="modal fade" id="create_asigancion_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <div class="modal fade" id="create_asigancion_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_incidente_ni" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<div class="modal fade" id="create_incidente_npo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 {% endblock content %}
 
 {% block extra_js %}
@@ -68,6 +70,18 @@ function create_asignacion_ni(url){
 var create_asignacion_npo_modal;
 function create_asignacion_npo(url){
   create_asignacion_npo_modal = $('#create_asigancion_npo').modal({
+  }).modal('show').load(url)
+}
+
+var create_incidente_ni_modal;
+function create_incidente_ni(url){
+  create_incidente_ni_modal = $('#create_incidente_ni').modal({
+  }).modal('show').load(url)
+}
+
+var create_incidente_npo_modal;
+function create_incidente_npo(url){
+  create_incidente_npo_modal = $('#create_incidente_npo').modal({
   }).modal('show').load(url)
 }
 </script>
