@@ -6,7 +6,6 @@ from django.urls import reverse
 from estaciones.models import Estacion
 from actividades.models import Actividad
 from asignaciones.models import AsignacionNpo, AsignacionNi
-from django.contrib.auth.models import User
 from users.models import Perfil
 
 class ConceptoNpo(models.Model):
