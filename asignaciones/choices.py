@@ -23,7 +23,8 @@ ORIGEN_FALLA_CHOICES = (
     ('Interferencia externa', 'Interferencia externa'),
     ('Cambio diseno', 'Cambio diseno'),
     ('Mal rechazo', 'Mal rechazo'),
-    ('TX', 'TX')
+    ('TX', 'TX'),
+    ('Comportamiento esperado', 'Comportamiento esperado')
 )
 
 """ SOLVER_CHOICES  """
