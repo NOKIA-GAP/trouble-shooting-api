@@ -393,7 +393,8 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'jorge.baracaldo@nokia.com',
                 'ivan.jimenez_robayo@nokia.com',
                 'dtor.onair_claro@nokia.com',
-                'jsan.onair_claro@nokia.com'],
+                'jsan.onair_claro@nokia.com',
+                'mrug.gap@nokia.com'],
                 fail_silently=False,
             )
             NotificacionRequiereVisita.objects.create(

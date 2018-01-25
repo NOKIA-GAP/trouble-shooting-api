@@ -147,6 +147,36 @@ class AsignacionNpo(models.Model):
 
         _actividad.save()
 
+        estacion = _actividad.estacion
+        actividades = estacion.actividades.all()
+        try:
+            produccion = actividades.filter(estado_unico=PRODUCCION)
+            if produccion:
+                estacion.estado_estacion = PRODUCCION
+
+            enviado_a_seguimiento = actividades.filter(estado_unico=ENVIADO_A_SEGUIMIENTO)
+            if enviado_a_seguimiento:
+                estacion.estado_estacion = ENVIADO_A_SEGUIMIENTO
+
+            escalado_a_claro = actividades.filter(estado_unico=ESCALADO_A_CLARO)
+            if escalado_a_claro:
+                estacion.estado_estacion = ESCALADO_A_CLARO
+
+            en_monitoreo = actividades.filter(estado_unico=EN_MONITOREO)
+            if en_monitoreo:
+                estacion.estado_estacion = EN_MONITOREO
+
+            requiere_visita = actividades.filter(estado_unico=REQUIERE_VISITA)
+            if requiere_visita:
+                estacion.estado_estacion = REQUIERE_VISITA
+
+            asignada = actividades.filter(estado_unico=ASIGNADA)
+            if asignada:
+                estacion.estado_estacion = ASIGNADA
+            estacion.save()
+        except Exception:
+            pass
+
         super(AsignacionNpo, self).save(*args, **kwargs)
 
 
@@ -294,5 +324,35 @@ class AsignacionNi(models.Model):
             _actividad.estado_unico = None
 
         _actividad.save()
+
+        estacion = _actividad.estacion
+        actividades = estacion.actividades.all()
+        try:
+            produccion = actividades.filter(estado_unico=PRODUCCION)
+            if produccion:
+                estacion.estado_estacion = PRODUCCION
+
+            enviado_a_seguimiento = actividades.filter(estado_unico=ENVIADO_A_SEGUIMIENTO)
+            if enviado_a_seguimiento:
+                estacion.estado_estacion = ENVIADO_A_SEGUIMIENTO
+
+            escalado_a_claro = actividades.filter(estado_unico=ESCALADO_A_CLARO)
+            if escalado_a_claro:
+                estacion.estado_estacion = ESCALADO_A_CLARO
+
+            en_monitoreo = actividades.filter(estado_unico=EN_MONITOREO)
+            if en_monitoreo:
+                estacion.estado_estacion = EN_MONITOREO
+
+            requiere_visita = actividades.filter(estado_unico=REQUIERE_VISITA)
+            if requiere_visita:
+                estacion.estado_estacion = REQUIERE_VISITA
+
+            asignada = actividades.filter(estado_unico=ASIGNADA)
+            if asignada:
+                estacion.estado_estacion = ASIGNADA
+            estacion.save()
+        except Exception:
+            pass
 
         super(AsignacionNi, self).save(*args, **kwargs)

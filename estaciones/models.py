@@ -11,6 +11,10 @@ class Estacion(models.Model):
     ciudad = models.CharField(max_length=255, choices=choices.CIUDAD_CHOICES)
     responsable = models.CharField(max_length=255, choices=choices.RESPONSABLE_CHOICES, blank=True, null=True)
     prioridad = models.CharField(max_length=255, choices=choices.PRIORIDAD_CHOICES, blank=True, null=True)
+    estado_estacion = models.CharField(max_length=255, blank=True, null=True, editable=False)
+
+    estado = models.BooleanField(default=False, editable=False)
+    subestado = models.BooleanField(default=False, editable=False)
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
 
