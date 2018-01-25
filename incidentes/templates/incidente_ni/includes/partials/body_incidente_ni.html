@@ -5,7 +5,6 @@
   <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
   <td>{{ object.estado_incidente }}</td>
   <td><a href="{% url 'users:detail_perfil' object.ni_ingeniero.slug %}">{{ object.ni_ingeniero }}</a></td>
-  <td>{{ object.comentario }}</td>
   <td>
     {%  if object.comentarios_ni.all %}
       <a href="{% url 'comentarios:list_comentario_ni_incidente' object.pk %}">comentarios ni</a>

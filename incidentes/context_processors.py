@@ -35,5 +35,5 @@ def incidentes_ni(request):
         }
     else:
         return {
-            'incidentes_npo': incidentes_npo,
+            'incidentes_ni': incidentes_ni,
         }

@@ -26,9 +26,6 @@ class IncidenteNpoResource(resources.ModelResource):
     estado_incidente = fields.Field(
         column_name='estado incidente',
         attribute='estado_incidente',)
-    comentario = fields.Field(
-        column_name='comentario',
-        attribute='comentario',)
     creado = fields.Field(
         column_name='creado',
         attribute='creado',
@@ -51,7 +48,6 @@ class IncidenteNpoResource(resources.ModelResource):
         'actividad',
         'wp',
         'estado_incidente',
-        'comentario',
         'creado',
         'actualizado',
         'estado',
@@ -76,9 +72,6 @@ class IncidenteNiResource(resources.ModelResource):
     estado_incidente = fields.Field(
         column_name='estado incidente',
         attribute='estado_incidente',)
-    comentario = fields.Field(
-        column_name='comentario',
-        attribute='comentario',)
     creado = fields.Field(
         column_name='creado',
         attribute='creado',
@@ -101,7 +94,6 @@ class IncidenteNiResource(resources.ModelResource):
         'actividad',
         'wp',
         'estado_incidente',
-        'comentario',
         'creado',
         'actualizado',
         'estado',

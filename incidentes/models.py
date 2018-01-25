@@ -11,7 +11,6 @@ class IncidenteNpo(models.Model):
     wp = models.BigIntegerField(blank=True, null=True)
     npo_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='incidentes_npo')
     estado_incidente = models.CharField(max_length=255, choices=choices.ESTADO_INCIDENTE_CHOICES, default='Abierto', blank=True, null=True)
-    comentario = models.TextField(blank=True, null=True)
 
     estado = models.BooleanField(default=False)
     subestado = models.BooleanField(default=False)
@@ -36,7 +35,6 @@ class IncidenteNi(models.Model):
     ni_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='incidentes_ni')
     asignar_par = models.BooleanField(default=False)
     estado_incidente = models.CharField(max_length=255, choices=choices.ESTADO_INCIDENTE_CHOICES, default='Abierto', blank=True, null=True)
-    comentario = models.TextField(blank=True, null=True)
 
     estado = models.BooleanField(default=False)
     subestado = models.BooleanField(default=False)
