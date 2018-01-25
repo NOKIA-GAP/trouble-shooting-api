@@ -6,14 +6,7 @@
 {% endblock nav %}
 
 {% block nav_nav %}
-<ul class="nav nav-tabs">
-  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_npo' %}class="active"{% endif %}>
-    <a href="{% url 'incidentes:list_incidente_npo' %}">abierto</a>
-  </li>
-  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_cerrado_npo' %}class="active"{% endif %}>
-    <a href="{% url 'incidentes:list_incidente_cerrado_npo' %}">cerrado</a>
-  </li>
-</ul><br>
+
 {% endblock nav_nav %}
 
 {% block header_left %}
@@ -28,7 +21,7 @@
     <input type="text" class="form-control" name="q" placeholder="Buscar">
   </div>
    <button type="submit" class="btn btn-default">Buscar</button>
-</form>
+</form><br>
 {% endblock header_right %}
 
 {% block filter_left %}
@@ -36,7 +29,14 @@
 {% endblock filter_left %}
 
 {% block nav_tab %}
-
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_npo' %}class="active"{% endif %}>
+    <a href="{% url 'incidentes:list_incidente_npo' %}">abierto</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_incidente_cerrado_npo' %}class="active"{% endif %}>
+    <a href="{% url 'incidentes:list_incidente_cerrado_npo' %}">cerrado</a>
+  </li>
+</ul><br>
 {% endblock nav_tab %}
 
 {% block nav_right %}
