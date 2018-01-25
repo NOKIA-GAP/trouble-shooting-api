@@ -6,6 +6,26 @@
 {% endblock nav %}
 
 {% block nav_nav %}
+
+{% endblock nav_nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Notificaciones Requiere Visita
+  <a href="{% url 'notificaciones:export_notificaciones_requiere_visita' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1><br>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'notificaciones:search_notificacion_requiere_visita' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block nav_tab %}
 <ul class="nav nav-tabs">
   <li role="presentation" {% if request.resolver_match.url_name == 'list_notificacion_requiere_visita' %}class="active"{% endif %}>
     <a href="{% url 'notificaciones:list_notificacion_requiere_visita' %}">Requiere Visita</a>
@@ -17,23 +37,7 @@
     <a href="{% url 'notificaciones:list_notificacion_falla_integracion' %}">Falla Integracion</a>
   </li>
 </ul><br>
-{% endblock nav_nav %}
-
-{% block header_left %}
-<h1>
-  Lista De Notificaciones Requiere Visita
-  <a href="{% url 'notificaciones:export_notificaciones_requiere_visita' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
-</h1>
-{% endblock header_left %}
-
-{% block header_right %}
-<form class="form-inline" action="{% url 'notificaciones:search_notificacion_requiere_visita' %}" method="get" accept-charset="utf-8">
-  <div class="form-group">
-    <input type="text" class="form-control" name="q" placeholder="Buscar">
-  </div>
-   <button type="submit" class="btn btn-default">Buscar</button>
-</form>
-{% endblock header_right %}
+{% endblock nav_tab %}
 
 {% block content %}
 <table class="table table-sm table-striped">
