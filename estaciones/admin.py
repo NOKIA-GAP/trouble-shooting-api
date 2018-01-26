@@ -21,5 +21,6 @@ class EstacionAdmin(ImportExportModelAdmin):
     'responsable',
     'prioridad',
     'estado_estacion',
+    'numero_actividades',
     )
     search_fields = ['id', 'nombre']

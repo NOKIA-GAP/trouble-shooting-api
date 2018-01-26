@@ -6,6 +6,7 @@
   <td>{{ estacion.responsable }}</td>
   <td>{{ estacion.prioridad }}</td>
   <td>{{ estacion.estado_estacion }}</td>
+  <td>{{ estacion.numero_actividades }}</td>
   {% if perms.users.perm_gap_administrador %}
   <th>
     <a onclick="return update_estacion('{% url 'estaciones:update_estacion' estacion.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>

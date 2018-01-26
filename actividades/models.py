@@ -111,6 +111,7 @@ class Actividad(models.Model):
             asignada = actividades.filter(estado_unico=ASIGNADA)
             if asignada:
                 estacion.estado_estacion = ASIGNADA
+            estacion.numero_actividades = actividades.count()
             estacion.save()
         except Exception:
             pass

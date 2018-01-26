@@ -12,6 +12,7 @@ class Estacion(models.Model):
     responsable = models.CharField(max_length=255, choices=choices.RESPONSABLE_CHOICES, blank=True, null=True)
     prioridad = models.CharField(max_length=255, choices=choices.PRIORIDAD_CHOICES, blank=True, null=True)
     estado_estacion = models.CharField(max_length=255, blank=True, null=True, editable=False)
+    numero_actividades = models.PositiveIntegerField(blank=True, null=True, editable=False)
 
     estado = models.BooleanField(default=False, editable=False)
     subestado = models.BooleanField(default=False, editable=False)
