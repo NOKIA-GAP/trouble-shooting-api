@@ -10,18 +10,18 @@ class EstacionResource(resources.ModelResource):
     numero_actividades = fields.Field(
         column_name='numero actividades',
         attribute='numero_actividades',)
-    creado = fields.Field(
-        column_name='creado',
-        attribute='creado',
-        widget=DateWidget(format='%d/%m/%Y'))
-    actualizado = fields.Field(
-        column_name='actualizado',
-        attribute='actualizado',
-        widget=DateWidget(format='%d/%m/%Y'))
+    # creado = fields.Field(
+    #     column_name='creado',
+    #     attribute='creado',
+    #     widget=DateWidget(format='%d/%m/%Y'))
+    # actualizado = fields.Field(
+    #     column_name='actualizado',
+    #     attribute='actualizado',
+    #     widget=DateWidget(format='%d/%m/%Y'))
 
     class Meta:
         model = Estacion
-        # exclude = ( '', )
+        exclude = ('estado', 'subestado', 'creado', 'actualizado' )
         export_order = (
         'id',
         'nombre',
@@ -31,8 +31,8 @@ class EstacionResource(resources.ModelResource):
         'prioridad',
         'estado_estacion',
         'numero_actividades',
-        'estado',
-        'subestado',
-        'creado',
-        'actualizado',
+        # 'estado',
+        # 'subestado',
+        # 'creado',
+        # 'actualizado',
         )
