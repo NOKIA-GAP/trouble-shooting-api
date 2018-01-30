@@ -101,7 +101,7 @@ class ListIncidenteCerradoNpo(ListIncidenteNpo):
 class SearchIncidenteNpo(ListIncidenteNpo):
 
     def get_queryset(self):
-        queryset = super(SearchIncidenteNpo, self).get_queryset()
+        queryset = super(ListIncidenteNpo, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
@@ -224,7 +224,7 @@ class ListIncidenteCerradoNi(ListIncidenteNi):
 class SearchIncidenteNi(ListIncidenteNi):
 
     def get_queryset(self):
-        queryset = super(SearchIncidenteNi, self).get_queryset()
+        queryset = super(ListIncidenteNi, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()

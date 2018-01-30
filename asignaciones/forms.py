@@ -402,7 +402,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'NOTA: Este es un mensaje de prueba para el estado de asignacion Requiere visita. \
                 Y esta es una lista provisional será oficial en W4.',
 
-                'notification_onair.noreply@nokia.com',
+                'notification_onair.noreply@gaponair.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
@@ -450,7 +450,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'NOTA: Este es un mensaje de prueba para origen falla Instalacion. \
                 Y esta es una lista provisional será oficial en W4.',
 
-                'notification_onair.noreply@nokia.com',
+                'notification_onair.noreply@gaponair.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
@@ -498,7 +498,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 'NOTA: Este es un mensaje de prueba para origen falla Integracion. \
                 Y esta es una lista provisional será oficial en W4.',
 
-                'notification_onair.noreply@nokia.com',
+                'notification_onair.noreply@gaponair.com',
 
                 ['jbri.gap@nokia.com',
                 'juan.andrade@nokia.com',
