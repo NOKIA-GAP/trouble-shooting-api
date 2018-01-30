@@ -14,6 +14,15 @@ from notificaciones.models import (
 NotificacionRequiereVisita,
 NotificacionFallaInstalacion,
 NotificacionFallaIntegracion,
+NotificacionFallaSoftware,
+NotificacionFallaHardware,
+NotificacionFallaDatafill,
+NotificacionFallaAjustePotencia,
+NotificacionFallaInterferenciaExterna,
+NotificacionFallaCambioDiseno,
+NotificacionFallaMalRechazo,
+NotificacionFallaTX,
+NotificacionFallaComportamientoEsperado,
 )
 
 ASIGNADA = 'Asignada'
@@ -24,7 +33,16 @@ NO_EXITOSA = 'No exitosa'
 ESCALADO_A_CLARO = 'Escalado a claro'
 
 INSTALACION = 'Instalacion'
+SOFTWARE = 'Software'
+HARDWARE = 'Hardware'
+DATAFILL = 'Datafill'
+AJUSTEPOTENCIA = 'Ajuste Potencia'
 INTEGRACION = 'Integracion'
+INTERFERENCIAEXTREMA = 'Interferencia externa'
+CAMBIODISENO = 'Cambio diseno'
+MALRECHAZO = 'Mal rechazo'
+TX = 'TX'
+COMPORTAMIENTOESPERADO = 'Comportamiento esperado'
 
 NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
@@ -237,7 +255,6 @@ class AsignacionNiAsignadorForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
-    # fecha_asignacion = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -333,7 +350,6 @@ class AsignacionNiAsignadorForm(ModelForm):
 class AsignacionNiIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
     origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=False)
-    # origen_falla = forms.ChoiceField(widget=forms.HiddenInput(), choices=choices.ORIGEN_FALLA_CHOICES, required=False)
     solver = forms.ChoiceField(choices=choices.SOLVER_CHOICES, required=False)
 
     class Meta:
@@ -505,4 +521,121 @@ class AsignacionNiIngenieroForm(ModelForm):
                 concepto=conceptos.last().contenido,
             )
 
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == SOFTWARE:
+            NotificacionFallaSoftware.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == HARDWARE:
+            NotificacionFallaHardware.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == DATAFILL:
+            NotificacionFallaDatafill.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == AJUSTEPOTENCIA:
+            NotificacionFallaAjustePotencia.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTERFERENCIAEXTREMA:
+            NotificacionFallaInterferenciaExterna.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == CAMBIODISENO:
+            NotificacionFallaCambioDiseno.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == MALRECHAZO:
+            NotificacionFallaMalRechazo.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == TX:
+            NotificacionFallaTX.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOESPERADO:
+            NotificacionFallaComportamientoEsperado.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
         return cleaned_data
