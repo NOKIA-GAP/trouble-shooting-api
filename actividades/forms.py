@@ -46,9 +46,6 @@ class ActividadForm(ModelForm):
                 self.fields.pop('subestado_noc')
                 self.fields.pop('impacto_degradacion')
                 self.fields.pop('fecha_fc_visita')
-                self.fields.pop('tipo_intervencion')
-                # self.fields.pop('estado')
-                # self.fields.pop('subestado')
 
         #Administrador
         if user.is_superuser and user.has_perm(all_perm):
@@ -79,8 +76,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
 
         # NI Asignador
         if not user.is_superuser and user.has_perm("users.perm_ni_asignador"):
@@ -103,8 +98,6 @@ class ActividadForm(ModelForm):
             # self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
 
         # NPO Ingeniero
         if not user.is_superuser and user.has_perm("users.perm_npo_ingeniero"):
@@ -127,8 +120,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             # self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
 
         # NPO Asignador
         if not user.is_superuser and user.has_perm("users.perm_npo_asignador"):
@@ -151,8 +142,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             # self.fields.pop('impacto_degradacion')
             # self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
 
         # FM Lider
         if not user.is_superuser and user.has_perm("users.perm_fm_lider"):
@@ -175,8 +164,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             # self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
 
         # FM Permisos
         if not user.is_superuser and user.has_perm("users.perm_fm_permisos"):
@@ -199,10 +186,6 @@ class ActividadForm(ModelForm):
             self.fields.pop('subestado_noc')
             self.fields.pop('impacto_degradacion')
             self.fields.pop('fecha_fc_visita')
-            # self.fields.pop('estado')
-            # self.fields.pop('subestado')
-
-
 
     class Meta:
         model = Actividad
@@ -215,41 +198,6 @@ class ActividadForm(ModelForm):
             'fecha_estado_noc': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date'}),
             'fecha_fc_visita': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date'}),
         }
-
-    # def clean(self):
-    #
-    #     goa = 'GAP On Air'
-    #     gi = 'GAP Integracion'
-    #     p = 'Produccion'
-    #     date = timezone.now()
-    #     tipo_gap = self.cleaned_data.get('tipo_gap')
-    #     fecha_integracion = self.cleaned_data.get('fecha_integracion')
-    #     estado_noc = self.cleaned_data.get('estado_noc')
-    #     fecha_primera_respuesta_npo = self.cleaned_data.get('fecha_primera_respuesta_npo')
-    #     _concepto_ni = self.instance.concepto_ni
-    #     concepto_ni = self.cleaned_data.get('concepto_ni')
-    #     fecha_concepto_ni = self.cleaned_data.get('fecha_concepto_ni')
-    #
-    #     if not fecha_concepto_ni and concepto_ni: # si es actualizado primera vez
-    #         self.cleaned_data['fecha_concepto_ni'] = date #fecha actual
-    #
-    #     if fecha_concepto_ni and concepto_ni != _concepto_ni: # si es actualizada
-    #         self.cleaned_data['fecha_concepto_ni'] = date #fecha actual
-    #
-    #     if not fecha_primera_respuesta_npo: #si no esta
-    #         self.cleaned_data['fecha_primera_respuesta_npo'] = date #fecha actual
-    #
-    #     if fecha_integracion and estado_noc == 'Produccion':
-    #         self.cleaned_data['tipo_gap'] = p
-    #
-    #     if fecha_integracion and estado_noc != 'Produccion':
-    #         self.cleaned_data['tipo_gap'] = goa
-    #
-    #     else:
-    #         self.cleaned_data['tipo_gap'] = gi
-    #
-    #         return self.cleaned_data
-
 
 class DegradacionForm(ModelForm):
 

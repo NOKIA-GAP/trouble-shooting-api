@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django import forms
 from django.forms import ModelForm
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from .models import (
 AsignacionNpo,
 AsignacionNi,
@@ -48,6 +48,28 @@ NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
 FM_LIDER = 'FM Lider'
 GAP_ADMINISTRADOR = 'GAP Administrador'
+
+CENTRO = 'Centro'
+ORIENTE = 'Oriente'
+SUROCCIDENTE = 'Sur Occidente'
+NOROCCIDENTE = 'Nor Occidente'
+COSTA = 'Costa'
+NORORIENTE = 'Nor Oriente'
+
+ADSM = 'ADSM'
+DELTEC = 'DELTEC'
+EZENTIS = 'EZENTIS'
+FIBRATERRA = 'FIBRATERRA'
+GAMMA = 'GAMMA'
+INGETEL = 'INGETEL'
+INGYTELCOM = 'INGYTELCOM'
+JANACOR = 'JANACOR'
+REDESYSERVICIOS = 'REDES Y SERVICIOS'
+SAI = 'SAI'
+SERVINTELCO = 'SERVINTELCO'
+SITCOM = 'SITCOM'
+YINDA = 'YINDA'
+ZOOM = 'ZOOM'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -371,6 +393,7 @@ class AsignacionNiIngenieroForm(ModelForm):
         estacion = self.instance.estacion
         actividad = self.instance.actividad
         service_supplier = self.instance.actividad.service_supplier
+        regional = estacion.regional
         ni_ingeniero = self.instance.ni_ingeniero
 
         if not conceptos:
@@ -378,41 +401,94 @@ class AsignacionNiIngenieroForm(ModelForm):
 
         if estado_asignacion == REQUIERE_VISITA:
 
-            send_mail(
-                'Notificación Escalamiento NOC' +' '+
-                estacion.nombre +' '+
-                actividad.banda +' '+
-                actividad.proyecto +' '+
-                actividad.escenario,
+            asunto = 'Notificación Escalamiento NOC' +' '+ \
+            estacion.nombre +' '+ \
+            actividad.banda +' '+ \
+            actividad.proyecto +' '+ \
+            actividad.escenario
 
-                'Buen día Señores '+ service_supplier +'\n'+'\n'+
-                'Se informa que el equipo Nokia realizará visita correctiva atendiendo escalamiento del NOC producto de la actividad mencionada en el asunto. \
-                De encontrarse falla de instalación se realizará el reporte para proceder con el conducto regular para este tipo de casos.' +'\n'+'\n'+
+            contenido = 'Buen día Señores '+ service_supplier +'\n'+'\n'+ 'Se informa \
+            que el equipo Nokia realizará visita correctiva atendiendo escalamiento del \
+            NOC producto de la actividad mencionada en el asunto. \
+            De encontrarse falla de instalación se realizará el reporte para proceder \
+            con el conducto regular para este tipo de casos.' +'\n'+'\n'+ \
+            'Detalle Solicitud Visita:' +'\n'+'\n'+ detalle_solicitud_visita +'\n'+'\n'+ \
+            'Ingeniero Nokia: ' + ni_ingeniero.nombre_completo.title() +'\n'+'\n'+ \
+            'Cordial Saludo,' +'\n'+'\n'+ 'OnAir Team'
 
-                'Detalle Solicitud Visita:' +'\n'+'\n'+
+            de = 'notification_onair.noreply@gaponair.com'
 
-                detalle_solicitud_visita +'\n'+'\n'+
+            para_regional = []
 
-                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+            if regional == CENTRO or regional == ORIENTE:
+                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
+            if regional == COSTA or regional == NORORIENTE:
+                para_regional = ['hubert.tafurt_hidalgo@nokia.com', 'rom1.claro@nokia.com']
+            if regional == SUROCCIDENTE or regional == NOROCCIDENTE:
+                para_regional = ['catalina.ramirez@nokia.com', 'henry.neira@nokia.com']
 
-                'Cordial Saludo,' +'\n'+'\n'+
+            para_ss = []
 
-                'OnAir Team' +'\n'+'\n'+
+            if service_supplier == ADSM:
+                para_ss = ['davidsaavedra@adsm.com.co',
+                          'magdaburbano@adsm.com.co',
+                          'williamgrillo@adsm.com.co',
+                          'heillerjimenez@adsm.com.co']
+            if service_supplier == DELTEC:
+                para_ss = ['gbonilla@deltec.com.co',
+                          'salvarado@deltec.com.co',
+                          'jquintana@deltec.com.co']
+            if service_supplier == EZENTIS:
+                para_ss = ['edison.santos@ezentis.com.co',
+                          'fabio.cardenasr@ezentis.com.co']
+            if service_supplier == FIBRATERRA:
+                para_ss = ['coordinador1@fibraterra.com',
+                          'fernando.ramirez@fibraterra.com']
+            if service_supplier == GAMMA:
+                para_ss = ['diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com']
+            if service_supplier == INGETEL:
+                para_ss = ['supervision_cali@ingetelsas.com.co',
+                          'supervision@ingetelsas.com.co',
+                          'auditor@ingetelsas.com.co']
+            if service_supplier == INGYTELCOM:
+                para_ss = ['diana.pineda@ingytelcom.com',
+                          'robinson.lopez@ingytelcom.com',
+                          'cindy.lopez@ingytelcom.com.co',
+                          'cristian.organista@ingytelcom.com',
+                          'javier.orjuela@ingytelcom.com']
+            if service_supplier == JANACOR:
+                para_ss = ['ingeniero@janacor.co']
+            if service_supplier == REDESYSERVICIOS:
+                para_ss = ['jheisson.alvarez@rseltda.com']
+            if service_supplier == SAI:
+                para_ss = ['operaciones@saisas.com.co',
+                          'proyectos@saisas.com.co']
+            if service_supplier == SERVINTELCO:
+                para_ss = ['erick.amaya@servintelco.com',
+                          'carlos.bateman@servintelco.com']
+            if service_supplier == SITCOM:
+                para_ss = ['maricela.rodriguez@sitcom.co',
+                          'alejandro.pinzon@sitcom.co']
+            if service_supplier == YINDA:
+                para_ss = ['john.maldonado@yinda.com.co',
+                          'oscar.acosta@yinda.com.co']
+            if service_supplier == ZOOM:
+                para_ss = ['coord.proy.nk@zoom-cgr.com']
 
-                'NOTA: Este es un mensaje de prueba para el estado de asignacion Requiere visita. \
-                Y esta es una lista provisional será oficial en W4.',
+            para = para_regional + para_ss
 
-                'notification_onair.noreply@gaponair.com',
+            copia = ['jbri.gap@nokia.com',
+                    'I_EXT_GAP_CLARO_COL@nokia.com',
+                    'I_EXT_FIELD_MANAGEMENT_CLARO_COL@nokia.com',
+                    'jorge.baracaldo@nokia.com',
+                    'leopoldo.morales_cabrales@nokia.com',
+                    'fred.rodriguez@nokia.com',
+                    'omar.gugliesi@nokia.com']
 
-                ['jbri.gap@nokia.com',
-                'juan.andrade@nokia.com',
-                'jorge.baracaldo@nokia.com',
-                'ivan.jimenez_robayo@nokia.com',
-                'dtor.onair_claro@nokia.com',
-                'jsan.onair_claro@nokia.com',
-                'mrug.gap@nokia.com'],
-                fail_silently=False,
-            )
+            email = EmailMessage(asunto, contenido, de, para, copia)
+            email.send(fail_silently=False)
+
             NotificacionRequiereVisita.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
@@ -425,41 +501,94 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ni_ingeniero=ni_ingeniero,
                 detalle_solicitud_visita=detalle_solicitud_visita,
             )
-
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INSTALACION:
 
-            send_mail(
-                'Falla Instalacion' +' '+
-                estacion.nombre +' '+
-                actividad.banda +' '+
-                actividad.proyecto +' '+
-                actividad.escenario,
+            asunto = 'Falla Instalacion' +' '+ \
+            estacion.nombre +' '+ \
+            actividad.banda +' '+ \
+            actividad.proyecto +' '+ \
+            actividad.escenario
 
-                'Buen día Señores '+ service_supplier +'\n'+'\n'+
+            contenido = 'Buen día Señores '+ service_supplier +'\n'+'\n'+ \
+            detalle_falla_instalacion +'\n'+'\n'+ \
+            'Ingeniero Nokia: ' + ni_ingeniero.nombre_completo.title() +'\n'+'\n'+ \
+            'Solver: '+ solver +'\n'+'\n'+ \
+            'Cordial Saludo,' +'\n'+'\n'+ 'OnAir Team'
 
-                detalle_falla_instalacion +'\n'+'\n'+
+            de = 'notification_onair.noreply@gaponair.com'
 
-                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+            para_regional = []
 
-                'Solver: '+ solver +'\n'+'\n'+
+            if regional == CENTRO or regional == ORIENTE:
+                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
+            if regional == COSTA or regional == NORORIENTE:
+                para_regional = ['hubert.tafurt_hidalgo@nokia.com', 'rom1.claro@nokia.com']
+            if regional == SUROCCIDENTE or regional == NOROCCIDENTE:
+                para_regional = ['catalina.ramirez@nokia.com', 'henry.neira@nokia.com']
 
-                'Cordial Saludo,' +'\n'+'\n'+
+            para_ss = []
 
-                'OnAir Team' +'\n'+'\n'+
+            if service_supplier == ADSM:
+                para_ss = ['davidsaavedra@adsm.com.co',
+                          'magdaburbano@adsm.com.co',
+                          'williamgrillo@adsm.com.co',
+                          'heillerjimenez@adsm.com.co']
+            if service_supplier == DELTEC:
+                para_ss = ['gbonilla@deltec.com.co',
+                          'salvarado@deltec.com.co',
+                          'jquintana@deltec.com.co']
+            if service_supplier == EZENTIS:
+                para_ss = ['edison.santos@ezentis.com.co',
+                          'fabio.cardenasr@ezentis.com.co']
+            if service_supplier == FIBRATERRA:
+                para_ss = ['coordinador1@fibraterra.com',
+                          'fernando.ramirez@fibraterra.com']
+            if service_supplier == GAMMA:
+                para_ss = ['diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com']
+            if service_supplier == INGETEL:
+                para_ss = ['supervision_cali@ingetelsas.com.co',
+                          'supervision@ingetelsas.com.co',
+                          'auditor@ingetelsas.com.co']
+            if service_supplier == INGYTELCOM:
+                para_ss = ['diana.pineda@ingytelcom.com',
+                          'robinson.lopez@ingytelcom.com',
+                          'cindy.lopez@ingytelcom.com',
+                          'cristian.organista@ingytelcom.com',
+                          'javier.orjuela@ingytelcom.com']
+            if service_supplier == JANACOR:
+                para_ss = ['ingeniero@janacor.co']
+            if service_supplier == REDESYSERVICIOS:
+                para_ss = ['jheisson.alvarez@rseltda.com']
+            if service_supplier == SAI:
+                para_ss = ['operaciones@saisas.com.co',
+                          'proyectos@saisas.com.co']
+            if service_supplier == SERVINTELCO:
+                para_ss = ['erick.amaya@servintelco.com',
+                          'carlos.bateman@servintelco.com']
+            if service_supplier == SITCOM:
+                para_ss = ['maricela.rodriguez@sitcom.co',
+                          'alejandro.pinzon@sitcom.co']
+            if service_supplier == YINDA:
+                para_ss = ['john.maldonado@yinda.com.co',
+                          'oscar.acosta@yinda.com.co']
+            if service_supplier == ZOOM:
+                para_ss = ['coord.proy.nk@zoom-cgr.com']
 
-                'NOTA: Este es un mensaje de prueba para origen falla Instalacion. \
-                Y esta es una lista provisional será oficial en W4.',
+            para = para_regional + para_ss
 
-                'notification_onair.noreply@gaponair.com',
+            copia = ['jbri.gap@nokia.com',
+                    'I_EXT_GAP_CLARO_COL@nokia.com',
+                    'I_EXT_FIELD_MANAGEMENT_CLARO_COL@nokia.com',
+                    'jorge.baracaldo@nokia.com',
+                    'leopoldo.morales_cabrales@nokia.com',
+                    'fred.rodriguez@nokia.com',
+                    'omar.gugliesi@nokia.com',
+                    'john.guerrero_rivera@nokia.com']
 
-                ['jbri.gap@nokia.com',
-                'juan.andrade@nokia.com',
-                'jorge.baracaldo@nokia.com',
-                'ivan.jimenez_robayo@nokia.com',
-                'dtor.onair_claro@nokia.com',
-                'jsan.onair_claro@nokia.com'],
-                fail_silently=False,
-            )
+            email = EmailMessage(asunto, contenido, de, para, copia)
+            email.send(fail_silently=False)
+
             NotificacionFallaInstalacion.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
@@ -473,41 +602,33 @@ class AsignacionNiIngenieroForm(ModelForm):
                 detalle_falla_instalacion=detalle_falla_instalacion,
                 solver=solver,
             )
-
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTEGRACION:
 
-            send_mail(
-                'Falla Integracion' +' '+
-                estacion.nombre +' '+
-                actividad.banda +' '+
-                actividad.proyecto +' '+
-                actividad.escenario,
+            asunto = 'Falla Integracion' +' '+ \
+            estacion.nombre +' '+ \
+            actividad.banda +' '+ \
+            actividad.proyecto +' '+ \
+            actividad.escenario
 
-                'Buen día Ivan Jimenez' +'\n'+'\n'+
+            contenido = 'Buen día Ivan Jimenez' +'\n'+'\n'+ \
+            conceptos.last().contenido +'\n'+'\n'+ \
+            'Ingeniero Nokia: ' + ni_ingeniero.nombre_completo.title() +'\n'+'\n'+ \
+            'Service Supplier: '+ service_supplier +'\n'+'\n'+ \
+            'Cordial Saludo,' +'\n'+'\n'+ 'OnAir Team'
 
-                conceptos.last().contenido +'\n'+'\n'+
+            de = 'notification_onair.noreply@gaponair.com'
 
-                'Ingeniero Nokia: '+ ni_ingeniero.nombre_completo.title() +'\n'+'\n'+
+            para = ['ivan.jimenez_robayo@nokia.com']
 
-                'Service Supplier: '+ service_supplier +'\n'+'\n'+
+            copia = ['jbri.gap@nokia.com',
+                    'I_EXT_GAP_CLARO_COL@nokia.com',
+                    'jorge.baracaldo@nokia.com',
+                    'dtor.onair_claro@nokia.com',
+                    'jsan.onair_claro@nokia.com']
 
-                'Cordial Saludo,' +'\n'+'\n'+
+            email = EmailMessage(asunto, contenido, de, para, copia)
+            email.send(fail_silently=False)
 
-                'OnAir Team' +'\n'+'\n'+
-
-                'NOTA: Este es un mensaje de prueba para origen falla Integracion. \
-                Y esta es una lista provisional será oficial en W4.',
-
-                'notification_onair.noreply@gaponair.com',
-
-                ['jbri.gap@nokia.com',
-                'juan.andrade@nokia.com',
-                'jorge.baracaldo@nokia.com',
-                'ivan.jimenez_robayo@nokia.com',
-                'dtor.onair_claro@nokia.com',
-                'jsan.onair_claro@nokia.com'],
-                fail_silently=False,
-            )
             NotificacionFallaIntegracion.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
@@ -520,7 +641,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
             )
-
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == SOFTWARE:
             NotificacionFallaSoftware.objects.create(
                 asignacion_ni=self.instance,

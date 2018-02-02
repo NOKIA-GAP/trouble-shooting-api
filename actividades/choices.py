@@ -198,4 +198,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('OIN (CLARO)', 'OIN (CLARO)'),
     ('SFERA', 'SFERA'),
     ('MSI', 'MSI'),
+    ('YINDA', 'YINDA'),
 )
