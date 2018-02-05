@@ -5,6 +5,8 @@ from django.conf.urls import url
 from .views import (
 # views SolicitudHW for CRUD
 ListSolicitudHW,
+ListSolicitudHWSolicitado,
+ListSolicitudHWRecibido,
 DetailSolicitudHW,
 CreateSolicitudHW,
 UpdateSolicitudHW,
@@ -29,6 +31,8 @@ urlpatterns = [
 
     # urls SolicitudHW for CRUD
     url(r'^list/solicitudhw$', ListSolicitudHW.as_view(), name='list_solicitudhw'),
+    url(r'^list/solicitudhw/solicitado$', ListSolicitudHWSolicitado.as_view(), name='list_solicitudhw_solicitado'),
+    url(r'^list/solicitudhw/recibido$', ListSolicitudHWRecibido.as_view(), name='list_solicitudhw_recibido'),
     url(r'^create/solicitudhw/(?P<pk>\d+)/$', CreateSolicitudHW.as_view(), name='create_solicitudhw'),
     url(r'^detail/solicitudhw/(?P<pk>\d+)/$', DetailSolicitudHW.as_view(), name='detail_solicitudhw'),
     url(r'^update/solicitudhw/(?P<pk>\d+)/$', UpdateSolicitudHW.as_view(), name='update_solicitudhw'),

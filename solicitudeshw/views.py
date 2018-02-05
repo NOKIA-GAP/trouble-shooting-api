@@ -23,28 +23,19 @@ from asignaciones.models import AsignacionNi
 from actividades.models import Actividad
 from django.db import transaction
 
+REQUIEREHW = 'Requiere HW'
+HWSOLICITADO = 'HW solicitado'
+HWRECIBIDO = 'HW recibido'
+
+NI_INGENIERO = 'NI Ingeniero'
+NPO_INGENIERO = 'NPO Ingeniero'
+FM_LIDER = 'FM Lider'
+
 class CreateSolicitudHW(LoginRequiredMixin, CreateView):
     login_url = 'users:login_user'
     form_class = SolicitudHWForm
     # solicitud_form_class = SolicitudForm
     template_name = 'solicitudhw/includes/partials/create_solicitudhw_modal.html'
-
-    # def form_valid(self, form):
-    #     form.instance.ni_ingeniero = self.request.user.perfil
-    #     asignacion = AsignacionNi.objects.get(pk=self.kwargs['pk'])
-    #     form.instance.asignacion_ni = asignacion
-    #     actividad = asignacion.actividad
-    #     form.instance.estacion = actividad.estacion
-    #     form.instance.actividad = actividad
-    #     form.instance.wp = actividad.wp
-    #     return super(CreateSolicitudHW, self).form_valid(form)
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super(CreateSolicitudHW, self).get_context_data(**kwargs)
-    #     context['solicitudhw_form'] = self.get_form()
-    #     context['solicitud_form'] = self.solicitud_form_class()
-    #     context['asignacion_ni'] = AsignacionNi.objects.get(pk=self.kwargs['pk'])
-    #     return context
 
     def get_context_data(self, **kwargs):
         context = super(CreateSolicitudHW, self).get_context_data(**kwargs)
@@ -91,6 +82,40 @@ class ListSolicitudHW(LoginRequiredMixin, ListView):
     model = SolicitudHW
     template_name = 'solicitudhw/list_solicitudhw.html'
     paginate_by = 100
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListSolicitudHW, self).get_queryset()
+        ingeniero = self.request.user.perfil
+        query = REQUIEREHW
+        if query:
+            queryset = queryset.filter(estado_solicitud=query)
+        if ingeniero.perfil_usuario == NI_INGENIERO:
+            queryset = queryset.filter(estado_solicitud=query, ni_ingeniero=ingeniero)
+        return queryset
+
+class ListSolicitudHWSolicitado(ListSolicitudHW):
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListSolicitudHW, self).get_queryset()
+        ingeniero = self.request.user.perfil
+        query = HWSOLICITADO
+        if query:
+            queryset = queryset.filter(estado_solicitud=query)
+        if ingeniero.perfil_usuario == NI_INGENIERO:
+            queryset = queryset.filter(estado_solicitud=query, ni_ingeniero=ingeniero)
+        return queryset
+
+class ListSolicitudHWRecibido(ListSolicitudHW):
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListSolicitudHW, self).get_queryset()
+        ingeniero = self.request.user.perfil
+        query = HWRECIBIDO
+        if query:
+            queryset = queryset.filter(estado_solicitud=query)
+        if ingeniero.perfil_usuario == NI_INGENIERO:
+            queryset = queryset.filter(estado_solicitud=query, ni_ingeniero=ingeniero)
+        return queryset
 
 class ListSolicitudHWActividad(ListSolicitudHW):
 

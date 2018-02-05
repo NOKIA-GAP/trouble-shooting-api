@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Lista De Conceptos NI{% endblock title %}
+{% block title %}Lista De Solicitudes HW{% endblock title %}
 
 {% block nav %}
 {% include "includes/partials/nav_main.html" %}
@@ -20,6 +20,20 @@
    <button type="submit" class="btn btn-default">Buscar</button>
 </form>
 {% endblock header_right %}
+
+{% block nav_tab %}
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_solicitudhw' %}class="active"{% endif %}>
+    <a href="{% url 'solicitudeshw:list_solicitudhw' %}">Requiere HW</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_solicitudhw_solicitado' %}class="active"{% endif %}>
+    <a href="{% url 'solicitudeshw:list_solicitudhw_solicitado' %}">HW Solicitado</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_solicitudhw_recibido' %}class="active"{% endif %}>
+    <a href="{% url 'solicitudeshw:list_solicitudhw_recibido' %}">HW Recibido</a>
+  </li>
+</ul><br>
+{% endblock nav_tab %}
 
 {% block content %}
 <table class="table table-sm table-striped">
