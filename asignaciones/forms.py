@@ -486,7 +486,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                     'fred.rodriguez@nokia.com',
                     'omar.gugliesi@nokia.com']
 
-            email = EmailMessage(asunto, contenido, de, para, copia)
+            email = EmailMessage(asunto, contenido, de, para, cc=copia)
             email.send(fail_silently=False)
 
             NotificacionRequiereVisita.objects.create(
@@ -584,9 +584,11 @@ class AsignacionNiIngenieroForm(ModelForm):
                     'leopoldo.morales_cabrales@nokia.com',
                     'fred.rodriguez@nokia.com',
                     'omar.gugliesi@nokia.com',
-                    'john.guerrero_rivera@nokia.com']
+                    'john.guerrero_rivera@nokia.com',
+                    'jose.herrera_gomez@nokia.com',
+                    'maria_fernanda.pacheco@nokia.com']
 
-            email = EmailMessage(asunto, contenido, de, para, copia)
+            email = EmailMessage(asunto, contenido, de, para, cc=copia)
             email.send(fail_silently=False)
 
             NotificacionFallaInstalacion.objects.create(
@@ -626,7 +628,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                     'dtor.onair_claro@nokia.com',
                     'jsan.onair_claro@nokia.com']
 
-            email = EmailMessage(asunto, contenido, de, para, copia)
+            email = EmailMessage(asunto, contenido, de, para, cc=copia)
             email.send(fail_silently=False)
 
             NotificacionFallaIntegracion.objects.create(
