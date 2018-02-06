@@ -6,6 +6,7 @@ ESTADO_SOLICITUD_CHOICES = (
     ('Requiere HW', 'Requiere HW'),
     ('HW solicitado', 'HW solicitado'),
     ('HW recibido', 'HW recibido'),
+    ('Cancelada', 'Cancelada'),
 )
 
 """ HARDWARE_CHOICES  """

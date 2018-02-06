@@ -7,7 +7,7 @@
 
 {% block header_left %}
 <h1>
-  Lista De Solicitud HW
+  Lista De Solicitudes HW
   <a href="{% url 'solicitudeshw:export_solicitudeshw' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
 </h1>
 {% endblock header_left %}
@@ -31,6 +31,9 @@
   </li>
   <li role="presentation" {% if request.resolver_match.url_name == 'list_solicitudhw_recibido' %}class="active"{% endif %}>
     <a href="{% url 'solicitudeshw:list_solicitudhw_recibido' %}">HW Recibido</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_solicitudhw_cancelada' %}class="active"{% endif %}>
+    <a href="{% url 'solicitudeshw:list_solicitudhw_cancelada' %}">Cancelada</a>
   </li>
 </ul><br>
 {% endblock nav_tab %}

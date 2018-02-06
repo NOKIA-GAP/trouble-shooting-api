@@ -26,6 +26,7 @@ from django.db import transaction
 REQUIEREHW = 'Requiere HW'
 HWSOLICITADO = 'HW solicitado'
 HWRECIBIDO = 'HW recibido'
+CANCELADA = 'Cancelada'
 
 NI_INGENIERO = 'NI Ingeniero'
 NPO_INGENIERO = 'NPO Ingeniero'
@@ -111,6 +112,18 @@ class ListSolicitudHWRecibido(ListSolicitudHW):
         queryset = super(ListSolicitudHW, self).get_queryset()
         ingeniero = self.request.user.perfil
         query = HWRECIBIDO
+        if query:
+            queryset = queryset.filter(estado_solicitud=query)
+        if ingeniero.perfil_usuario == NI_INGENIERO:
+            queryset = queryset.filter(estado_solicitud=query, ni_ingeniero=ingeniero)
+        return queryset
+
+class ListSolicitudHWCancelada(ListSolicitudHW):
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListSolicitudHW, self).get_queryset()
+        ingeniero = self.request.user.perfil
+        query = CANCELADA
         if query:
             queryset = queryset.filter(estado_solicitud=query)
         if ingeniero.perfil_usuario == NI_INGENIERO:
