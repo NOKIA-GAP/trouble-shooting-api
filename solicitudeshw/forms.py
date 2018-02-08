@@ -22,7 +22,6 @@ class SolicitudHWForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.asignacion_ni = kwargs.pop('asignacion_ni', None)
-        print(self.asignacion_ni)
         super(SolicitudHWForm, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -31,13 +30,19 @@ class SolicitudHWForm(ModelForm):
 
     def clean(self):
         cleaned_data = super(SolicitudHWForm, self).clean()
-        print(self.asignacion_ni)
         asignacion_ni = self.asignacion_ni
-        solicitudes = asignacion_ni.solicitudeshw.all()
+        actividad = asignacion_ni.actividad
+        solicitudes_asignacion = asignacion_ni.solicitudeshw.all()
+        solicitudes_actividad = actividad.solicitudeshw.all()
 
-        if solicitudes:
-            for solicitud in solicitudes:
-                if (solicitud.estado_solicitud == HWRECIBIDO):
+        if solicitudes_actividad:
+            for solicitud in solicitudes_actividad:
+                if solicitud.actividad == actividad and solicitud.estado_solicitud != HWRECIBIDO:
+                    raise forms.ValidationError('Para esta actividad ya existe una Solicitud.')
+
+        if solicitudes_asignacion:
+            for solicitud in solicitudes_asignacion:
+                if solicitud.estado_solicitud == HWRECIBIDO:
                     pass
                 else:
                     raise forms.ValidationError('Para esta asignacion ya existe una Solicitud.')
