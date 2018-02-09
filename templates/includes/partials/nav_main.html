@@ -33,14 +33,14 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if perms.users.perm_gap_administrador or perms.users.perm_npo_ingeniero %}
-        {% if incidentes_npo %}
-        <li><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes Npo <span class="badge" style="background:red">{{ incidentes_npo }}</span></a></li>
+        {% if notificacion_incidentes_npo %}
+        <li><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes Npo <span class="badge" style="background:red">{{ notificacion_incidentes_npo }}</span></a></li>
         {% endif %}
         {% endif %}
 
         {% if perms.users.perm_gap_administrador or perms.users.perm_ni_ingeniero %}
-        {% if incidentes_ni %}
-        <li><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes Ni <span class="badge" style="background:red">{{ incidentes_ni }}</span></a></li>
+        {% if notificacion_incidentes_ni %}
+        <li><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes Ni <span class="badge" style="background:red">{{ notificacion_incidentes_ni }}</span></a></li>
         {% endif %}
         {% endif %}
         <li class="dropdown">
