@@ -6,21 +6,116 @@
 {% endblock nav %}
 
 {% block content %}
+{% if user.is_authenticated %}
+{% else %}
 <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">Bienvenidos</h1>
         <p>Esta es una aplicacion web para el control de actividades de Gap OnAir.</p>
-        {% if user.is_authenticated %}
-        <p>
-          <a class="btn btn-primary btn-lg" href="{% url 'estaciones:list_estacion' %}" role="button">Estaciones &raquo;</a>
-          <a class="btn btn-primary btn-lg" href="{% url 'actividades:list_actividad' %}" role="button">Actividades &raquo;</a>
-        </p>
-        {% else %}
         <p>
           <a class="btn btn-primary btn-lg" href="{% url 'users:login_user' %}" role="button">Entrar &raquo;</a>
           <a class="btn btn-primary btn-lg" href="{% url 'users:signin_user' %}" role="button">Registrar &raquo;</a>
         </p>
-        {% endif %}
       </div>
 </div>
+{% endif %}
 {% endblock content %}
+
+{% block content_left %}
+{% if user.is_authenticated %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Estaciones</h3>
+    {{ estaciones }}
+  </div>
+  <div class="panel-body">
+    <p>estado produccion {{ estaciones_estado_produccion }}</p>
+    <p>estado enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</p>
+    <p>estado escalado a claro {{ estaciones_estado_escalado_a_claro }}</p>
+    <p>estado en monitoreo {{ estaciones_estado_en_monitoreo }}</p>
+    <p>estado requiere visita {{ estaciones_estado_requiere_visita }}</p>
+    <p>estado asignada {{ estaciones_estado_asignada }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Actividades</h3>
+    {{ actividades }}
+  </div>
+  <div class="panel-body">
+    <p>estado noc produccion {{ actividades_estado_noc_produccion }}</p>
+  </div>
+</div>
+{% else %}
+{% endif %}
+{% endblock content_left %}
+
+{% block content_center %}
+{% if user.is_authenticated %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Asignaciones Npo</h3>
+    {{ asignaciones_npo }}
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Asignaciones Ni</h3>
+    {{ asignaciones_ni }}
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Solicitudes HW</h3>
+    {{ solicitudeshw }}
+  </div>
+  <div class="panel-body">
+    <p>estado hw requerido {{ solicitudeshw_hwrequrido }}</p>
+    <p>estado hw solicitado {{ solicitudeshw_hwsolicitado }}</p>
+    <p>estado hw recibido {{ solicitudeshw_hwrecibido }}</p>
+    <p>estado hw cancelado {{ solicitudeshw_hwcancelado }}</p>
+  </div>
+</div>
+{% else %}
+{% endif %}
+{% endblock content_center %}
+
+{% block content_right %}
+{% if user.is_authenticated %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Incidentes Npo</h3>
+    {{ incidentes_npo }}
+  </div>
+  <div class="panel-body">
+    <p>estado abierto {{ incidentes_npo_abierto }}</p>
+    <p>estado cerrado {{ incidentes_npo_cerrado }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Incidentes Ni</h3>
+    {{ incidentes_ni }}
+  </div>
+  <div class="panel-body">
+    <p>estado abierto {{ incidentes_ni_abierto }}</p>
+    <p>estado cerrado {{incidentes_ni_cerrado }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Notificaciones</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+{% else %}
+{% endif %}
+{% endblock content_right %}
