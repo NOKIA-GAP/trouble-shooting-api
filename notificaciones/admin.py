@@ -13,6 +13,7 @@ NotificacionFallaCambioDiseno,
 NotificacionFallaMalRechazo,
 NotificacionFallaTX,
 NotificacionFallaComportamientoEsperado,
+NotificacionFallaComportamientoPrevio,
 )
 from import_export.admin import ImportExportModelAdmin
 from .resources import (
@@ -28,6 +29,7 @@ NotificacionFallaCambioDisenoResource,
 NotificacionFallaMalRechazoResource,
 NotificacionFallaTXResource,
 NotificacionFallaComportamientoEsperadoResource,
+NotificacionFallaComportamientoPrevioResource,
 )
 
 @admin.register(NotificacionRequiereVisita)
@@ -277,6 +279,28 @@ class NotificacionFallaTXAdmin(ImportExportModelAdmin):
 @admin.register(NotificacionFallaComportamientoEsperado)
 class NotificacionFallaComportamientoEsperadoAdmin(ImportExportModelAdmin):
     resource_class = NotificacionFallaComportamientoEsperadoResource
+    list_display = (
+    'id',
+    'asignacion_ni',
+    'actividad',
+    'wp',
+    'service_supplier',
+    'estacion',
+    'banda',
+    'proyecto',
+    'escenario',
+    'ni_ingeniero',
+    'concepto',
+    'creado',
+    'actualizado',
+    'estado',
+    'subestado',
+    )
+    search_fields = ['id']
+
+@admin.register(NotificacionFallaComportamientoPrevio)
+class NotificacionFallaComportamientoPrevioAdmin(ImportExportModelAdmin):
+    resource_class = NotificacionFallaComportamientoPrevioResource
     list_display = (
     'id',
     'asignacion_ni',

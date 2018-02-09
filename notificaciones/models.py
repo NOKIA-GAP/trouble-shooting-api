@@ -305,3 +305,28 @@ class NotificacionFallaComportamientoEsperado(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class NotificacionFallaComportamientoPrevio(models.Model):
+    asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_comportamiento_previo')
+    actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_comportamiento_previo')
+    wp = models.BigIntegerField(blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_comportamiento_previo')
+    banda = models.CharField(max_length=255, blank=True, null=True)
+    proyecto = models.CharField(max_length=255, blank=True, null=True)
+    escenario = models.CharField(max_length=255, blank=True, null=True)
+    ni_ingeniero = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_comportamiento_previo')
+    concepto = models.TextField(blank=True, null=True)
+
+    estado = models.BooleanField(default=False, editable=False)
+    subestado = models.BooleanField(default=False, editable=False)
+    creado = models.DateTimeField(auto_now_add=True)
+    actualizado = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('creado',)
+        verbose_name = "notificacion falla comportamiento previo"
+        verbose_name_plural = "notificaciones falla comportamiento previo"
+
+    def __str__(self):
+        return str(self.id)

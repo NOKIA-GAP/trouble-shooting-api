@@ -61,7 +61,10 @@
     <a href="{% url 'notificaciones:list_notificacion_falla_tx' %}">Falla TX</a>
   </li>
   <li role="presentation" {% if request.resolver_match.url_name == 'list_notificacion_falla_comportamiento_esperado' %}class="active"{% endif %}>
-    <a href="{% url 'notificaciones:list_notificacion_falla_comportamiento_esperado' %}">Falla Comportamiento Deseado</a>
+    <a href="{% url 'notificaciones:list_notificacion_falla_comportamiento_esperado' %}">Falla Comportamiento Esperado</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_notificacion_falla_comportamiento_previo' %}class="active"{% endif %}>
+    <a href="{% url 'notificaciones:list_notificacion_falla_comportamiento_previo' %}">Falla Comportamiento Previo</a>
   </li>
 </ul><br>
 {% endblock nav_tab %}

@@ -13,6 +13,7 @@ NotificacionFallaCambioDiseno,
 NotificacionFallaMalRechazo,
 NotificacionFallaTX,
 NotificacionFallaComportamientoEsperado,
+NotificacionFallaComportamientoPrevio,
 )
 from .resources import (
 NotificacionRequiereVisitaResource,
@@ -27,6 +28,7 @@ NotificacionFallaCambioDisenoResource,
 NotificacionFallaMalRechazoResource,
 NotificacionFallaTXResource,
 NotificacionFallaComportamientoEsperadoResource,
+NotificacionFallaComportamientoPrevioResource,
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -660,4 +662,56 @@ def export_notificaciones_falla_comportamiento_esperado(request):
     dataset = notificaciones_falla_comportamiento_esperado.export()
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="NotificacionFallaComportamientoEsperado.xlsx"'
+    return response
+
+class ListNotificacionFallaComportamientoPrevio(LoginRequiredMixin, ListView):
+    login_url = 'users:login_user'
+    model = NotificacionFallaComportamientoPrevio
+    template_name = 'notificacion_falla_comportamiento_previo/list_notificacion_falla_comportamiento_previo.html'
+    paginate_by = 100
+
+class SearchNotificacionFallaComportamientoPrevio(ListNotificacionFallaComportamientoPrevio):
+
+    def get_queryset(self):
+        queryset = super(SearchNotificacionFallaComportamientoPrevio, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            queryset = queryset.filter(
+                reduce(operator.and_,
+                          (Q(id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(asignacion_ni__id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(actividad__id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(wp__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(service_supplier__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(estacion__nombre__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(banda__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(proyecto__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(escenario__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__nombre__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__apellido__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__nombre_completo__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(creado__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(actualizado__icontains=q) for q in query_list))
+            )
+        return queryset
+
+def export_notificaciones_falla_comportamiento_previo(request):
+    notificaciones_falla_comportamiento_previo = NotificacionFallaComportamientoPrevioResource()
+    dataset = notificaciones_falla_comportamiento_previo.export()
+    response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="NotificacionFallaComportamientoPrevio.xlsx"'
     return response

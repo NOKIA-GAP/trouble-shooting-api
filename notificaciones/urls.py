@@ -27,6 +27,8 @@ ListNotificacionFallaTX,
 SearchNotificacionFallaTX,
 ListNotificacionFallaComportamientoEsperado,
 SearchNotificacionFallaComportamientoEsperado,
+ListNotificacionFallaComportamientoPrevio,
+SearchNotificacionFallaComportamientoPrevio,
 )
 from . import views
 
@@ -79,4 +81,8 @@ urlpatterns = [
     url(r'^list/notificacion/falla_comportamiento_esperado/$', ListNotificacionFallaComportamientoEsperado.as_view(), name='list_notificacion_falla_comportamiento_esperado'),
     url(r'^search/notificacion/falla_comportamiento_esperado/$', SearchNotificacionFallaComportamientoEsperado.as_view(), name='search_notificacion_falla_comportamiento_esperado'),
     url(r'^export/notificaciones/falla_comportamiento_esperado/$', views.export_notificaciones_falla_comportamiento_esperado, name='export_notificaciones_falla_comportamiento_esperado'),
+
+    url(r'^list/notificacion/falla_comportamiento_previo/$', ListNotificacionFallaComportamientoPrevio.as_view(), name='list_notificacion_falla_comportamiento_previo'),
+    url(r'^search/notificacion/falla_comportamiento_previo/$', SearchNotificacionFallaComportamientoPrevio.as_view(), name='search_notificacion_falla_comportamiento_previo'),
+    url(r'^export/notificaciones/falla_comportamiento_previo/$', views.export_notificaciones_falla_comportamiento_previo, name='export_notificaciones_falla_comportamiento_previo'),
 ]

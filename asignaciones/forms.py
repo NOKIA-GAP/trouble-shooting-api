@@ -23,6 +23,7 @@ NotificacionFallaCambioDiseno,
 NotificacionFallaMalRechazo,
 NotificacionFallaTX,
 NotificacionFallaComportamientoEsperado,
+NotificacionFallaComportamientoPrevio,
 )
 
 ASIGNADA = 'Asignada'
@@ -43,6 +44,7 @@ CAMBIODISENO = 'Cambio diseno'
 MALRECHAZO = 'Mal rechazo'
 TX = 'TX'
 COMPORTAMIENTOESPERADO = 'Comportamiento esperado'
+COMPORTAMIENTOPREVIO = 'Comportamiento previo'
 
 NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
@@ -749,6 +751,19 @@ class AsignacionNiIngenieroForm(ModelForm):
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOESPERADO:
             NotificacionFallaComportamientoEsperado.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOPREVIO:
+            NotificacionFallaComportamientoPrevio.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
