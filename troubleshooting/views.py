@@ -6,6 +6,27 @@ from django.views.generic import TemplateView
 from estaciones.models import Estacion
 from actividades.models import Actividad
 from asignaciones.models import AsignacionNpo, AsignacionNi
+from asignaciones.panels import (
+asignaciones_npo,
+asignaciones_ni,
+asignaciones_npo_asignada,
+asignaciones_npo_requiere_visita,
+asignaciones_npo_en_monitoreo,
+asignaciones_npo_escalado_a_claro,
+asignaciones_npo_enviado_a_seguimiento,
+
+asignaciones_npo_asignada_previo_hoy,
+asignaciones_npo_en_monitoreo_tres_dias,
+
+asignaciones_ni_asignada,
+asignaciones_ni_requiere_visita,
+asignaciones_ni_en_monitoreo,
+asignaciones_ni_escalado_a_claro,
+asignaciones_ni_enviado_a_seguimiento,
+
+asignaciones_ni_asignada_previo_hoy,
+asignaciones_ni_en_monitoreo_tres_dias,
+)
 from incidentes.models import IncidenteNpo, IncidenteNi
 from solicitudeshw.models import SolicitudHW
 
@@ -38,18 +59,39 @@ class IndexView(TemplateView):
         # actividades
         context['actividades'] = Actividad.objects.all().count()
         context['actividades_estado_noc_produccion'] = Actividad.objects.filter(estado_noc=PRODUCCION).count()
+
         # asignaciones npo
-        context['asignaciones_npo'] = AsignacionNpo.objects.all().count()
+        context['asignaciones_npo'] = asignaciones_npo
+        context['asignaciones_npo_asignada'] = asignaciones_npo_asignada
+        context['asignaciones_npo_requiere_visita'] = asignaciones_npo_requiere_visita
+        context['asignaciones_npo_en_monitoreo'] = asignaciones_npo_en_monitoreo
+        context['asignaciones_npo_escalado_a_claro'] = asignaciones_npo_escalado_a_claro
+        context['asignaciones_npo_enviado_a_seguimiento'] = asignaciones_npo_enviado_a_seguimiento
+
+        context['asignaciones_npo_asignada_previo_hoy'] = asignaciones_npo_asignada_previo_hoy
+        context['asignaciones_npo_en_monitoreo_tres_dias'] = asignaciones_npo_en_monitoreo_tres_dias
+
         # asignaciones ni
-        context['asignaciones_ni'] = AsignacionNi.objects.all().count()
+        context['asignaciones_ni'] = asignaciones_ni
+        context['asignaciones_ni_asignada'] = asignaciones_ni_asignada
+        context['asignaciones_ni_requiere_visita'] = asignaciones_ni_requiere_visita
+        context['asignaciones_ni_en_monitoreo'] = asignaciones_ni_en_monitoreo
+        context['asignaciones_ni_escalado_a_claro'] = asignaciones_ni_escalado_a_claro
+        context['asignaciones_ni_enviado_a_seguimiento'] = asignaciones_ni_enviado_a_seguimiento
+
+        context['asignaciones_ni_asignada_previo_hoy'] = asignaciones_ni_asignada_previo_hoy
+        context['asignaciones_ni_en_monitoreo_tres_dias'] = asignaciones_ni_en_monitoreo_tres_dias
+
         # incidentes npo
         context['incidentes_npo'] = IncidenteNpo.objects.all().count()
         context['incidentes_npo_abierto'] = IncidenteNpo.objects.filter(estado_incidente=ABIERTO).count()
         context['incidentes_npo_cerrado'] = IncidenteNpo.objects.filter(estado_incidente=CERRADO).count()
+
         # incidentes ni
         context['incidentes_ni'] = IncidenteNi.objects.all().count()
         context['incidentes_ni_abierto'] = IncidenteNi.objects.filter(estado_incidente=ABIERTO).count()
         context['incidentes_ni_cerrado'] = IncidenteNi.objects.filter(estado_incidente=CERRADO).count()
+
         # solicitudeshw
         context['solicitudeshw'] = SolicitudHW.objects.all().count()
         context['solicitudeshw_hwrequrido'] = SolicitudHW.objects.filter(estado_solicitud=REQUIEREHW).count()

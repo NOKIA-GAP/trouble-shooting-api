@@ -33,6 +33,12 @@ from actividades.models import Actividad
 from users.models import Perfil
 import datetime
 from . import choices
+from .panels import (
+asignaciones_npo_asignada_previo_hoy_qs,
+asignaciones_ni_asignada_previo_hoy_qs,
+asignaciones_npo_en_monitoreo_tres_dias_qs,
+asignaciones_ni_en_monitoreo_tres_dias_qs,
+)
 
 ASIGNADA = 'Asignada'
 EN_MONITOREO = 'En monitoreo'
@@ -102,6 +108,16 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
     model = AsignacionNpo
     template_name = 'asignacion_npo/list_asignacion_npo.html'
     paginate_by = 100
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListAsignacionNpo, self).get_queryset()
+        qs = self.request.GET.get('qs')
+        print (qs)
+        if qs and qs == 'asignaciones_npo_asignada_previo_hoy_qs':
+            queryset = asignaciones_npo_asignada_previo_hoy_qs
+        if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias_qs':
+            queryset = asignaciones_npo_en_monitoreo_tres_dias_qs()
+        return queryset
 
 class ListAsignacionNpoActividad(ListAsignacionNpo):
 
@@ -425,6 +441,16 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
     model = AsignacionNi
     template_name = 'asignacion_ni/list_asignacion_ni.html'
     paginate_by = 100
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListAsignacionNi, self).get_queryset()
+        qs = self.request.GET.get('qs')
+        print (qs)
+        if qs and qs == 'asignaciones_ni_asignada_previo_hoy_qs':
+            queryset = asignaciones_ni_asignada_previo_hoy_qs
+        if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias_qs':
+            queryset = asignaciones_ni_en_monitoreo_tres_dias_qs()
+        return queryset
 
 class ListAsignacionNiActividad(ListAsignacionNi):
 

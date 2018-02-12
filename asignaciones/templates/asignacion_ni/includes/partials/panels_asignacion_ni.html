@@ -1,0 +1,15 @@
+<div class="panel-body">
+  <p>asignaciones ni asignada {{ asignaciones_ni_asignada }}</p>
+  <p>asignaciones ni requiere visita {{ asignaciones_ni_requiere_visita }}</p>
+  <p>asignaciones ni en monitoreo {{ asignaciones_ni_en_monitoreo }}</p>
+  <p>asignaciones ni escalado a claro {{ asignaciones_ni_escalado_a_claro }}</p>
+  <p>asignaciones ni enviado a seguimiento {{ asignaciones_ni_enviado_a_seguimiento }}</p>
+</div>
+<hr style="margin: 0px">
+<div class="panel-body">
+  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_asignada_previo_hoy_qs">asignaciones ni asignada previo hoy {{ asignaciones_ni_asignada_previo_hoy }}</a>
+</div>
+<hr style="margin: 0px">
+<div class="panel-body">
+  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_en_monitoreo_tres_dias_qs">asignaciones ni en monitoreo tres dias {{ asignaciones_ni_en_monitoreo_tres_dias }}</a>
+</div>
