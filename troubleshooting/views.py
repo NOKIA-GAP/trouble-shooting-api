@@ -4,8 +4,13 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from estaciones.models import Estacion
-from actividades.models import Actividad
-from asignaciones.models import AsignacionNpo, AsignacionNi
+from actividades.panels import (
+actividades,
+actividades_estado_noc_produccion,
+actividades_estado_noc_seguimiento_12h,
+actividades_estado_noc_seguimiento_24h,
+actividades_estado_noc_seguimiento_36h,
+)
 from asignaciones.panels import (
 asignaciones_npo,
 asignaciones_ni,
@@ -57,8 +62,11 @@ class IndexView(TemplateView):
         context['estaciones_estado_requiere_visita'] = Estacion.objects.filter(estado_estacion=REQUIERE_VISITA).count()
         context['estaciones_estado_asignada'] = Estacion.objects.filter(estado_estacion=ASIGNADA).count()
         # actividades
-        context['actividades'] = Actividad.objects.all().count()
-        context['actividades_estado_noc_produccion'] = Actividad.objects.filter(estado_noc=PRODUCCION).count()
+        context['actividades'] = actividades
+        context['actividades_estado_noc_produccion'] = actividades_estado_noc_produccion
+        context['actividades_estado_noc_seguimiento_12h'] = actividades_estado_noc_seguimiento_12h
+        context['actividades_estado_noc_seguimiento_24h'] = actividades_estado_noc_seguimiento_24h
+        context['actividades_estado_noc_seguimiento_36h'] = actividades_estado_noc_seguimiento_36h
 
         # asignaciones npo
         context['asignaciones_npo'] = asignaciones_npo

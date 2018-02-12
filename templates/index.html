@@ -50,9 +50,7 @@
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'actividades:list_actividad' %}">Actividades {{ actividades }}</a></h3>
   </div>
-  <div class="panel-body">
-    <p>Estado NOC produccion {{ actividades_estado_noc_produccion }}</p>
-  </div>
+  {% include "actividad/includes/partials/panels_actividad.html" %}
 </div>
 {% else %}
 {% endif %}
