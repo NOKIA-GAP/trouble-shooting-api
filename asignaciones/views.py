@@ -34,8 +34,8 @@ from users.models import Perfil
 import datetime
 from . import choices
 from .panels import (
-asignaciones_npo_asignada_previo_hoy_qs,
-asignaciones_ni_asignada_previo_hoy_qs,
+asignaciones_npo_asignada_un_dia_qs,
+asignaciones_ni_asignada_un_dia_qs,
 asignaciones_npo_en_monitoreo_tres_dias_qs,
 asignaciones_ni_en_monitoreo_tres_dias_qs,
 )
@@ -113,8 +113,8 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
         queryset = super(ListAsignacionNpo, self).get_queryset()
         qs = self.request.GET.get('qs')
         print (qs)
-        if qs and qs == 'asignaciones_npo_asignada_previo_hoy_qs':
-            queryset = asignaciones_npo_asignada_previo_hoy_qs()
+        if qs and qs == 'asignaciones_npo_asignada_un_dia_qs':
+            queryset = asignaciones_npo_asignada_un_dia_qs()
         if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias_qs':
             queryset = asignaciones_npo_en_monitoreo_tres_dias_qs()
         return queryset
@@ -446,8 +446,8 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
         queryset = super(ListAsignacionNi, self).get_queryset()
         qs = self.request.GET.get('qs')
         print (qs)
-        if qs and qs == 'asignaciones_ni_asignada_previo_hoy_qs':
-            queryset = asignaciones_ni_asignada_previo_hoy_qs()
+        if qs and qs == 'asignaciones_ni_asignada_un_dia_qs':
+            queryset = asignaciones_ni_asignada_un_dia_qs()
         if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias_qs':
             queryset = asignaciones_ni_en_monitoreo_tres_dias_qs()
         return queryset

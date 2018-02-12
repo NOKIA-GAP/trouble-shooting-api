@@ -27,15 +27,15 @@ asignaciones_npo_en_monitoreo = AsignacionNpo.objects.filter(estado_asignacion=E
 asignaciones_npo_escalado_a_claro = AsignacionNpo.objects.filter(estado_asignacion=ESCALADO_A_CLARO).count()
 asignaciones_npo_enviado_a_seguimiento = AsignacionNpo.objects.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO).count()
 
-asignaciones_npo_asignada_previo_hoy = (
+asignaciones_npo_asignada_un_dia = (
     AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY).count()
 )
-# asignaciones_npo_asignada_previo_hoy_qs = (
+# asignaciones_npo_asignada_un_dia_qs = (
 #     AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
 # )
-def asignaciones_npo_asignada_previo_hoy_qs():
-    asignaciones_npo_asignada_previo_hoy_qs = AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
-    return asignaciones_npo_asignada_previo_hoy_qs
+def asignaciones_npo_asignada_un_dia_qs():
+    asignaciones_npo_asignada_un_dia_qs = AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+    return asignaciones_npo_asignada_un_dia_qs
 
 asignaciones_npo_en_monitoreo_tres_dias = (
     AsignacionNpo.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS).count()
@@ -55,15 +55,15 @@ asignaciones_ni_en_monitoreo = AsignacionNi.objects.filter(estado_asignacion=EN_
 asignaciones_ni_escalado_a_claro = AsignacionNi.objects.filter(estado_asignacion=ESCALADO_A_CLARO).count()
 asignaciones_ni_enviado_a_seguimiento = AsignacionNi.objects.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO).count()
 
-asignaciones_ni_asignada_previo_hoy  = (
+asignaciones_ni_asignada_un_dia  = (
     AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY).count()
 )
-# asignaciones_ni_asignada_previo_hoy_qs = (
+# asignaciones_ni_asignada_un_dia_qs = (
 #     AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
 # )
-def asignaciones_ni_asignada_previo_hoy_qs():
-    asignaciones_ni_asignada_previo_hoy_qs = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
-    return asignaciones_ni_asignada_previo_hoy_qs
+def asignaciones_ni_asignada_un_dia_qs():
+    asignaciones_ni_asignada_un_dia_qs = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+    return asignaciones_ni_asignada_un_dia_qs
 
 asignaciones_ni_en_monitoreo_tres_dias= (
     AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS).count()

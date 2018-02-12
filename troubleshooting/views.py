@@ -15,7 +15,7 @@ asignaciones_npo_en_monitoreo,
 asignaciones_npo_escalado_a_claro,
 asignaciones_npo_enviado_a_seguimiento,
 
-asignaciones_npo_asignada_previo_hoy,
+asignaciones_npo_asignada_un_dia,
 asignaciones_npo_en_monitoreo_tres_dias,
 
 asignaciones_ni_asignada,
@@ -24,7 +24,7 @@ asignaciones_ni_en_monitoreo,
 asignaciones_ni_escalado_a_claro,
 asignaciones_ni_enviado_a_seguimiento,
 
-asignaciones_ni_asignada_previo_hoy,
+asignaciones_ni_asignada_un_dia,
 asignaciones_ni_en_monitoreo_tres_dias,
 )
 from incidentes.models import IncidenteNpo, IncidenteNi
@@ -68,7 +68,7 @@ class IndexView(TemplateView):
         context['asignaciones_npo_escalado_a_claro'] = asignaciones_npo_escalado_a_claro
         context['asignaciones_npo_enviado_a_seguimiento'] = asignaciones_npo_enviado_a_seguimiento
 
-        context['asignaciones_npo_asignada_previo_hoy'] = asignaciones_npo_asignada_previo_hoy
+        context['asignaciones_npo_asignada_un_dia'] = asignaciones_npo_asignada_un_dia
         context['asignaciones_npo_en_monitoreo_tres_dias'] = asignaciones_npo_en_monitoreo_tres_dias
 
         # asignaciones ni
@@ -79,7 +79,7 @@ class IndexView(TemplateView):
         context['asignaciones_ni_escalado_a_claro'] = asignaciones_ni_escalado_a_claro
         context['asignaciones_ni_enviado_a_seguimiento'] = asignaciones_ni_enviado_a_seguimiento
 
-        context['asignaciones_ni_asignada_previo_hoy'] = asignaciones_ni_asignada_previo_hoy
+        context['asignaciones_ni_asignada_un_dia'] = asignaciones_ni_asignada_un_dia
         context['asignaciones_ni_en_monitoreo_tres_dias'] = asignaciones_ni_en_monitoreo_tres_dias
 
         # incidentes npo
