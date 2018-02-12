@@ -114,7 +114,7 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
         qs = self.request.GET.get('qs')
         print (qs)
         if qs and qs == 'asignaciones_npo_asignada_previo_hoy_qs':
-            queryset = asignaciones_npo_asignada_previo_hoy_qs
+            queryset = asignaciones_npo_asignada_previo_hoy_qs()
         if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias_qs':
             queryset = asignaciones_npo_en_monitoreo_tres_dias_qs()
         return queryset
@@ -447,7 +447,7 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
         qs = self.request.GET.get('qs')
         print (qs)
         if qs and qs == 'asignaciones_ni_asignada_previo_hoy_qs':
-            queryset = asignaciones_ni_asignada_previo_hoy_qs
+            queryset = asignaciones_ni_asignada_previo_hoy_qs()
         if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias_qs':
             queryset = asignaciones_ni_en_monitoreo_tres_dias_qs()
         return queryset

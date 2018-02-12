@@ -24,7 +24,7 @@
 {% block header_left %}
 {% if user.is_authenticated %}
   <h1>
-    Paneles de Informacion
+    Paneles de Información
     <a href="{% url 'index' %}" class="btn btn-primary btn-sm" role="button">Actualizar</a>
   </h1><br>
 {% else %}
@@ -33,27 +33,25 @@
 
 {% block content_left %}
 {% if user.is_authenticated %}
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Estaciones</h3>
-    {{ estaciones }}
+    <h3 class="panel-title"><a href="{% url 'estaciones:list_estacion' %}">Estaciones {{ estaciones }}</a></h3>
   </div>
   <div class="panel-body">
-    <p>estado produccion {{ estaciones_estado_produccion }}</p>
-    <p>estado enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</p>
-    <p>estado escalado a claro {{ estaciones_estado_escalado_a_claro }}</p>
-    <p>estado en monitoreo {{ estaciones_estado_en_monitoreo }}</p>
-    <p>estado requiere visita {{ estaciones_estado_requiere_visita }}</p>
-    <p>estado asignada {{ estaciones_estado_asignada }}</p>
+    <p>Estado produccion {{ estaciones_estado_produccion }}</p>
+    <p>Estado enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</p>
+    <p>Estado escalado a claro {{ estaciones_estado_escalado_a_claro }}</p>
+    <p>Estado en monitoreo {{ estaciones_estado_en_monitoreo }}</p>
+    <p>Estado requiere visita {{ estaciones_estado_requiere_visita }}</p>
+    <p>Estado asignada {{ estaciones_estado_asignada }}</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Actividades</h3>
-    {{ actividades }}
+    <h3 class="panel-title"><a href="{% url 'actividades:list_actividad' %}">Actividades {{ actividades }}</a></h3>
   </div>
   <div class="panel-body">
-    <p>estado noc produccion {{ actividades_estado_noc_produccion }}</p>
+    <p>Estado NOC produccion {{ actividades_estado_noc_produccion }}</p>
   </div>
 </div>
 {% else %}
@@ -62,32 +60,29 @@
 
 {% block content_center %}
 {% if user.is_authenticated %}
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Asignaciones Npo</h3>
-    {{ asignaciones_npo }}
+    <h3 class="panel-title"><a href="{% url 'asignaciones:list_asignacion_npo_perfil' user.perfil.slug %}">Asignaciones NPO {{ asignaciones_npo }}</a></h3>
   </div>
   {% include "asignacion_npo/includes/partials/panels_asignacion_npo.html" %}
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Asignaciones Ni</h3>
-    {{ asignaciones_ni }}
+    <h3 class="panel-title"><a href="{% url 'asignaciones:list_asignacion_ni_perfil' user.perfil.slug  %}">Asignaciones NI {{ asignaciones_ni }}</a></h3>
   </div>
   {% include "asignacion_ni/includes/partials/panels_asignacion_ni.html" %}
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Solicitudes HW</h3>
-    {{ solicitudeshw }}
+    <h3 class="panel-title"><a href="{% url 'solicitudeshw:list_solicitudhw' %}">Solicitudes HW {{ solicitudeshw }}</a></h3>
   </div>
   <div class="panel-body">
-    <p>estado hw requerido {{ solicitudeshw_hwrequrido }}</p>
-    <p>estado hw solicitado {{ solicitudeshw_hwsolicitado }}</p>
-    <p>estado hw recibido {{ solicitudeshw_hwrecibido }}</p>
-    <p>estado hw cancelado {{ solicitudeshw_hwcancelado }}</p>
+    <p>Estado HW requerido {{ solicitudeshw_hwrequrido }}</p>
+    <p>Estado HW solicitado {{ solicitudeshw_hwsolicitado }}</p>
+    <p>Estado HW recibido {{ solicitudeshw_hwrecibido }}</p>
+    <p>Estado HW cancelado {{ solicitudeshw_hwcancelado }}</p>
   </div>
 </div>
 
@@ -97,29 +92,27 @@
 
 {% block content_right %}
 {% if user.is_authenticated %}
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Incidentes Npo</h3>
-    {{ incidentes_npo }}
+    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO {{ incidentes_npo }}</a></h3>
   </div>
   <div class="panel-body">
-    <p>estado abierto {{ incidentes_npo_abierto }}</p>
-    <p>estado cerrado {{ incidentes_npo_cerrado }}</p>
+    <p>Estado abierto {{ incidentes_npo_abierto }}</p>
+    <p>Estado cerrado {{ incidentes_npo_cerrado }}</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Incidentes Ni</h3>
-    {{ incidentes_ni }}
+    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes NI {{ incidentes_ni }}</a></h3>
   </div>
   <div class="panel-body">
-    <p>estado abierto {{ incidentes_ni_abierto }}</p>
-    <p>estado cerrado {{incidentes_ni_cerrado }}</p>
+    <p>Estado abierto {{ incidentes_ni_abierto }}</p>
+    <p>Estado cerrado {{incidentes_ni_cerrado }}</p>
   </div>
 </div>
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Notificaciones</h3>
+    <h3 class="panel-title"><a href="{% url 'notificaciones:list_notificacion_requiere_visita' %}">Notificaciones</a></h3>
   </div>
   <div class="panel-body">
     Panel content
