@@ -1,15 +1,15 @@
 <div class="panel-body">
-  <p>Asignaciones NI asignada {{ asignaciones_ni_asignada }}</p>
-  <p>Asignaciones NI requiere visita {{ asignaciones_ni_requiere_visita }}</p>
+  <p>Estado asignada {{ asignaciones_ni_asignada }}</p>
+  <p>Estado requiere visita {{ asignaciones_ni_requiere_visita }}</p>
   <p>Asignaciones Ni en monitoreo {{ asignaciones_ni_en_monitoreo }}</p>
-  <p>Asignaciones NI escalado a claro {{ asignaciones_ni_escalado_a_claro }}</p>
-  <p>Asignaciones NI enviado a seguimiento {{ asignaciones_ni_enviado_a_seguimiento }}</p>
+  <p>Estado escalado a claro {{ asignaciones_ni_escalado_a_claro }}</p>
+  <p>Estado enviado a seguimiento {{ asignaciones_ni_enviado_a_seguimiento }}</p>
 </div>
 <hr style="margin: 0px">
 <div class="panel-body">
-  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_asignada_un_dia_qs">Asignaciones NI asignada un dia {{ asignaciones_ni_asignada_un_dia }}</a>
+  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_asignada_un_dia_qs">Estado asignada un dia {{ asignaciones_ni_asignada_un_dia }}</a>
 </div>
 <hr style="margin: 0px">
 <div class="panel-body">
-  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_en_monitoreo_tres_dias_qs">Asignaciones NI en monitoreo tres dias {{ asignaciones_ni_en_monitoreo_tres_dias }}</a>
+  <a href="{% url 'asignaciones:list_asignacion_ni' %}?qs=asignaciones_ni_en_monitoreo_tres_dias_qs">Estado en monitoreo tres dias {{ asignaciones_ni_en_monitoreo_tres_dias }}</a>
 </div>
