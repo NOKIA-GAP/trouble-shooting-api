@@ -95,7 +95,19 @@
     <h3 class="panel-title"><a href="{% url 'notificaciones:list_notificacion_requiere_visita' %}">Notificaciones</a></h3>
   </div>
   <div class="panel-body">
-    Panel content
+    <p>Requiere visita {{ notificaciones_requiere_visita }}</p>
+    <p> Falla instalacion {{ notificacion_falla_instalacion }}</p>
+    <p> Falla integracion  {{ notificacion_falla_integracion }}</p>
+    <p> Falla software {{ notificacion_falla_software }}</p>
+    <p> Falla hardware {{ notificacion_falla_hardware }}</p>
+    <p> Falla datafill {{ notificacion_falla_datafill }}</p>
+    <p> Falla  ajuste potencia {{ notificacion_falla_ajuste_potencia }}</p>
+    <p> Falla interferencia externa {{ notificacion_falla_interferencia_externa }}</p>
+    <p> Falla cambio diseno {{ notificacion_falla_cambio_diseno }}</p>
+    <p> Falla mal rechazo {{ notificacion_falla_mal_rechazo }}</p>
+    <p> Falla falla tx {{ notificacion_falla_tx }}</p>
+    <p> Falla comportamiento esperado {{ notificacion_falla_comportamiento_esperado }}</p>
+    <p> Falla comportamiento previo {{ notificacion_falla_comportamiento_previo }}</p>
   </div>
 </div>
 {% else %}

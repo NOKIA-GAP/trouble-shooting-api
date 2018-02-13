@@ -67,6 +67,21 @@ solicitudeshw_hwsolicitado,
 solicitudeshw_hwrecibido,
 solicitudeshw_hwcancelado,
 )
+from notificaciones.panels import (
+notificaciones_requiere_visita,
+notificacion_falla_instalacion,
+notificacion_falla_integracion,
+notificacion_falla_software,
+notificacion_falla_hardware,
+notificacion_falla_datafill,
+notificacion_falla_ajuste_potencia,
+notificacion_falla_interferencia_externa,
+notificacion_falla_cambio_diseno,
+notificacion_falla_mal_rechazo,
+notificacion_falla_tx,
+notificacion_falla_comportamiento_esperado,
+notificacion_falla_comportamiento_previo,
+)
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -138,5 +153,20 @@ class IndexView(TemplateView):
         context['solicitudeshw_hwsolicitado'] = solicitudeshw_hwsolicitado.count()
         context['solicitudeshw_hwrecibido'] = solicitudeshw_hwrecibido.count()
         context['solicitudeshw_hwcancelado'] = solicitudeshw_hwcancelado.count()
+
+        # notificaciones
+        context['notificaciones_requiere_visita'] = notificaciones_requiere_visita.count()
+        context['notificacion_falla_instalacion'] = notificacion_falla_instalacion.count()
+        context['notificacion_falla_integracion'] = notificacion_falla_integracion.count()
+        context['notificacion_falla_software'] = notificacion_falla_software.count()
+        context['notificacion_falla_hardware'] = notificacion_falla_hardware.count()
+        context['notificacion_falla_datafill'] = notificacion_falla_datafill.count()
+        context['notificacion_falla_ajuste_potencia'] = notificacion_falla_ajuste_potencia.count()
+        context['notificacion_falla_interferencia_externa'] = notificacion_falla_interferencia_externa.count()
+        context['notificacion_falla_cambio_diseno'] = notificacion_falla_cambio_diseno.count()
+        context['notificacion_falla_mal_rechazo'] = notificacion_falla_mal_rechazo.count()
+        context['notificacion_falla_tx'] = notificacion_falla_tx.count()
+        context['notificacion_falla_comportamiento_esperado'] = notificacion_falla_comportamiento_esperado.count()
+        context['notificacion_falla_comportamiento_previo'] = notificacion_falla_comportamiento_previo.count()
 
         return context
