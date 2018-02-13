@@ -54,7 +54,7 @@ class SolicitudForm(ModelForm):
 
     class Meta:
         model = Solicitud
-        fields = ('hardware', 'cantidad', 'descripcion',)
+        fields = ('hardware', 'cantidad', 'descripcion', 'serial_desmontado', 'serial_nuevo',)
 
 SolicitudFormSet = inlineformset_factory(SolicitudHW, Solicitud,
                                          form=SolicitudForm, extra=1)

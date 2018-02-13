@@ -73,6 +73,8 @@ class Solicitud(models.Model):
     hardware = models.CharField(max_length=255, choices=choices.HARDWARE_CHOICES, blank=True, null=True)
     cantidad = models.PositiveIntegerField(validators=[MinValueValidator(1)], blank=True, null=True)
     descripcion = models.CharField(max_length=255, blank=True, null=True)
+    serial_desmontado = models.CharField(max_length=255, blank=True, null=True)
+    serial_nuevo = models.CharField(max_length=255, blank=True, null=True)
 
     estado = models.BooleanField(default=False, editable=False)
     subestado = models.BooleanField(default=False, editable=False)

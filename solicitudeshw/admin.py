@@ -37,6 +37,8 @@ class SolicitudAdmin(admin.ModelAdmin):
     'hardware',
     'cantidad',
     'descripcion',
+    'serial_desmontado',
+    'serial_nuevo',
     'creado',
     'actualizado',
     'estado',
