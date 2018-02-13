@@ -12,7 +12,7 @@ CreateView,
 DeleteView
 )
 from django.urls import reverse_lazy
-from .forms import SolicitudHWForm, SolicitudForm, SolicitudHWUpdateForm, SolicitudFormSet
+from .forms import SolicitudHWForm, SolicitudForm, SolicitudHWUpdateForm, SolicitudFormSet, SolicitudUpdateForm
 from .models import SolicitudHW, Solicitud
 import operator
 from django.db.models import Q
@@ -232,7 +232,7 @@ class DetailSolicitud(LoginRequiredMixin, DetailView):
 class UpdateSolicitud(LoginRequiredMixin, UpdateView,):
     login_url = 'login_user'
     model = Solicitud
-    form_class = SolicitudForm
+    form_class = SolicitudUpdateForm
     template_name = 'solicitud/includes/partials/update_solicitud_modal.html'
 
     def get_context_data(self, **kwargs):

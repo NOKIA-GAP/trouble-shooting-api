@@ -54,7 +54,14 @@ class SolicitudForm(ModelForm):
 
     class Meta:
         model = Solicitud
-        fields = ('hardware', 'cantidad', 'descripcion', 'serial_desmontado', 'serial_nuevo',)
+        fields = ('hardware', 'cantidad', 'descripcion',)
 
 SolicitudFormSet = inlineformset_factory(SolicitudHW, Solicitud,
                                          form=SolicitudForm, extra=1)
+
+class SolicitudUpdateForm(ModelForm):
+    hardware = forms.ChoiceField(choices=choices.HARDWARE_CHOICES, required=True)
+
+    class Meta:
+        model = Solicitud
+        fields = ('hardware', 'cantidad', 'descripcion', 'serial_desmontado', 'serial_nuevo',)

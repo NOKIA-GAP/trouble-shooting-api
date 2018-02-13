@@ -18,6 +18,18 @@ actividades_estado_noc_produccion,
 actividades_estado_noc_seguimiento_12h,
 actividades_estado_noc_seguimiento_24h,
 actividades_estado_noc_seguimiento_36h,
+actividades_estado_noc_seguimiento_fo,
+actividades_estado_noc_escalado_a_implementacion,
+actividades_estado_noc_escalado_a_grupo_calidad,
+actividades_estado_noc_escalado_a_rf,
+actividades_estado_noc_escalado_a_oym,
+actividades_estado_noc_escalado_a_gdrt,
+actividades_estado_noc_escalado_control_cambios,
+actividades_estado_noc_precheck,
+actividades_estado_noc_pendiente_remedy,
+actividades_estado_noc_stand_by,
+actividades_estado_noc_rollback,
+actividades_estado_noc_suspendido,
 )
 from asignaciones.panels import (
 asignaciones_npo,
@@ -75,6 +87,18 @@ class IndexView(TemplateView):
         context['actividades_estado_noc_seguimiento_12h'] = actividades_estado_noc_seguimiento_12h.count()
         context['actividades_estado_noc_seguimiento_24h'] = actividades_estado_noc_seguimiento_24h.count()
         context['actividades_estado_noc_seguimiento_36h'] = actividades_estado_noc_seguimiento_36h.count()
+        context['actividades_estado_noc_seguimiento_fo'] = actividades_estado_noc_seguimiento_fo.count()
+        context['actividades_estado_noc_escalado_a_implementacion'] = actividades_estado_noc_escalado_a_implementacion.count()
+        context['actividades_estado_noc_escalado_a_grupo_calidad'] = actividades_estado_noc_escalado_a_grupo_calidad.count()
+        context['actividades_estado_noc_escalado_a_rf'] = actividades_estado_noc_escalado_a_rf.count()
+        context['actividades_estado_noc_escalado_a_oym'] = actividades_estado_noc_escalado_a_oym.count()
+        context['actividades_estado_noc_escalado_a_gdrt'] = actividades_estado_noc_escalado_a_gdrt.count()
+        context['actividades_estado_noc_escalado_control_cambios'] = actividades_estado_noc_escalado_control_cambios.count()
+        context['actividades_estado_noc_precheck'] = actividades_estado_noc_precheck.count()
+        context['actividades_estado_noc_pendiente_remedy'] = actividades_estado_noc_pendiente_remedy.count()
+        context['actividades_estado_noc_stand_by'] = actividades_estado_noc_stand_by.count()
+        context['actividades_estado_noc_rollback'] = actividades_estado_noc_rollback.count()
+        context['actividades_estado_noc_suspendido'] = actividades_estado_noc_suspendido.count()
 
         # asignaciones npo
         context['asignaciones_npo'] = asignaciones_npo.count()
