@@ -409,7 +409,7 @@ class AsignacionNiIngenieroForm(ModelForm):
             actividad.proyecto +' '+ \
             actividad.escenario +' '+ \
             'WP:' +' '+ \
-            actividad.wp
+            str(actividad.wp)
 
             contenido = 'Buen día Señores '+ service_supplier +'\n'+'\n'+ 'Se informa \
             que el equipo Nokia realizará visita correctiva atendiendo escalamiento del \
@@ -513,7 +513,7 @@ class AsignacionNiIngenieroForm(ModelForm):
             actividad.proyecto +' '+ \
             actividad.escenario +' '+ \
             'WP:' +' '+ \
-            actividad.wp
+            str(actividad.wp)
 
             contenido = 'Buen día Señores '+ service_supplier +'\n'+'\n'+ \
             detalle_falla_instalacion +'\n'+'\n'+ \
@@ -618,7 +618,7 @@ class AsignacionNiIngenieroForm(ModelForm):
             actividad.proyecto +' '+ \
             actividad.escenario +' '+ \
             'WP:' +' '+ \
-            actividad.wp
+            str(actividad.wp)
 
             contenido = 'Buen día Ivan Jimenez' +'\n'+'\n'+ \
             conceptos.last().contenido +'\n'+'\n'+ \
