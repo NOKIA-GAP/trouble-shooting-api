@@ -34,10 +34,10 @@ from users.models import Perfil
 import datetime
 from . import choices
 from .panels import (
-asignaciones_npo_asignada_un_dia_qs,
-asignaciones_ni_asignada_un_dia_qs,
-asignaciones_npo_en_monitoreo_tres_dias_qs,
-asignaciones_ni_en_monitoreo_tres_dias_qs,
+asignaciones_npo_asignada_un_dia,
+asignaciones_npo_en_monitoreo_tres_dias,
+asignaciones_ni_asignada_un_dia,
+asignaciones_ni_en_monitoreo_tres_dias,
 )
 
 ASIGNADA = 'Asignada'
@@ -112,11 +112,10 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
     def get_queryset(self, **kwargs):
         queryset = super(ListAsignacionNpo, self).get_queryset()
         qs = self.request.GET.get('qs')
-        print (qs)
-        if qs and qs == 'asignaciones_npo_asignada_un_dia_qs':
-            queryset = asignaciones_npo_asignada_un_dia_qs()
-        if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias_qs':
-            queryset = asignaciones_npo_en_monitoreo_tres_dias_qs()
+        if qs and qs == 'asignaciones_npo_asignada_un_dia':
+            queryset = asignaciones_npo_asignada_un_dia
+        if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias':
+            queryset = asignaciones_npo_en_monitoreo_tres_dias
         return queryset
 
 class ListAsignacionNpoActividad(ListAsignacionNpo):
@@ -445,11 +444,10 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
     def get_queryset(self, **kwargs):
         queryset = super(ListAsignacionNi, self).get_queryset()
         qs = self.request.GET.get('qs')
-        print (qs)
-        if qs and qs == 'asignaciones_ni_asignada_un_dia_qs':
-            queryset = asignaciones_ni_asignada_un_dia_qs()
-        if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias_qs':
-            queryset = asignaciones_ni_en_monitoreo_tres_dias_qs()
+        if qs and qs == 'asignaciones_ni_asignada_un_dia':
+            queryset = asignaciones_ni_asignada_un_dia
+        if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias':
+            queryset = asignaciones_ni_en_monitoreo_tres_dias
         return queryset
 
 class ListAsignacionNiActividad(ListAsignacionNi):

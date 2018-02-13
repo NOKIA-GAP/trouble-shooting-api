@@ -37,14 +37,7 @@
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'estaciones:list_estacion' %}">Estaciones {{ estaciones }}</a></h3>
   </div>
-  <div class="panel-body">
-    <p>Estado produccion {{ estaciones_estado_produccion }}</p>
-    <p>Estado enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</p>
-    <p>Estado escalado a claro {{ estaciones_estado_escalado_a_claro }}</p>
-    <p>Estado en monitoreo {{ estaciones_estado_en_monitoreo }}</p>
-    <p>Estado requiere visita {{ estaciones_estado_requiere_visita }}</p>
-    <p>Estado asignada {{ estaciones_estado_asignada }}</p>
-  </div>
+  {% include "estacion/includes/partials/panels_estacion.html" %}
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -76,12 +69,7 @@
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'solicitudeshw:list_solicitudhw' %}">Solicitudes HW {{ solicitudeshw }}</a></h3>
   </div>
-  <div class="panel-body">
-    <p>Estado HW requerido {{ solicitudeshw_hwrequrido }}</p>
-    <p>Estado HW solicitado {{ solicitudeshw_hwsolicitado }}</p>
-    <p>Estado HW recibido {{ solicitudeshw_hwrecibido }}</p>
-    <p>Estado HW cancelado {{ solicitudeshw_hwcancelado }}</p>
-  </div>
+  {% include "solicitudhw/includes/partials/panels_solicitudhw.html" %}
 </div>
 
 {% else %}
@@ -94,19 +82,13 @@
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO {{ incidentes_npo }}</a></h3>
   </div>
-  <div class="panel-body">
-    <p>Estado abierto {{ incidentes_npo_abierto }}</p>
-    <p>Estado cerrado {{ incidentes_npo_cerrado }}</p>
-  </div>
+  {% include "incidente_npo/includes/partials/panels_incidente_npo.html" %}
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes NI {{ incidentes_ni }}</a></h3>
   </div>
-  <div class="panel-body">
-    <p>Estado abierto {{ incidentes_ni_abierto }}</p>
-    <p>Estado cerrado {{incidentes_ni_cerrado }}</p>
-  </div>
+  {% include "incidente_ni/includes/partials/panels_incidente_ni.html" %}
 </div>
 <div class="panel panel-primary">
   <div class="panel-heading">
