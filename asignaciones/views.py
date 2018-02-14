@@ -366,11 +366,18 @@ class DeleteAsignacionNpo(LoginRequiredMixin, DeleteView):
     template_name = 'asignacion_npo/delete_asignacion_npo.html'
     success_url = reverse_lazy('asignaciones:list_asignacion_npo')
 
+# def export_asignaciones_npo(request):
+#     asignaciones_npo_resource = AsignacionNpoResource()
+#     user = request.user
+#     queryset = AsignacionNpo.objects.filter(npo_asignador=user.perfil.id)
+#     dataset = asignaciones_npo_resource.export(queryset)
+#     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
+#     response['Content-Disposition'] = 'attachment; filename="AsignacionNpo.xlsx"'
+#     return response
+
 def export_asignaciones_npo(request):
     asignaciones_npo_resource = AsignacionNpoResource()
-    user = request.user
-    queryset = AsignacionNpo.objects.filter(npo_asignador=user.perfil.id)
-    dataset = asignaciones_npo_resource.export(queryset)
+    dataset = asignaciones_npo_resource.export()
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="AsignacionNpo.xlsx"'
     return response
@@ -715,11 +722,18 @@ class DeleteAsignacionNi(LoginRequiredMixin, DeleteView):
     template_name = 'asignacion_ni/delete_asignacion_ni.html'
     success_url = reverse_lazy('asignaciones:list_asignacion_ni')
 
+# def export_asignaciones_ni(request):
+#     asignaciones_ni_resource = AsignacionNiResource()
+#     user = request.user
+#     queryset = AsignacionNi.objects.filter(ni_asignador=user.perfil.id)
+#     dataset = asignaciones_ni_resource.export(queryset)
+#     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
+#     response['Content-Disposition'] = 'attachment; filename="AsignacionNi.xlsx"'
+#     return response
+
 def export_asignaciones_ni(request):
     asignaciones_ni_resource = AsignacionNiResource()
-    user = request.user
-    queryset = AsignacionNi.objects.filter(ni_asignador=user.perfil.id)
-    dataset = asignaciones_ni_resource.export(queryset)
+    dataset = asignaciones_ni_resource.export()
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="AsignacionNi.xlsx"'
     return response
