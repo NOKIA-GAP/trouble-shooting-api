@@ -377,7 +377,21 @@ class DeleteAsignacionNpo(LoginRequiredMixin, DeleteView):
 
 def export_asignaciones_npo(request):
     asignaciones_npo_resource = AsignacionNpoResource()
-    dataset = asignaciones_npo_resource.export()
+    queryset = AsignacionNpo.objects.all()
+    qs = request.GET.get('qs')
+    if qs == ASIGNADA:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA)
+    if qs == EN_MONITOREO:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=EN_MONITOREO)
+    if qs == ENVIADO_A_SEGUIMIENTO:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO)
+    if qs == REQUIERE_VISITA:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=REQUIERE_VISITA)
+    if qs == NO_EXITOSA:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=NO_EXITOSA)
+    if qs == ESCALADO_A_CLARO:
+        queryset = AsignacionNpo.objects.filter(estado_asignacion=ESCALADO_A_CLARO)
+    dataset = asignaciones_npo_resource.export(queryset)
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="AsignacionNpo.xlsx"'
     return response
@@ -733,7 +747,22 @@ class DeleteAsignacionNi(LoginRequiredMixin, DeleteView):
 
 def export_asignaciones_ni(request):
     asignaciones_ni_resource = AsignacionNiResource()
-    dataset = asignaciones_ni_resource.export()
+    queryset = AsignacionNi.objects.all()
+    qs = request.GET.get('qs')
+    if qs == ASIGNADA:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA)
+    if qs == EN_MONITOREO:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO)
+    if qs == ENVIADO_A_SEGUIMIENTO:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO)
+    if qs == REQUIERE_VISITA:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=REQUIERE_VISITA)
+    if qs == NO_EXITOSA:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=NO_EXITOSA)
+    if qs == ESCALADO_A_CLARO:
+        queryset = AsignacionNi.objects.filter(estado_asignacion=ESCALADO_A_CLARO)
+
+    dataset = asignaciones_ni_resource.export(queryset)
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="AsignacionNi.xlsx"'
     return response

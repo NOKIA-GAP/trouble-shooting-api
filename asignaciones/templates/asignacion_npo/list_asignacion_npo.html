@@ -8,7 +8,19 @@
 {% block header_left %}
 <h1>
   Lista De Asignacion NPO
-  <a href="{% url 'asignaciones:export_asignaciones_npo' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+  <div class="btn-group">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportar <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=Asignada">Asignada</a></li>
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=En monitoreo">En monitoreo</a></li>
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=Enviado a seguimiento">Enviado a seguimiento</a></li>
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=Requiere visita">Requiere visita</a></li>
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=No exitosa">No exitosa</a></li>
+    <li><a href="{% url 'asignaciones:export_asignaciones_npo' %}?qs=Escalado a claro">Escalado a claro</a></li>
+  </ul>
+  </div>
 </h1>
 {% endblock header_left %}
 
