@@ -51,6 +51,7 @@ TIPO_TRABAJO_CHOICES = (
     ('Cambio HW', 'Cambio HW'),
     ('Modernizacion Concurrente', 'Modernizacion Concurrente'),
     ('Cambio de Jumpers', 'Cambio de Jumpers'),
+    ('2G Overlay', '2G Overlay'),
 )
 
 """ ESTADO_NOC_CHOICES  """
