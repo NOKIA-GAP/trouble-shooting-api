@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-admin.site.site_header = 'Trouble Shooting'
+admin.site.site_header = 'Gap OnAir'
 from users import urls as users_urls
 from actividades import urls as actividades_urls
 from solicitudeshw import urls as solicitudeshw_urls
