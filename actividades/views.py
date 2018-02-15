@@ -25,12 +25,67 @@ from django.db.models import Q
 from functools import reduce
 from .resources import ActividadResource, DegradacionResource
 from django.http import HttpResponse
+from .panels import (
+actividades_estado_noc_produccion,
+actividades_estado_noc_seguimiento_12h,
+actividades_estado_noc_seguimiento_24h,
+actividades_estado_noc_seguimiento_36h,
+actividades_estado_noc_seguimiento_fo,
+actividades_estado_noc_escalado_a_implementacion,
+actividades_estado_noc_escalado_a_grupo_calidad,
+actividades_estado_noc_escalado_a_rf,
+actividades_estado_noc_escalado_a_oym,
+actividades_estado_noc_escalado_a_gdrt,
+actividades_estado_noc_escalado_control_cambios,
+actividades_estado_noc_precheck,
+actividades_estado_noc_pendiente_remedy,
+actividades_estado_noc_stand_by,
+actividades_estado_noc_rollback,
+actividades_estado_noc_suspendido,
+)
 
 class ListActividad(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
     model = Actividad
     template_name = 'actividad/list_actividad.html'
     paginate_by = 100
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListActividad, self).get_queryset()
+        qs = self.request.GET.get('qs')
+        if qs and qs == 'actividades_estado_noc_produccion':
+            queryset = actividades_estado_noc_produccion
+        if qs and qs == 'actividades_estado_noc_seguimiento_12h':
+            queryset = actividades_estado_noc_seguimiento_12h
+        if qs and qs == 'actividades_estado_noc_seguimiento_24h':
+            queryset = actividades_estado_noc_seguimiento_24h
+        if qs and qs == 'actividades_estado_noc_seguimiento_36h':
+            queryset = actividades_estado_noc_seguimiento_36h
+        if qs and qs == 'actividades_estado_noc_seguimiento_fo':
+            queryset = actividades_estado_noc_seguimiento_fo
+        if qs and qs == 'actividades_estado_noc_escalado_a_implementacion':
+            queryset = actividades_estado_noc_escalado_a_implementacion
+        if qs and qs == 'actividades_estado_noc_escalado_a_grupo_calidad':
+            queryset = actividades_estado_noc_escalado_a_grupo_calidad
+        if qs and qs == 'actividades_estado_noc_escalado_a_rf':
+            queryset = actividades_estado_noc_escalado_a_rf
+        if qs and qs == 'actividades_estado_noc_escalado_a_oym':
+            queryset = actividades_estado_noc_escalado_a_oym
+        if qs and qs == 'actividades_estado_noc_escalado_a_gdrt':
+            queryset = actividades_estado_noc_escalado_a_gdrt
+        if qs and qs == 'actividades_estado_noc_escalado_control_cambios':
+            queryset = actividades_estado_noc_escalado_control_cambios
+        if qs and qs == 'actividades_estado_noc_precheck':
+            queryset = actividades_estado_noc_precheck
+        if qs and qs == 'actividades_estado_noc_pendiente_remedy':
+            queryset = actividades_estado_noc_pendiente_remedy
+        if qs and qs == 'actividades_estado_noc_stand_by':
+            queryset = actividades_estado_noc_stand_by
+        if qs and qs == 'actividades_estado_noc_rollback':
+            queryset = actividades_estado_noc_rollback
+        if qs and qs == 'actividades_estado_noc_suspendido':
+            queryset = actividades_estado_noc_suspendido
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(ListActividad, self).get_context_data(**kwargs)

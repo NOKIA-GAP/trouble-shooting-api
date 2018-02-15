@@ -1,8 +1,8 @@
 <div class="panel-body">
-  <p>Estado produccion {{ estaciones_estado_produccion }}</p>
-  <p>Estado enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</p>
-  <p>Estado escalado a claro {{ estaciones_estado_escalado_a_claro }}</p>
-  <p>Estado en monitoreo {{ estaciones_estado_en_monitoreo }}</p>
-  <p>Estado requiere visita {{ estaciones_estado_requiere_visita }}</p>
-  <p>Estado asignada {{ estaciones_estado_asignada }}</p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_produccion">Estado Produccion {{ estaciones_estado_produccion }}</a></p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_enviado_a_seguimiento">Estado Enviado a seguimiento {{ estaciones_estado_enviado_a_seguimiento }}</a></p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_escalado_a_claro">Estado Escalado a claro {{ estaciones_estado_escalado_a_claro }}</a></p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_en_monitoreo">Estado En monitoreo {{ estaciones_estado_en_monitoreo }}</a></p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_requiere_visita">Estado Requiere visita {{ estaciones_estado_requiere_visita }}</a></p>
+  <p><a href="{% url 'estaciones:list_estacion' %}?qs=estaciones_estado_asignada">Estado Asignada {{ estaciones_estado_asignada }}</a></p>
 </div>

@@ -18,12 +18,37 @@ from django.db.models import Q
 from functools import reduce
 from .resources import EstacionResource
 from django.http import HttpResponse
+from .panels import (
+estaciones_estado_produccion,
+estaciones_estado_enviado_a_seguimiento,
+estaciones_estado_escalado_a_claro,
+estaciones_estado_en_monitoreo,
+estaciones_estado_requiere_visita,
+estaciones_estado_asignada,
+)
 
 class ListEstacion(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
     model = Estacion
     template_name = 'estacion/list_estacion.html'
     paginate_by = 100
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListEstacion, self).get_queryset()
+        qs = self.request.GET.get('qs')
+        if qs and qs == 'estaciones_estado_produccion':
+            queryset = estaciones_estado_produccion
+        if qs and qs == 'estaciones_estado_enviado_a_seguimiento':
+            queryset = estaciones_estado_enviado_a_seguimiento
+        if qs and qs == 'estaciones_estado_escalado_a_claro':
+            queryset = estaciones_estado_escalado_a_claro
+        if qs and qs == 'estaciones_estado_en_monitoreo':
+            queryset = estaciones_estado_en_monitoreo
+        if qs and qs == 'estaciones_estado_requiere_visita':
+            queryset = estaciones_estado_requiere_visita
+        if qs and qs == 'estaciones_estado_asignada':
+            queryset = estaciones_estado_asignada
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(ListEstacion, self).get_context_data(**kwargs)
