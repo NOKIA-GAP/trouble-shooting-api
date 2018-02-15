@@ -25,6 +25,7 @@ estaciones_estado_escalado_a_claro,
 estaciones_estado_en_monitoreo,
 estaciones_estado_requiere_visita,
 estaciones_estado_asignada,
+estaciones_estado_none,
 )
 
 class ListEstacion(LoginRequiredMixin, ListView):
@@ -48,6 +49,8 @@ class ListEstacion(LoginRequiredMixin, ListView):
             queryset = estaciones_estado_requiere_visita
         if qs and qs == 'estaciones_estado_asignada':
             queryset = estaciones_estado_asignada
+        if qs and qs == 'estaciones_estado_none':
+            queryset = estaciones_estado_none
         return queryset
 
     def get_context_data(self, **kwargs):

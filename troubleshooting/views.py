@@ -11,6 +11,7 @@ estaciones_estado_escalado_a_claro,
 estaciones_estado_en_monitoreo,
 estaciones_estado_requiere_visita,
 estaciones_estado_asignada,
+estaciones_estado_none,
 )
 from actividades.panels import (
 actividades,
@@ -30,6 +31,7 @@ actividades_estado_noc_pendiente_remedy,
 actividades_estado_noc_stand_by,
 actividades_estado_noc_rollback,
 actividades_estado_noc_suspendido,
+actividades_estado_noc_none,
 )
 from asignaciones.panels import (
 asignaciones_npo,
@@ -96,6 +98,7 @@ class IndexView(TemplateView):
         context['estaciones_estado_en_monitoreo'] = estaciones_estado_en_monitoreo.count()
         context['estaciones_estado_requiere_visita'] = estaciones_estado_requiere_visita.count()
         context['estaciones_estado_asignada'] = estaciones_estado_asignada.count()
+        context['estaciones_estado_none'] = estaciones_estado_none.count()
         # actividades
         context['actividades'] = actividades.count()
         context['actividades_estado_noc_produccion'] = actividades_estado_noc_produccion.count()
@@ -114,6 +117,7 @@ class IndexView(TemplateView):
         context['actividades_estado_noc_stand_by'] = actividades_estado_noc_stand_by.count()
         context['actividades_estado_noc_rollback'] = actividades_estado_noc_rollback.count()
         context['actividades_estado_noc_suspendido'] = actividades_estado_noc_suspendido.count()
+        context['actividades_estado_noc_none'] = actividades_estado_noc_none.count()
 
         # asignaciones npo
         context['asignaciones_npo'] = asignaciones_npo.count()

@@ -37,3 +37,4 @@ actividades_estado_noc_pendiente_remedy = Actividad.objects.filter(estado_noc=PE
 actividades_estado_noc_stand_by = Actividad.objects.filter(estado_noc=STAND_BY)
 actividades_estado_noc_rollback = Actividad.objects.filter(estado_noc=ROLLBACK)
 actividades_estado_noc_suspendido = Actividad.objects.filter(estado_noc=SUSPENDIDO)
+actividades_estado_noc_none = Actividad.objects.filter(estado_noc=None)

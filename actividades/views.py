@@ -42,6 +42,7 @@ actividades_estado_noc_pendiente_remedy,
 actividades_estado_noc_stand_by,
 actividades_estado_noc_rollback,
 actividades_estado_noc_suspendido,
+actividades_estado_noc_none,
 )
 
 class ListActividad(LoginRequiredMixin, ListView):
@@ -85,6 +86,8 @@ class ListActividad(LoginRequiredMixin, ListView):
             queryset = actividades_estado_noc_rollback
         if qs and qs == 'actividades_estado_noc_suspendido':
             queryset = actividades_estado_noc_suspendido
+        if qs and qs == 'actividades_estado_noc_none':
+            queryset = actividades_estado_noc_none
         return queryset
 
     def get_context_data(self, **kwargs):
