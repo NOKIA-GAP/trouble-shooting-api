@@ -3,7 +3,6 @@
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_seguimiento_12h">Estado NOC Seguimiento 12H {{ actividades_estado_noc_seguimiento_12h }}</a></p>
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_seguimiento_24h">Estado NOC Seguimiento 24H {{ actividades_estado_noc_seguimiento_24h }}</a></p>
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_seguimiento_36h">Estado NOC Seguimiento 36H {{ actividades_estado_noc_seguimiento_36h }}</a></p>
-  <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_seguimiento_fo">Estado NOC Seguimiento FO {{ actividades_estado_noc_seguimiento_fo }}</a></p>
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_escalado_a_implementacion">Estado NOC Escalado a implementacion {{ actividades_estado_noc_escalado_a_implementacion }}</a></p>
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_escalado_a_grupo_calidad">Estado NOC Escalado a grupo calidad {{ actividades_estado_noc_escalado_a_grupo_calidad }}</a></p>
   <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_escalado_a_rf">Estado NOC Escalado a RF {{ actividades_estado_noc_escalado_a_rf }}</a></p>
@@ -18,5 +17,5 @@
 </div>
 <hr style="margin: 0px">
 <div class="panel-body">
-  <p><a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_none">Sin Estado {{ actividades_estado_noc_none }}</a></p>
+  <a href="{% url 'actividades:list_actividad' %}?qs=actividades_estado_noc_none">Sin Estado {{ actividades_estado_noc_none }}</a>
 </div>

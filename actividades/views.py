@@ -30,7 +30,6 @@ actividades_estado_noc_produccion,
 actividades_estado_noc_seguimiento_12h,
 actividades_estado_noc_seguimiento_24h,
 actividades_estado_noc_seguimiento_36h,
-actividades_estado_noc_seguimiento_fo,
 actividades_estado_noc_escalado_a_implementacion,
 actividades_estado_noc_escalado_a_grupo_calidad,
 actividades_estado_noc_escalado_a_rf,
@@ -62,8 +61,6 @@ class ListActividad(LoginRequiredMixin, ListView):
             queryset = actividades_estado_noc_seguimiento_24h
         if qs and qs == 'actividades_estado_noc_seguimiento_36h':
             queryset = actividades_estado_noc_seguimiento_36h
-        if qs and qs == 'actividades_estado_noc_seguimiento_fo':
-            queryset = actividades_estado_noc_seguimiento_fo
         if qs and qs == 'actividades_estado_noc_escalado_a_implementacion':
             queryset = actividades_estado_noc_escalado_a_implementacion
         if qs and qs == 'actividades_estado_noc_escalado_a_grupo_calidad':

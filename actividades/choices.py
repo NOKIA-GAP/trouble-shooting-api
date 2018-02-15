@@ -66,7 +66,6 @@ ESTADO_NOC_CHOICES = (
     ('Seguimiento 12h', 'Seguimiento 12h'),
     ('Seguimiento 24h', 'Seguimiento 24h'),
     ('Seguimiento 36h', 'Seguimiento 36h'),
-    ('Seguimiento FO', 'Seguimiento FO'),
     ('PreCheck', 'PreCheckC'),
     ('Pendiente Remedy', 'Pendiente Remedy'),
     ('Stand By', 'Stand By'),
