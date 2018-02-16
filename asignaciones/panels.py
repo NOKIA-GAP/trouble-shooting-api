@@ -26,10 +26,10 @@ asignaciones_npo_en_monitoreo_tres_dias = AsignacionNpo.objects.filter(estado_as
 
 # asignaciones ni
 asignaciones_ni = AsignacionNi.objects.all()
-asignaciones_ni_asignada  = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA)
+asignaciones_ni_asignada = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA)
 asignaciones_ni_requiere_visita = AsignacionNi.objects.filter(estado_asignacion=REQUIERE_VISITA)
 asignaciones_ni_en_monitoreo = AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO)
 asignaciones_ni_escalado_a_claro = AsignacionNi.objects.filter(estado_asignacion=ESCALADO_A_CLARO)
 asignaciones_ni_enviado_a_seguimiento = AsignacionNi.objects.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO)
-asignaciones_ni_asignada_un_dia  = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
-asignaciones_ni_en_monitoreo_tres_dias= AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct()
+asignaciones_ni_asignada_un_dia = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+asignaciones_ni_en_monitoreo_tres_dias = AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct()
