@@ -3,6 +3,7 @@ AsignacionNpo,
 AsignacionNi,
 )
 import datetime
+from django.utils import timezone
 
 # from django.core.cache import caches
 # cache = caches['default']
@@ -14,9 +15,10 @@ EN_MONITOREO = 'En monitoreo'
 ESCALADO_A_CLARO = 'Escalado a claro'
 ENVIADO_A_SEGUIMIENTO = 'Enviado a seguimiento'
 
-TODAY = datetime.date.today()
-YESTERDAY = datetime.date.today() - datetime.timedelta(1)
-THREEDAYS = datetime.date.today() - datetime.timedelta(3)
+# TODAY = datetime.date.today()
+TODAY = timezone.now()
+YESTERDAY = timezone.now() - datetime.timedelta(1)
+THREEDAYS = timezone.now() - datetime.timedelta(3)
 
 # asignaciones npo
 asignaciones_npo = AsignacionNpo.objects.all()
