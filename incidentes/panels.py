@@ -5,10 +5,10 @@ CERRADO = 'Cerrado'
 
 # incidentes npo
 incidentes_npo = IncidenteNpo.objects.all()
-incidentes_npo_abierto = IncidenteNpo.objects.filter(estado_incidente=ABIERTO)
-incidentes_npo_cerrado = IncidenteNpo.objects.filter(estado_incidente=CERRADO)
+incidentes_npo_abierto = incidentes_npo.filter(estado_incidente=ABIERTO)
+incidentes_npo_cerrado = incidentes_npo.filter(estado_incidente=CERRADO)
 
 # incidentes ni
 incidentes_ni = IncidenteNi.objects.all()
-incidentes_ni_abierto = IncidenteNi.objects.filter(estado_incidente=ABIERTO)
-incidentes_ni_cerrado = IncidenteNi.objects.filter(estado_incidente=CERRADO)
+incidentes_ni_abierto = incidentes_ni.filter(estado_incidente=ABIERTO)
+incidentes_ni_cerrado = incidentes_ni.filter(estado_incidente=CERRADO)

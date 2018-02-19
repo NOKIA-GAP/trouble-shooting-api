@@ -140,8 +140,8 @@ class IndexView(TemplateView):
         context['asignaciones_npo_escalado_a_claro'] = asignaciones_npo_escalado_a_claro.count()
         context['asignaciones_npo_enviado_a_seguimiento'] = asignaciones_npo_enviado_a_seguimiento.count()
 
-        context['asignaciones_npo_asignada_un_dia'] = AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY).count()
-        context['asignaciones_npo_en_monitoreo_tres_dias'] = AsignacionNpo.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_npo__creado__lte=THREEDAYS).distinct().count()
+        context['asignaciones_npo_asignada_un_dia'] = asignaciones_npo_asignada_un_dia.count()
+        context['asignaciones_npo_en_monitoreo_tres_dias'] = asignaciones_npo_en_monitoreo_tres_dias.count()
 
         # asignaciones ni
         context['asignaciones_ni'] = asignaciones_ni.count()
@@ -151,8 +151,8 @@ class IndexView(TemplateView):
         context['asignaciones_ni_escalado_a_claro'] = asignaciones_ni_escalado_a_claro.count()
         context['asignaciones_ni_enviado_a_seguimiento'] = asignaciones_ni_enviado_a_seguimiento.count()
 
-        context['asignaciones_ni_asignada_un_dia'] = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY).count()
-        context['asignaciones_ni_en_monitoreo_tres_dias'] = AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct().count()
+        context['asignaciones_ni_asignada_un_dia'] = asignaciones_ni_asignada_un_dia.count()
+        context['asignaciones_ni_en_monitoreo_tres_dias'] = asignaciones_ni_en_monitoreo_tres_dias.count()
 
         # incidentes npo
         context['incidentes_npo'] = incidentes_npo.count()

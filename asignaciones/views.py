@@ -117,9 +117,9 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
         queryset = super(ListAsignacionNpo, self).get_queryset()
         qs = self.request.GET.get('qs')
         if qs and qs == 'asignaciones_npo_asignada_un_dia':
-            queryset = AsignacionNpo.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+            queryset = asignaciones_npo_asignada_un_dia
         if qs and qs == 'asignaciones_npo_en_monitoreo_tres_dias':
-            queryset = AsignacionNpo.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_npo__creado__lte=THREEDAYS).distinct()
+            queryset = asignaciones_npo_en_monitoreo_tres_dias
         return queryset
 
 class ListAsignacionNpoActividad(ListAsignacionNpo):
@@ -470,9 +470,9 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
         queryset = super(ListAsignacionNi, self).get_queryset()
         qs = self.request.GET.get('qs')
         if qs and qs == 'asignaciones_ni_asignada_un_dia':
-            queryset = AsignacionNi.objects.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+            queryset = asignaciones_ni_asignada_un_dia
         if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias':
-            queryset = AsignacionNi.objects.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct()
+            queryset = asignaciones_ni_en_monitoreo_tres_dias
         return queryset
 
 class ListAsignacionNiActividad(ListAsignacionNi):
