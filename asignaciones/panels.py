@@ -4,10 +4,9 @@ AsignacionNi,
 )
 import datetime
 from django.utils import timezone
+from django.core.cache import cache
 
-# from django.core.cache import caches
-# cache = caches['default']
-# cache.clear()
+cache.clear()
 
 ASIGNADA = 'Asignada'
 REQUIERE_VISITA = 'Requiere visita'
