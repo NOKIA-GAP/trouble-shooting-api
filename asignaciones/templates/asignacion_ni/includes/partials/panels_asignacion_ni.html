@@ -9,8 +9,8 @@
     <thead>
       <tr>
         <th>Ingeniero NI</th>
-        <th>Asignada</th>
-        <th>En monitoreo</th>
+        <th>Asignadas</th>
+        <th>Monitoreo</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
       <tr>
         <td>{{ ingeniero_ni }}</td>
         <td>{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada" }}</td>
-        <td>{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Monitoreo" }}</td>
+        <td>{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo" }}</td>
       </tr>
       {% endfor %}
     </tbody>
