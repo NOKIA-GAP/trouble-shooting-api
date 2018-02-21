@@ -1,9 +1,28 @@
+{% load filter_tags %}
 <div class="panel-body">
-  <p>Estado asignada {{ asignaciones_npo_asignada }}</p>
+  <!-- <p>Estado asignada {{ asignaciones_npo_asignada }}</p>
   <p>Estado requiere visita {{ asignaciones_npo_requiere_visita }}</p>
   <p>Estado en monitoreo {{ asignaciones_npo_en_monitoreo }}</p>
   <p>Estado escalado a claro {{ asignaciones_npo_escalado_a_claro }}</p>
-  <p>Estado enviado a seguimiento {{ asignaciones_npo_enviado_a_seguimiento }}</p>
+  <p>Estado enviado a seguimiento {{ asignaciones_npo_enviado_a_seguimiento }}</p> -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Ingeniero NPO</th>
+        <th>Asignada</th>
+        <th>En monitoreo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ingeniero_npo in ingenieros_npo %}
+      <tr>
+        <td>{{ ingeniero_npo }}</td>
+        <td>{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada" }}</td>
+        <td>{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Monitoreo" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
 </div>
 <hr style="margin: 0px">
 <div class="panel-body">

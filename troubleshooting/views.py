@@ -34,7 +34,7 @@ actividades_estado_noc_none,
 )
 from asignaciones.panels import (
 asignaciones_npo,
-asignaciones_ni,
+ingenieros_npo,
 asignaciones_npo_asignada,
 asignaciones_npo_requiere_visita,
 asignaciones_npo_en_monitoreo,
@@ -44,6 +44,8 @@ asignaciones_npo_enviado_a_seguimiento,
 asignaciones_npo_asignada_un_dia,
 asignaciones_npo_en_monitoreo_tres_dias,
 
+asignaciones_ni,
+ingenieros_ni,
 asignaciones_ni_asignada,
 asignaciones_ni_requiere_visita,
 asignaciones_ni_en_monitoreo,
@@ -143,6 +145,8 @@ class IndexView(TemplateView):
         context['asignaciones_npo_asignada_un_dia'] = asignaciones_npo_asignada_un_dia.count()
         context['asignaciones_npo_en_monitoreo_tres_dias'] = asignaciones_npo_en_monitoreo_tres_dias.count()
 
+        context['ingenieros_npo'] = ingenieros_npo
+
         # asignaciones ni
         context['asignaciones_ni'] = asignaciones_ni.count()
         context['asignaciones_ni_asignada'] = asignaciones_ni_asignada.count()
@@ -153,6 +157,8 @@ class IndexView(TemplateView):
 
         context['asignaciones_ni_asignada_un_dia'] = asignaciones_ni_asignada_un_dia.count()
         context['asignaciones_ni_en_monitoreo_tres_dias'] = asignaciones_ni_en_monitoreo_tres_dias.count()
+
+        context['ingenieros_ni'] = ingenieros_ni
 
         # incidentes npo
         context['incidentes_npo'] = incidentes_npo.count()
