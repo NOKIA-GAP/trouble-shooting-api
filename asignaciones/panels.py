@@ -7,16 +7,7 @@ from django.utils import timezone
 from django.core.cache import cache
 from users.models import Perfil
 
-try:
-    cache._cache.clear()
-except AttributeError:
-	old = cache._cull_frequency
-	old_max = cache._max_entries
-	cache._max_entries = 0
-	cache._cull_frequency = 1
-	cache._cull()
-	cache._cull_frequency = old
-	cache._max_entries = old_max
+cache._cache.clear()
 
 ASIGNADA = 'Asignada'
 REQUIERE_VISITA = 'Requiere visita'
