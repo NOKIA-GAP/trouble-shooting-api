@@ -16,7 +16,7 @@
       <tr>
         <th style="text-align: center;"></th>
         <th style="text-align: center;">L - R</th>
-        <th style="text-align: center;">L - R</th>
+        <th style="text-align: center;"></th>
         <th style="text-align: center;"></th>
       </tr>
     </thead>
@@ -27,8 +27,7 @@
         <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Local" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"Asignada,Local" }}) -
           {{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Remoto" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"Asignada,Remoto" }})
         </td>
-        <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo,Local" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"En monitoreo,Local" }}) -
-          {{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo,Remoto" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"En monitoreo,Remoto" }})
+        <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"En monitoreo" }})
         </td>
         <td style="text-align: center;">{{ ingeniero_ni.incidentes_ni|estado_incidente_ni:"Abierto" }}</td>
       </tr>
