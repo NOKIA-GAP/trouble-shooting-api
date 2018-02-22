@@ -7,7 +7,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  {% if not perms.users.perm_gap_administrador %}
+  {% if not perms.users.perm_gap_administrador and not perms.users.perm_fm_lider %}
   <div class="jumbotron">
       <div class="container">
         <h1 class="display-3">Bienvenidos</h1>
@@ -34,7 +34,7 @@
 {% endblock content %}
 
 {% block header_left %}
-{% if user.is_authenticated and perms.users.perm_gap_administrador %}
+{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider or perms.users.perm_fm_lider %}
   <h1>
     Paneles de Información
     <a href="{% url 'index' %}" class="btn btn-primary btn-sm" role="button">Actualizar</a>
@@ -44,7 +44,7 @@
 {% endblock header_left %}
 
 {% block content_left %}
-{% if user.is_authenticated and perms.users.perm_gap_administrador %}
+{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'asignaciones:list_asignacion_npo_perfil' user.perfil.slug %}">Asignaciones NPO {{ asignaciones_npo }}</a></h3>
@@ -63,7 +63,7 @@
 {% endblock content_left %}
 
 {% block content_center %}
-{% if user.is_authenticated and perms.users.perm_gap_administrador %}
+{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'estaciones:list_estacion' %}">Estaciones {{ estaciones }}</a></h3>
@@ -81,7 +81,7 @@
 {% endblock content_center %}
 
 {% block content_right %}
-{% if user.is_authenticated and perms.users.perm_gap_administrador %}
+{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO {{ incidentes_npo }}</a></h3>
