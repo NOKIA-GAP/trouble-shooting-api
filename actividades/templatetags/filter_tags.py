@@ -36,12 +36,24 @@ def estado_asignacion_npo(value, args):
     return qs
 
 @register.filter
+def estado_asignacion_npo_estacion(value, args):
+    args = args.split(',')
+    qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).values_list('estacion', flat=True).distinct().count()
+    return qs
+
+@register.filter
 def estado_asignacion_ni(value, args):
     args = args.split(',')
     if len(args) > 1:
         qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
     else:
         qs = value.filter(estado_asignacion=args[0]).count()
+    return qs
+
+@register.filter
+def estado_asignacion_ni_estacion(value, args):
+    args = args.split(',')
+    qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).values_list('estacion', flat=True).distinct().count()
     return qs
 
 @register.filter
