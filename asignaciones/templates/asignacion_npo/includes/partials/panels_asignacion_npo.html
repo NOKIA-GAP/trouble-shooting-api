@@ -16,6 +16,7 @@
       <tr>
         <th style="text-align: center;"></th>
         <th style="text-align: center;">L - R</th>
+        <th style="text-align: center;">L - R</th>
         <th style="text-align: center;"></th>
       </tr>
     </thead>
@@ -26,7 +27,9 @@
         <td style="text-align: center;">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada,Local" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"Asignada,Local" }}) -
           {{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada,Remoto" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"Asignada,Remoto" }})
         </td>
-        <td style="text-align: center;">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"En monitoreo" }}</td>
+        <td style="text-align: center;">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"En monitoreo,Local" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"En monitoreo,Local" }}) -
+          {{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"En monitoreo,Remoto" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"En monitoreo,Remoto" }})
+        </td>
         <td style="text-align: center;">{{ ingeniero_npo.incidentes_npo|estado_incidente_npo:"Abierto" }}</td>
       </tr>
       {% endfor %}

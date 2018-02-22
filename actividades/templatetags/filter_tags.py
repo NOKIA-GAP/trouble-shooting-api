@@ -29,10 +29,7 @@ def relative_url(value, field, urlencode=None):
 @register.filter
 def estado_asignacion_npo(value, args):
     args = args.split(',')
-    if len(args) > 1:
-        qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
-    else:
-        qs = value.filter(estado_asignacion=args[0]).count()
+    qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
     return qs
 
 @register.filter
@@ -44,10 +41,7 @@ def estado_asignacion_npo_estacion(value, args):
 @register.filter
 def estado_asignacion_ni(value, args):
     args = args.split(',')
-    if len(args) > 1:
-        qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
-    else:
-        qs = value.filter(estado_asignacion=args[0]).count()
+    qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
     return qs
 
 @register.filter

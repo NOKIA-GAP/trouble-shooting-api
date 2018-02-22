@@ -4,10 +4,7 @@ AsignacionNi,
 )
 import datetime
 from django.utils import timezone
-from django.core.cache import cache
 from users.models import Perfil
-
-cache._cache.clear()
 
 ASIGNADA = 'Asignada'
 REQUIERE_VISITA = 'Requiere visita'
@@ -16,30 +13,12 @@ ESCALADO_A_CLARO = 'Escalado a claro'
 ENVIADO_A_SEGUIMIENTO = 'Enviado a seguimiento'
 
 # TODAY = datetime.date.today()
-TODAY = timezone.now()
+# TODAY = timezone.now()
 YESTERDAY = timezone.now() - datetime.timedelta(1)
 THREEDAYS = timezone.now() - datetime.timedelta(3)
 
 NI_INGENIERO = 'NI Ingeniero'
 NPO_INGENIERO = 'NPO Ingeniero'
-
-# ingenieros npo
-# CESAR_ROJAS = 'Cesar Rojas'
-# RAUL_PEREZ = 'Raul Perez'
-# JAIRO_POLO = 'Jairo Polo Gonzalez'
-# OSCAR_GONZALEZ = 'Oscar Gonzalez'
-# JAIME_FIGUEROA = 'Jaime Figueroa'
-# WASFI_MABARDI = 'Wasfi Mabardi'
-# MAURICIO_RINCON = 'Mauricio Rincon'
-
-# ingenieros ni
-# JORGE_ROMERO = 'Jorge Romero'
-# JUAN_VALDES = 'Jjuan gabriel valdes'
-# YOLAIMA_VERGEL = 'Yolaima Vergel'
-# CAROLINA_MANTILLA = 'Carolina Mantilla'
-# IVAN_BARRIGA = 'ivan barriga'
-# YENIFER_SANCHEZ = 'yenifer sanchez'
-# OCTAVIO_TORRADO = 'Octavio Torrado'
 
 # asignaciones npo
 asignaciones_npo = AsignacionNpo.objects.all()
@@ -48,7 +27,7 @@ asignaciones_npo_requiere_visita = asignaciones_npo.filter(estado_asignacion=REQ
 asignaciones_npo_en_monitoreo = asignaciones_npo.filter(estado_asignacion=EN_MONITOREO)
 asignaciones_npo_escalado_a_claro = asignaciones_npo.filter(estado_asignacion=ESCALADO_A_CLARO)
 asignaciones_npo_enviado_a_seguimiento = asignaciones_npo.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO)
-asignaciones_npo_asignada_un_dia = asignaciones_npo.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+asignaciones_npo_asignada_un_dia = asignaciones_npo.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=timezone.now())
 asignaciones_npo_en_monitoreo_tres_dias = asignaciones_npo.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_npo__creado__lte=THREEDAYS).distinct()
 
 ingenieros_npo = Perfil.objects.filter(perfil_usuario=NPO_INGENIERO)
@@ -60,7 +39,7 @@ asignaciones_ni_requiere_visita = asignaciones_ni.filter(estado_asignacion=REQUI
 asignaciones_ni_en_monitoreo = asignaciones_ni.filter(estado_asignacion=EN_MONITOREO)
 asignaciones_ni_escalado_a_claro = asignaciones_ni.filter(estado_asignacion=ESCALADO_A_CLARO)
 asignaciones_ni_enviado_a_seguimiento = asignaciones_ni.filter(estado_asignacion=ENVIADO_A_SEGUIMIENTO)
-asignaciones_ni_asignada_un_dia = asignaciones_ni.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
+asignaciones_ni_asignada_un_dia = asignaciones_ni.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=timezone.now())
 asignaciones_ni_en_monitoreo_tres_dias = asignaciones_ni.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct()
 
 ingenieros_ni = Perfil.objects.filter(perfil_usuario=NI_INGENIERO)
