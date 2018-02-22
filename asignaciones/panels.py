@@ -20,6 +20,9 @@ TODAY = timezone.now()
 YESTERDAY = timezone.now() - datetime.timedelta(1)
 THREEDAYS = timezone.now() - datetime.timedelta(3)
 
+NI_INGENIERO = 'NI Ingeniero'
+NPO_INGENIERO = 'NPO Ingeniero'
+
 # ingenieros npo
 # CESAR_ROJAS = 'Cesar Rojas'
 # RAUL_PEREZ = 'Raul Perez'
@@ -48,9 +51,7 @@ asignaciones_npo_enviado_a_seguimiento = asignaciones_npo.filter(estado_asignaci
 asignaciones_npo_asignada_un_dia = asignaciones_npo.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
 asignaciones_npo_en_monitoreo_tres_dias = asignaciones_npo.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_npo__creado__lte=THREEDAYS).distinct()
 
-ingenieros_npo = Perfil.objects.filter(perfil_usuario='NPO Ingeniero')
-
-# asignaciones_npo_ingeniero = asignaciones_npo.filter(estado_asignacion=ASIGNADA, npo_ingeniero=TODAY)
+ingenieros_npo = Perfil.objects.filter(perfil_usuario=NPO_INGENIERO)
 
 # asignaciones ni
 asignaciones_ni = AsignacionNi.objects.all()
@@ -62,4 +63,4 @@ asignaciones_ni_enviado_a_seguimiento = asignaciones_ni.filter(estado_asignacion
 asignaciones_ni_asignada_un_dia = asignaciones_ni.filter(estado_asignacion=ASIGNADA, fecha_asignacion__lt=TODAY)
 asignaciones_ni_en_monitoreo_tres_dias = asignaciones_ni.filter(estado_asignacion=EN_MONITOREO, actualizado__lte=THREEDAYS, conceptos_ni__creado__lte=THREEDAYS).distinct()
 
-ingenieros_ni = Perfil.objects.filter(perfil_usuario='NI Ingeniero')
+ingenieros_ni = Perfil.objects.filter(perfil_usuario=NI_INGENIERO)

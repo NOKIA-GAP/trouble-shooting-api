@@ -8,17 +8,24 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Ingeniero NI</th>
-        <th>Asignadas</th>
-        <th>Monitoreo</th>
+        <th>Ingeniero</th>
+        <th style="text-align: center;">Asignadas</th>
+        <th style="text-align: center;">Monitoreo</th>
+        <th style="text-align: center;">Incidentes</th>
+      </tr>
+      <tr>
+        <th style="text-align: center;"></th>
+        <th style="text-align: center;">L - R</th>
+        <th style="text-align: center;"></th>
       </tr>
     </thead>
     <tbody>
       {% for ingeniero_ni in ingenieros_ni %}
       <tr>
         <td>{{ ingeniero_ni }}</td>
-        <td>{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada" }}</td>
-        <td>{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo" }}</td>
+        <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Local" }} - {{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Remoto" }}</td>
+        <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"En monitoreo" }}</td>
+        <td style="text-align: center;">{{ ingeniero_ni.incidentes_ni|estado_incidente_ni:"Abierto" }}</td>
       </tr>
       {% endfor %}
     </tbody>

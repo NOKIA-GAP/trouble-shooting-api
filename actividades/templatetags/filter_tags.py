@@ -27,11 +27,29 @@ def relative_url(value, field, urlencode=None):
     return url
 
 @register.filter
-def estado_asignacion_npo(asignaciones_npo_ingeniero, estado):
-    qs_npo = asignaciones_npo_ingeniero.filter(estado_asignacion=estado).count()
-    return qs_npo
+def estado_asignacion_npo(value, args):
+    args = args.split(',')
+    if len(args) > 1:
+        qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
+    else:
+        qs = value.filter(estado_asignacion=args[0]).count()
+    return qs
 
 @register.filter
-def estado_asignacion_ni(asignaciones_ni_ingeniero, estado):
-    qs_ni = asignaciones_ni_ingeniero.filter(estado_asignacion=estado).count()
-    return qs_ni
+def estado_asignacion_ni(value, args):
+    args = args.split(',')
+    if len(args) > 1:
+        qs = value.filter(estado_asignacion=args[0], tipo_intervencion=args[1]).count()
+    else:
+        qs = value.filter(estado_asignacion=args[0]).count()
+    return qs
+
+@register.filter
+def estado_incidente_npo(incidentes_npo, estado):
+    qs = incidentes_npo.filter(estado_incidente=estado).count()
+    return qs
+
+@register.filter
+def estado_incidente_ni(incidentes_ni, estado):
+    qs = incidentes_ni.filter(estado_incidente=estado).count()
+    return qs
