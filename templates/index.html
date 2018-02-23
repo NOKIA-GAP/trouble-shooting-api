@@ -54,15 +54,42 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><a href="{% url 'asignaciones:list_asignacion_ni_perfil' user.perfil.slug  %}">Asignaciones NI {{ asignaciones_ni }}</a></h3>
+    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO {{ incidentes_npo }}</a></h3>
   </div>
-  {% include "asignacion_ni/includes/partials/panels_asignacion_ni.html" %}
+  {% include "incidente_npo/includes/partials/panels_incidente_npo.html" %}
 </div>
+
 {% else %}
 {% endif %}
 {% endblock content_left %}
 
 {% block content_center %}
+{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><a href="{% url 'asignaciones:list_asignacion_ni_perfil' user.perfil.slug  %}">Asignaciones NI {{ asignaciones_ni }}</a></h3>
+  </div>
+  {% include "asignacion_ni/includes/partials/panels_asignacion_ni.html" %}
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes NI {{ incidentes_ni }}</a></h3>
+  </div>
+  {% include "incidente_ni/includes/partials/panels_incidente_ni.html" %}
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><a href="{% url 'solicitudeshw:list_solicitudhw' %}">Solicitudes HW {{ solicitudeshw }}</a></h3>
+  </div>
+  {% include "solicitudhw/includes/partials/panels_solicitudhw.html" %}
+</div>
+{% else %}
+{% endif %}
+{% endblock content_center %}
+
+{% block content_right %}
 {% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -76,24 +103,7 @@
   </div>
   {% include "actividad/includes/partials/panels_actividad.html" %}
 </div>
-{% else %}
-{% endif %}
-{% endblock content_center %}
 
-{% block content_right %}
-{% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes NPO {{ incidentes_npo }}</a></h3>
-  </div>
-  {% include "incidente_npo/includes/partials/panels_incidente_npo.html" %}
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><a href="{% url 'incidentes:list_incidente_ni' %}">Incidentes NI {{ incidentes_ni }}</a></h3>
-  </div>
-  {% include "incidente_ni/includes/partials/panels_incidente_ni.html" %}
-</div>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"><a href="{% url 'notificaciones:list_notificacion_requiere_visita' %}">Notificaciones</a></h3>
@@ -113,12 +123,6 @@
     <p>Falla comportamiento esperado {{ notificacion_falla_comportamiento_esperado }}</p>
     <p>Falla comportamiento previo {{ notificacion_falla_comportamiento_previo }}</p>
   </div>
-</div>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><a href="{% url 'solicitudeshw:list_solicitudhw' %}">Solicitudes HW {{ solicitudeshw }}</a></h3>
-  </div>
-  {% include "solicitudhw/includes/partials/panels_solicitudhw.html" %}
 </div>
 {% else %}
 {% endif %}
