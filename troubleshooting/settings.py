@@ -92,11 +92,19 @@ WSGI_APPLICATION = 'troubleshooting.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USERNAME'),
-        'PASSWORD': os.getenv('PASSWORD'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'PORT': '3306',
-        'HOST': os.getenv('HOST'),
+        'HOST': os.getenv('DB_HOST'),
+    },
+    'nokiagi_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('NOKIAGI_DB_NAME'),
+        'USER': os.getenv('NOKIAGI_DB_USERNAME'),
+        'PASSWORD': os.getenv('NOKIAGI_DB_PASSWORD'),
+        'PORT': '3306',
+        'HOST': os.getenv('NOKIAGI_DB_HOST'),
     }
 }
 # DATABASES['default']['HOST'] = os.getenv('HOST')
