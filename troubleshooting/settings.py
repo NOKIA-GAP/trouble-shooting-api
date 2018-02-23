@@ -96,13 +96,14 @@ DATABASES = {
         'USER': os.getenv('USERNAME'),
         'PASSWORD': os.getenv('PASSWORD'),
         'PORT': '3306',
+        'HOST': os.getenv('HOST'),
     }
 }
-DATABASES['default']['HOST'] = os.getenv('HOST')
-if os.getenv('GAE_INSTANCE'):
-    pass
-else:
-    DATABASES['default']['HOST'] = '127.0.0.1'
+# DATABASES['default']['HOST'] = os.getenv('HOST')
+# if os.getenv('GAE_INSTANCE'):
+#     pass
+# else:
+#     DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
