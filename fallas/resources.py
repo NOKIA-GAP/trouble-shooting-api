@@ -56,6 +56,12 @@ class FallaResource(resources.ModelResource):
         attribute='actualizado',
         widget=DateWidget(format='%d/%m/%Y'))
 
+    def save_instance(self, instance, using_transactions=True, dry_run=False):
+        creado = instance.creado
+        if creado:
+            instance.creado = creado
+            instance.save()
+
     def for_delete(self, row, instance):
         return self.fields['subestado'].clean(row)
 
