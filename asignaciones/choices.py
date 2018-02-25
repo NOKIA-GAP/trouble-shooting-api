@@ -25,7 +25,8 @@ ORIGEN_FALLA_CHOICES = (
     ('Mal rechazo', 'Mal rechazo'),
     ('TX', 'TX'),
     ('Comportamiento esperado', 'Comportamiento esperado'),
-    ('Comportamiento previo', 'Comportamiento previo')
+    ('Comportamiento previo', 'Comportamiento previo'),
+    ('Ajuste Adyacencias', 'Ajuste Adyacencias'),
 )
 
 """ SOLVER_CHOICES  """

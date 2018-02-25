@@ -25,6 +25,9 @@ NotificacionFallaTX,
 NotificacionFallaComportamientoEsperado,
 NotificacionFallaComportamientoPrevio,
 )
+from fallas.models import (
+Falla
+)
 
 ASIGNADA = 'Asignada'
 EN_MONITOREO = 'En monitoreo'
@@ -45,6 +48,7 @@ MALRECHAZO = 'Mal rechazo'
 TX = 'TX'
 COMPORTAMIENTOESPERADO = 'Comportamiento esperado'
 COMPORTAMIENTOPREVIO = 'Comportamiento previo'
+AJUSTEADYACENCIAS = 'Ajuste Adyacencias'
 
 NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
@@ -610,6 +614,19 @@ class AsignacionNiIngenieroForm(ModelForm):
                 detalle_falla_instalacion=detalle_falla_instalacion,
                 solver=solver,
             )
+            Falla.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+                tipo_falla=INSTALACION,
+            )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTEGRACION:
 
             asunto = 'Falla Integracion' +' '+ \
@@ -651,8 +668,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
             )
-        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == SOFTWARE:
-            NotificacionFallaSoftware.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -663,9 +679,24 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=INTEGRACION,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == SOFTWARE:
+            Falla.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+                tipo_falla=SOFTWARE,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == HARDWARE:
-            NotificacionFallaHardware.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -676,9 +707,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=HARDWARE,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == DATAFILL:
-            NotificacionFallaDatafill.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -689,9 +721,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=DATAFILL,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == AJUSTEPOTENCIA:
-            NotificacionFallaAjustePotencia.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -702,9 +735,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=AJUSTEPOTENCIA,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == INTERFERENCIAEXTREMA:
-            NotificacionFallaInterferenciaExterna.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -715,9 +749,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=INTERFERENCIAEXTREMA,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == CAMBIODISENO:
-            NotificacionFallaCambioDiseno.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -728,9 +763,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=CAMBIODISENO,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == MALRECHAZO:
-            NotificacionFallaMalRechazo.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -741,9 +777,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=MALRECHAZO,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == TX:
-            NotificacionFallaTX.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -754,9 +791,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=TX,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOESPERADO:
-            NotificacionFallaComportamientoEsperado.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -767,9 +805,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=COMPORTAMIENTOESPERADO,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOPREVIO:
-            NotificacionFallaComportamientoPrevio.objects.create(
+            Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
                 wp=actividad.wp,
@@ -780,5 +819,20 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
+                tipo_falla=COMPORTAMIENTOPREVIO,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == AJUSTEADYACENCIAS:
+            Falla.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+                tipo_falla=AJUSTEADYACENCIAS,
             )
         return cleaned_data

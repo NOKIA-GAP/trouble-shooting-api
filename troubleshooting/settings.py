@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'conceptos.apps.ConceptosConfig',
     'reportes.apps.ReportesConfig',
     'notificaciones.apps.NotificacionesConfig',
+    'fallas.apps.FallasConfig',
     'incidentes.apps.IncidentesConfig',
     'comentarios.apps.ComentariosConfig',
     'django_filters',

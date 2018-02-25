@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Lista De Fallas{% endblock title %}
+
+{% block nav %}
+{% include "includes/partials/nav_main.html" %}
+{% endblock nav %}
+
+{% block nav_nav %}
+
+{% endblock nav_nav %}
+
+{% block header_left %}
+<h1>
+  Lista De Fallas
+  <a href="{% url 'fallas:export_fallas' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+</h1><br>
+{% endblock header_left %}
+
+{% block header_right %}
+<form class="form-inline" action="{% url 'fallas:search_falla' %}" method="get" accept-charset="utf-8">
+  <div class="form-group">
+    <input type="text" class="form-control" name="q" placeholder="Buscar">
+  </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+{% endblock header_right %}
+
+{% block nav_tab %}
+
+{% endblock nav_tab %}
+
+{% block content %}
+<table class="table table-sm table-striped">
+  <thead>
+    {% include "falla/includes/partials/head_falla.html" %}
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      {% include "falla/includes/partials/body_falla.html" %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
+
+{% block nav_paginate %}
+{% include "includes/partials/nav_paginate.html" %}
+{% endblock nav_paginate %}

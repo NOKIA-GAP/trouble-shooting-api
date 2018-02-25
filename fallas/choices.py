@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
 
+""" TIPO_FALLA_CHOICES  """
+TIPO_FALLA_CHOICES = (
+    ('', '---------'),
+    ('Instalacion', 'Instalacion'),
+    ('Software', 'Software'),
+    ('Hardware', 'Hardware'),
+    ('Datafill', 'Datafill'),
+    ('Ajuste Potencia', 'Ajuste Potencia'),
+    ('Integracion', 'Integracion'),
+    ('Interferencia externa', 'Interferencia externa'),
+    ('Cambio diseno', 'Cambio diseno'),
+    ('Mal rechazo', 'Mal rechazo'),
+    ('TX', 'TX'),
+    ('Comportamiento esperado', 'Comportamiento esperado'),
+    ('Comportamiento previo', 'Comportamiento previo'),
+    ('Ajuste Adyacencias', 'Ajuste Adyacencias'),
+)
+
 """ SERVICE_SUPPLIER_CHOICES  """
 SERVICE_SUPPLIER_CHOICES = (
     ('DECOM', 'DECOM'),
@@ -45,11 +63,4 @@ SERVICE_SUPPLIER_CHOICES = (
     ('SFERA', 'SFERA'),
     ('MSI', 'MSI'),
     ('YINDA', 'YINDA'),
-)
-
-""" SOLVER_CHOICES  """
-SOLVER_CHOICES = (
-    ('', '---------'),
-    ('Nokia', 'Nokia'),
-    ('Service suplier', 'Service suplier'),
 )

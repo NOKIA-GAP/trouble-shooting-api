@@ -22,6 +22,7 @@ from solicitudeshw import urls as solicitudeshw_urls
 from estaciones import urls as estaciones_urls
 from asignaciones import urls as asignaciones_urls
 from notificaciones import urls as notificaciones_urls
+from fallas import urls as fallas_urls
 from conceptos import urls as conceptos_urls
 from incidentes import urls as incidentes_urls
 from comentarios import urls as comentarios_urls
@@ -37,6 +38,7 @@ urlpatterns = [
     url(r'^estaciones/', include(estaciones_urls, namespace='estaciones')),
     url(r'^asignaciones/', include(asignaciones_urls, namespace='asignaciones')),
     url(r'^notificaciones/', include(notificaciones_urls, namespace='notificaciones')),
+    url(r'^fallas/', include(fallas_urls, namespace='fallas')),
     url(r'^conceptos/', include(conceptos_urls, namespace='conceptos')),
     url(r'^incidentes/', include(incidentes_urls, namespace='incidentes')),
     url(r'^comentarios/', include(comentarios_urls, namespace='comentarios')),
