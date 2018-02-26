@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'fallas.apps.FallasConfig',
     'incidentes.apps.IncidentesConfig',
     'comentarios.apps.ComentariosConfig',
+    'nokiagi',
     'django_filters',
     'import_export',
     'crispy_forms',
@@ -90,6 +91,15 @@ WSGI_APPLICATION = 'troubleshooting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+class NokiaGiRouter(object):
+
+    def db_for_read(model, **hints):
+        if model._meta.app_label == 'nokiagi':
+            return 'nokiagi_db'
+        return None
+
+DATABASE_ROUTERS = [ NokiaGiRouter, ]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -106,6 +116,9 @@ DATABASES = {
         'PASSWORD': os.getenv('NOKIAGI_DB_PASSWORD'),
         'PORT': '3306',
         'HOST': os.getenv('NOKIAGI_DB_HOST'),
+        'OPTIONS': {
+            'sql_mode':'STRICT_TRANS_TABLES',
+        },
     }
 }
 # DATABASES['default']['HOST'] = os.getenv('HOST')

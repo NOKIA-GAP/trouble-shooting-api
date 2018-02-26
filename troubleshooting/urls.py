@@ -27,6 +27,7 @@ from conceptos import urls as conceptos_urls
 from incidentes import urls as incidentes_urls
 from comentarios import urls as comentarios_urls
 from reportes import urls as reportes_urls
+from nokiagi import urls as nokiagi_urls
 from .views import IndexView
 
 urlpatterns = [
@@ -42,5 +43,6 @@ urlpatterns = [
     url(r'^conceptos/', include(conceptos_urls, namespace='conceptos')),
     url(r'^incidentes/', include(incidentes_urls, namespace='incidentes')),
     url(r'^comentarios/', include(comentarios_urls, namespace='comentarios')),
+    url(r'^nokiagi/', include(nokiagi_urls, namespace='nokiagi')),
     url(r'^reportes/', include(reportes_urls, namespace='reportes')),
 ]
