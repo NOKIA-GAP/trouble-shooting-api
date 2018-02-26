@@ -72,18 +72,24 @@ solicitudeshw_hwcancelado,
 )
 from notificaciones.panels import (
 notificaciones_requiere_visita,
-notificacion_falla_instalacion,
-notificacion_falla_integracion,
-notificacion_falla_software,
-notificacion_falla_hardware,
-notificacion_falla_datafill,
-notificacion_falla_ajuste_potencia,
-notificacion_falla_interferencia_externa,
-notificacion_falla_cambio_diseno,
-notificacion_falla_mal_rechazo,
-notificacion_falla_tx,
-notificacion_falla_comportamiento_esperado,
-notificacion_falla_comportamiento_previo,
+notificaciones_falla_instalacion,
+notificaciones_falla_integracion,
+)
+from fallas.panels import (
+fallas,
+fallas_instalacion,
+fallas_integracion,
+fallas_software,
+fallas_hardware,
+fallas_datafill,
+fallas_ajuste_potencia,
+fallas_interferencia_externa,
+fallas_cambio_diseno,
+fallas_mal_rechazo,
+fallas_tx,
+fallas_comportamiento_esperado,
+fallas_comportamiento_previo,
+fallas_ajuste_adyasencias,
 )
 from asignaciones.models import (
 AsignacionNpo,
@@ -179,17 +185,23 @@ class IndexView(TemplateView):
 
         # notificaciones
         context['notificaciones_requiere_visita'] = notificaciones_requiere_visita.count()
-        context['notificacion_falla_instalacion'] = notificacion_falla_instalacion.count()
-        context['notificacion_falla_integracion'] = notificacion_falla_integracion.count()
-        context['notificacion_falla_software'] = notificacion_falla_software.count()
-        context['notificacion_falla_hardware'] = notificacion_falla_hardware.count()
-        context['notificacion_falla_datafill'] = notificacion_falla_datafill.count()
-        context['notificacion_falla_ajuste_potencia'] = notificacion_falla_ajuste_potencia.count()
-        context['notificacion_falla_interferencia_externa'] = notificacion_falla_interferencia_externa.count()
-        context['notificacion_falla_cambio_diseno'] = notificacion_falla_cambio_diseno.count()
-        context['notificacion_falla_mal_rechazo'] = notificacion_falla_mal_rechazo.count()
-        context['notificacion_falla_tx'] = notificacion_falla_tx.count()
-        context['notificacion_falla_comportamiento_esperado'] = notificacion_falla_comportamiento_esperado.count()
-        context['notificacion_falla_comportamiento_previo'] = notificacion_falla_comportamiento_previo.count()
+        context['notificaciones_falla_instalacion'] = notificaciones_falla_instalacion.count()
+        context['notificaciones_falla_integracion'] = notificaciones_falla_integracion.count()
+
+        # fallass
+        context['fallas'] = fallas.count()
+        context['fallas_instalacion'] = fallas_instalacion.count()
+        context['fallas_integracion'] = fallas_integracion.count()
+        context['fallas_software'] = fallas_software.count()
+        context['fallas_hardware'] = fallas_hardware.count()
+        context['fallas_datafill'] = fallas_datafill.count()
+        context['fallas_ajuste_potencia'] = fallas_ajuste_potencia.count()
+        context['fallas_interferencia_externa'] = fallas_interferencia_externa.count()
+        context['fallas_cambio_diseno'] = fallas_cambio_diseno.count()
+        context['fallas_mal_rechazo'] = fallas_mal_rechazo.count()
+        context['fallas_tx'] = fallas_tx.count()
+        context['fallas_comportamiento_esperado'] = fallas_comportamiento_esperado.count()
+        context['fallas_comportamiento_previo'] = fallas_comportamiento_previo.count()
+        context['fallas_ajuste_adyasencias'] = fallas_ajuste_adyasencias.count()
 
         return context

@@ -14,16 +14,6 @@ from notificaciones.models import (
 NotificacionRequiereVisita,
 NotificacionFallaInstalacion,
 NotificacionFallaIntegracion,
-NotificacionFallaSoftware,
-NotificacionFallaHardware,
-NotificacionFallaDatafill,
-NotificacionFallaAjustePotencia,
-NotificacionFallaInterferenciaExterna,
-NotificacionFallaCambioDiseno,
-NotificacionFallaMalRechazo,
-NotificacionFallaTX,
-NotificacionFallaComportamientoEsperado,
-NotificacionFallaComportamientoPrevio,
 )
 from fallas.models import (
 Falla
