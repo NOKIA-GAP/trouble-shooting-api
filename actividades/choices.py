@@ -199,4 +199,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('SFERA', 'SFERA'),
     ('MSI', 'MSI'),
     ('YINDA', 'YINDA'),
+    ('CELPLAN', 'CELPLAN'),
 )
