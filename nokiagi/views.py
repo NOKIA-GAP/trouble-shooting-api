@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
 ListView,
@@ -9,6 +10,7 @@ from actividades.models import Actividad
 from estaciones.models import Estacion
 
 PRODUCCION = 'Produccion'
+GAP1 = 'GAP1'
 
 class ListGi(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
@@ -22,20 +24,91 @@ class ListGi(LoginRequiredMixin, ListView):
         return queryset
 
 def actualizacion(request):
+    '''
+    filtra actividades tabla gi solo las que tienen
+    fechaIntegracion.
+
+    filtra actividades tabla gap solo las que no
+    estan en produccion.
+
+    luego revisa si la activdad en la tabla gap existe
+    en la tabla gi.
+
+    si existe revisa si el estado_noc o subestado_noc
+    son diferentes.
+
+    si uno de los dos es diferente, actuliza estado_noc,
+    subestado_noc, fecha_estado_noc en la tabla gap.
+    '''
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True)
     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
 
     for actividad in actividades:
         try:
             act = actividades_gi.get(wp=actividad.wp)
-            if act:
-                print (act)
-                if actividad.estado_noc != act.estadoNOC:
-                    actividad.estado_noc = act.estadoNOC
-                    actividad.subestado_noc = act.subEstadoNOC
-                    actividad.fecha_estado_noc = act.fechaEstado
-                    print (actividad.estado_noc, actividad.subestado_noc, actividad.fecha_estado_noc )
-                    # actividad.save()
+            if actividad.estado_noc != act.estadoNOC or actividad.subestado_noc != act.subEstadoNOC:
+                actividad.estado_noc = act.estadoNOC
+                actividad.subestado_noc = act.subEstadoNOC
+                actividad.fecha_estado_noc = act.fechaEstado.date()
+                actividad.save()
         except Gi.DoesNotExist:
             pass
-    return request
+    return HttpResponse(status=204)
+
+def creacion(request):
+    '''
+    filtra actividades tabla gi solo las que tienen
+    fechaIntegracion y estadoNOC es diferente de Produccion.
+
+    todas las actividades tabla gap.
+
+    luego revisa si la activdad en la tabla gi exista
+    en la tabla gap.
+
+    si no existe crea las estaciones y luego las actividades.
+    '''
+    actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(estadoNOC__exact=PRODUCCION)
+    actividades = Actividad.objects.all()
+
+    for actividad_gi in actividades_gi:
+        try:
+            act = actividades.get(wp=actividad_gi.wp)
+        except Actividad.DoesNotExist:
+            try:
+                est = Estacion.objects.get(nombre=actividad_gi.siteName)
+                Actividad.objects.create(
+                    wp=actividad_gi.wp,
+                    agrupador=actividad_gi.agrupadores,
+                    service_supplier=actividad_gi.ss,
+                    estacion=est,
+                    banda=actividad_gi.banda,
+                    proyecto=actividad_gi.proyecto,
+                    escenario=actividad_gi.escenario,
+                    realtifinish=actividad_gi.realTiFinish,
+                    fecha_integracion=actividad_gi.fechaIntegracion,
+                    fecha_estado_noc=actividad_gi.fechaEstado,
+                    estado_noc=actividad_gi.estadoNOC,
+                    subestado_noc=actividad_gi.subEstadoNOC,
+                )
+            except Estacion.DoesNotExist:
+                estacion = Estacion.objects.create(
+                    nombre=actividad_gi.siteName,
+                    regional=actividad_gi.region,
+                    ciudad=actividad_gi.ciudad,
+                    responsable=GAP1,
+                )
+                Actividad.objects.create(
+                    wp=actividad_gi.wp,
+                    agrupador=actividad_gi.agrupadores,
+                    service_supplier=actividad_gi.ss,
+                    estacion=estacion,
+                    banda=actividad_gi.banda,
+                    proyecto=actividad_gi.proyecto,
+                    escenario=actividad_gi.escenario,
+                    realtifinish=actividad_gi.realTiFinish,
+                    fecha_integracion=actividad_gi.fechaIntegracion,
+                    fecha_estado_noc=actividad_gi.fechaEstado,
+                    estado_noc=actividad_gi.estadoNOC,
+                    subestado_noc=actividad_gi.subEstadoNOC,
+                )
+    return HttpResponse(status=204)

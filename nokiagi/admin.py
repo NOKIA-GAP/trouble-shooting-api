@@ -16,8 +16,8 @@ class GiAdmin(admin.ModelAdmin):
     'ss',
     'realTiFinish',
     'fechaIntegracion',
+    'fechaEstado',
     'estadoNOC',
     'subEstadoNOC',
-    'fechaEstado',
     )
     search_fields = ['wp',]

@@ -13,9 +13,9 @@ class Gi(models.Model):
     ss = models.CharField(max_length=60, blank=True, null=True)
     realTiFinish = models.DateField(blank=True, null=True)
     fechaIntegracion = models.DateField(blank=True, null=True)
+    fechaEstado = models.DateTimeField(blank=True, null=True)
     estadoNOC = models.CharField(max_length=45, blank=True, null=True)
     subEstadoNOC = models.CharField(max_length=45, blank=True, null=True)
-    fechaEstado = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         # app_label = 'nokiagi'
