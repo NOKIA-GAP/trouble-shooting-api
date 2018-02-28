@@ -3,6 +3,7 @@ google/
 appengine-generated/
 app.yaml
 index.yaml
+cron.yaml
 
 # python
 # Byte-compiled / optimized / DLL files
