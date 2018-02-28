@@ -42,7 +42,10 @@ class ActividadAdmin(ImportExportModelAdmin):
     'fecha_fc_visita',
     'estado',
     'subestado',
+    'creado',
+    'actualizado',
     )
+    list_filter = ('creado', 'actualizado')
     search_fields = ['id', 'estacion__nombre']
 
 @admin.register(Degradacion)
