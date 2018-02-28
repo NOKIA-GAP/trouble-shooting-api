@@ -8,6 +8,10 @@ ListView,
 from .models import Gi
 from actividades.models import Actividad
 from estaciones.models import Estacion
+from django.utils import timezone
+import datetime
+
+THREEDAYS = timezone.now() - datetime.timedelta(3)
 
 PRODUCCION = 'Produccion'
 GAP1 = 'GAP1'
@@ -24,23 +28,7 @@ class ListGi(LoginRequiredMixin, ListView):
         return queryset
 
 def actualizacion(request):
-    '''
-    filtra actividades tabla gi solo las que tienen
-    fechaIntegracion.
-
-    filtra actividades tabla gap solo las que no
-    estan en produccion.
-
-    luego revisa si la activdad en la tabla gap existe
-    en la tabla gi.
-
-    si existe revisa si el estado_noc o subestado_noc
-    son diferentes.
-
-    si uno de los dos es diferente, actuliza estado_noc,
-    subestado_noc, fecha_estado_noc en la tabla gap.
-    '''
-    actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True)
+    actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
 
     for actividad in actividades:
@@ -56,17 +44,6 @@ def actualizacion(request):
     return HttpResponse(status=204)
 
 def creacion(request):
-    '''
-    filtra actividades tabla gi solo las que tienen
-    fechaIntegracion y estadoNOC es diferente de Produccion.
-
-    todas las actividades tabla gap.
-
-    luego revisa si la activdad en la tabla gi exista
-    en la tabla gap.
-
-    si no existe crea las estaciones y luego las actividades.
-    '''
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(estadoNOC__exact=PRODUCCION)
     actividades = Actividad.objects.all()
 

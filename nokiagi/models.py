@@ -11,6 +11,7 @@ class Gi(models.Model):
     banda = models.CharField(max_length=30, blank=True, null=True)
     escenario = models.CharField(max_length=20, blank=True, null=True)
     ss = models.CharField(max_length=60, blank=True, null=True)
+    onAir = models.DateField(blank=True, null=True)
     realTiFinish = models.DateField(blank=True, null=True)
     fechaIntegracion = models.DateField(blank=True, null=True)
     fechaEstado = models.DateTimeField(blank=True, null=True)
