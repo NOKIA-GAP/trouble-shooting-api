@@ -22,5 +22,8 @@ class EstacionAdmin(ImportExportModelAdmin):
     'prioridad',
     'estado_estacion',
     'numero_actividades',
+    'creado',
+    'actualizado',
     )
+    list_filter = ('creado', 'actualizado')
     search_fields = ['id', 'nombre']
