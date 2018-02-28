@@ -32,4 +32,5 @@ HARDWARE_CHOICES = (
     ('FEEDER', 'FEEDER'),
     ('FIBRA', 'FIBRA'),
     ('FILTRO', 'FILTRO'),
+    ('OVP', 'OVP'),
 )
