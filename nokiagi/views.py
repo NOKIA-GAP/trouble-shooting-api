@@ -10,6 +10,9 @@ from actividades.models import Actividad
 from estaciones.models import Estacion
 from django.utils import timezone
 import datetime
+import operator
+from django.db.models import Q
+from functools import reduce
 
 THREEDAYS = timezone.now() - datetime.timedelta(3)
 
@@ -26,6 +29,49 @@ class ListGi(LoginRequiredMixin, ListView):
         queryset = super(ListGi, self).get_queryset()
         queryset = Gi.objects.exclude(fechaIntegracion__isnull=True)
         return queryset
+
+class SearchGi(ListGi):
+
+    def get_queryset(self):
+        result = super(SearchGi, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            result = result.filter(
+                reduce(operator.and_,
+                          (Q(id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(wp__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(agrupadores__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(siteName__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(region__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ciudad__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(proyecto__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(banda__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(escenario__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ss__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(onAir__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(realTiFinish__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(fechaIntegracion__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(fechaEstado__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(estadoNOC__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(subEstadoNOC__icontains=q) for q in query_list))
+            )
+        return result
 
 # def actualizacion(request):
 #     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
