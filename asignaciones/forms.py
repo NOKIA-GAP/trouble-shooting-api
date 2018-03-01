@@ -53,6 +53,7 @@ COSTA = 'Costa'
 NORORIENTE = 'Nor Oriente'
 
 ADSM = 'ADSM'
+DECOM = 'DECOM'
 DELTEC = 'DELTEC'
 EZENTIS = 'EZENTIS'
 FIBRATERRA = 'FIBRATERRA'
@@ -60,7 +61,10 @@ GAMMA = 'GAMMA'
 INGETEL = 'INGETEL'
 INGYTELCOM = 'INGYTELCOM'
 JANACOR = 'JANACOR'
+MSI = 'MSI'
+OSC = 'OSC'
 REDESYSERVICIOS = 'REDES Y SERVICIOS'
+RES = 'RES'
 SAI = 'SAI'
 SERVINTELCO = 'SERVINTELCO'
 SITCOM = 'SITCOM'
@@ -428,51 +432,133 @@ class AsignacionNiIngenieroForm(ModelForm):
             para_ss = []
 
             if service_supplier == ADSM:
-                para_ss = ['davidsaavedra@adsm.com.co',
+                para_ss = [
+                          'davidsaavedra@adsm.com.co',
                           'magdaburbano@adsm.com.co',
                           'williamgrillo@adsm.com.co',
-                          'heillerjimenez@adsm.com.co']
+                          'heillerjimenez@adsm.com.co',
+                          'gustavo@adsm.com.co',
+                          ]
+            if service_supplier == DECOM:
+                para_ss = [
+                          'edwin.castrillon@decom.com.co',
+                          'miguel.lopez@decom.com.co',
+                          ]
             if service_supplier == DELTEC:
-                para_ss = ['gbonilla@deltec.com.co',
+                para_ss = [
+                          'gbonilla@deltec.com.co',
                           'salvarado@deltec.com.co',
-                          'jquintana@deltec.com.co']
+                          'jquintana@deltec.com.co',
+                          'aescobar@deltec.com.co',
+                          'aarana@deltec.com.co',
+                          ]
             if service_supplier == EZENTIS:
-                para_ss = ['edison.santos@ezentis.com.co',
-                          'fabio.cardenasr@ezentis.com.co']
+                para_ss = [
+                          'edison.santos@ezentis.com.co',
+                          'fabio.cardenasr@ezentis.com.co',
+                          'javier.amorocho@ezentis.com.co',
+                          'Fabio.cardenasr@ezentis.com.co',
+                          ]
             if service_supplier == FIBRATERRA:
-                para_ss = ['coordinador1@fibraterra.com',
-                          'fernando.ramirez@fibraterra.com']
+                para_ss = [
+                          'coordinador1@fibraterra.com',
+                          'fernando.ramirez@fibraterra.com',
+                          'msarmiento@fibraterra.com',
+                          'lyda.ramirez@fibraterra.com',
+                          ]
             if service_supplier == GAMMA:
-                para_ss = ['diego.vargas@gammasg.com',
-                          'andres.bonilla@gammasg.com']
+                para_ss = [
+                          'diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com',
+                          'paola.garzon@gammasg.com',
+                          'josedomingo.gomez@gammasg.com',
+                          ]
             if service_supplier == INGETEL:
-                para_ss = ['supervision_cali@ingetelsas.com.co',
+                para_ss = [
+                          'supervision_cali@ingetelsas.com.co',
                           'supervision@ingetelsas.com.co',
-                          'auditor@ingetelsas.com.co']
+                          'auditor@ingetelsas.com.co',
+                          'gerencia@ingetelsas.com.co',
+                          'administrativo@ingetelsas.com.co',
+                          'supervision_cali@ingetelsas.com.co',
+                          ]
             if service_supplier == INGYTELCOM:
-                para_ss = ['diana.pineda@ingytelcom.com',
+                para_ss = [
+                          'diana.pineda@ingytelcom.com',
                           'robinson.lopez@ingytelcom.com',
                           'cindy.lopez@ingytelcom.com.co',
                           'cristian.organista@ingytelcom.com',
-                          'javier.orjuela@ingytelcom.com']
+                          'javier.orjuela@ingytelcom.com',
+                          'cbardet@ingytelcom.com',
+                          ]
             if service_supplier == JANACOR:
-                para_ss = ['ingeniero@janacor.co']
+                para_ss = [
+                          'ingeniero@janacor.co',
+                          'liliana.cristancho@janacor.co',
+                          ]
+            if service_supplier == MSI:
+                para_ss = [
+                          'david.Osorio@msiamericas.com',
+                          'elizabeth.baron@msiamericas.com',
+                          'rafael.riano@msiamericas.com',
+                          ]
+            if service_supplier == OSC:
+                para_ss = [
+                          'Jose.fuquene@osctelecoms.com',
+                          'marcela.rodriguez@osctelecoms.com',
+                          'angelica.dharo@osctelecoms.com',
+                          'andres.pacheco@osctelecoms.com',
+                          'julieth.caceres@osctelecoms.com',
+                          'esther.villegas@osctlecoms.com',
+                          ]
             if service_supplier == REDESYSERVICIOS:
-                para_ss = ['jheisson.alvarez@rseltda.com']
+                para_ss = [
+                          'jheisson.alvarez@rseltda.com',
+                          'rene.sanchez@rseltda.com',
+                          'jonnathan.cubillos@rseltda.com',
+                          'ibeth.quijano@rseltda.com',
+                          ]
+            if service_supplier == RES:
+                para_ss = [
+                          'jheisson.alvarez@rseltda.com',
+                          'rene.sanchez@rseltda.com',
+                          'jonnathan.cubillos@rseltda.com',
+                          'ibeth.quijano@rseltda.com',
+                          ]
             if service_supplier == SAI:
-                para_ss = ['operaciones@saisas.com.co',
-                          'proyectos@saisas.com.co']
+                para_ss = [
+                          'operaciones@saisas.com.co',
+                          'proyectos@saisas.com.co',
+                          'gerencia@saisas.com.co',
+                          'gerente.administracion@saisas.com.co',
+                          ]
             if service_supplier == SERVINTELCO:
-                para_ss = ['erick.amaya@servintelco.com',
-                          'carlos.bateman@servintelco.com']
+                para_ss = [
+                          'erick.amaya@servintelco.com',
+                          'carlos.bateman@servintelco.com',
+                          ]
             if service_supplier == SITCOM:
-                para_ss = ['maricela.rodriguez@sitcom.co',
-                          'alejandro.pinzon@sitcom.co']
+                para_ss = [
+                          'maricela.rodriguez@sitcom.co',
+                          'alejandro.pinzon@sitcom.co',
+                          'daniel.valderrama@sitcom.co',
+                          'ivan.diaz@sitcom.co',
+                          ]
             if service_supplier == YINDA:
-                para_ss = ['john.maldonado@yinda.com.co',
-                          'oscar.acosta@yinda.com.co']
+                para_ss = [
+                          'john.maldonado@yinda.com.co',
+                          'oscar.acosta@yinda.com.co',
+                          'torsten.kroeger@yindacorp.com',
+                          'kari.nikkinen@yinda.com.co',
+                          'leonardo.alarcon@yinda.com.co',
+                          ]
             if service_supplier == ZOOM:
-                para_ss = ['coord.proy.nk@zoom-cgr.com']
+                para_ss = [
+                          'coord.proy.nk@zoom-cgr.com',
+                          'vladimiryanes@zoom-cgr.com',
+                          'hrestrepo@zoom-cgr.com',
+                          'waltermolina@zoom-cgr.com',
+                          ]
 
             para = para_regional + para_ss
 
@@ -529,51 +615,133 @@ class AsignacionNiIngenieroForm(ModelForm):
             para_ss = []
 
             if service_supplier == ADSM:
-                para_ss = ['davidsaavedra@adsm.com.co',
+                para_ss = [
+                          'davidsaavedra@adsm.com.co',
                           'magdaburbano@adsm.com.co',
                           'williamgrillo@adsm.com.co',
-                          'heillerjimenez@adsm.com.co']
+                          'heillerjimenez@adsm.com.co',
+                          'gustavo@adsm.com.co',
+                          ]
+            if service_supplier == DECOM:
+                para_ss = [
+                          'edwin.castrillon@decom.com.co',
+                          'miguel.lopez@decom.com.co',
+                          ]
             if service_supplier == DELTEC:
-                para_ss = ['gbonilla@deltec.com.co',
+                para_ss = [
+                          'gbonilla@deltec.com.co',
                           'salvarado@deltec.com.co',
-                          'jquintana@deltec.com.co']
+                          'jquintana@deltec.com.co',
+                          'aescobar@deltec.com.co',
+                          'aarana@deltec.com.co',
+                          ]
             if service_supplier == EZENTIS:
-                para_ss = ['edison.santos@ezentis.com.co',
-                          'fabio.cardenasr@ezentis.com.co']
+                para_ss = [
+                          'edison.santos@ezentis.com.co',
+                          'fabio.cardenasr@ezentis.com.co',
+                          'javier.amorocho@ezentis.com.co',
+                          'Fabio.cardenasr@ezentis.com.co',
+                          ]
             if service_supplier == FIBRATERRA:
-                para_ss = ['coordinador1@fibraterra.com',
-                          'fernando.ramirez@fibraterra.com']
+                para_ss = [
+                          'coordinador1@fibraterra.com',
+                          'fernando.ramirez@fibraterra.com',
+                          'msarmiento@fibraterra.com',
+                          'lyda.ramirez@fibraterra.com',
+                          ]
             if service_supplier == GAMMA:
-                para_ss = ['diego.vargas@gammasg.com',
-                          'andres.bonilla@gammasg.com']
+                para_ss = [
+                          'diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com',
+                          'paola.garzon@gammasg.com',
+                          'josedomingo.gomez@gammasg.com',
+                          ]
             if service_supplier == INGETEL:
-                para_ss = ['supervision_cali@ingetelsas.com.co',
+                para_ss = [
+                          'supervision_cali@ingetelsas.com.co',
                           'supervision@ingetelsas.com.co',
-                          'auditor@ingetelsas.com.co']
+                          'auditor@ingetelsas.com.co',
+                          'gerencia@ingetelsas.com.co',
+                          'administrativo@ingetelsas.com.co',
+                          'supervision_cali@ingetelsas.com.co',
+                          ]
             if service_supplier == INGYTELCOM:
-                para_ss = ['diana.pineda@ingytelcom.com',
+                para_ss = [
+                          'diana.pineda@ingytelcom.com',
                           'robinson.lopez@ingytelcom.com',
-                          'cindy.lopez@ingytelcom.com',
+                          'cindy.lopez@ingytelcom.com.co',
                           'cristian.organista@ingytelcom.com',
-                          'javier.orjuela@ingytelcom.com']
+                          'javier.orjuela@ingytelcom.com',
+                          'cbardet@ingytelcom.com',
+                          ]
             if service_supplier == JANACOR:
-                para_ss = ['ingeniero@janacor.co']
+                para_ss = [
+                          'ingeniero@janacor.co',
+                          'liliana.cristancho@janacor.co',
+                          ]
+            if service_supplier == MSI:
+                para_ss = [
+                          'david.Osorio@msiamericas.com',
+                          'elizabeth.baron@msiamericas.com',
+                          'rafael.riano@msiamericas.com',
+                          ]
+            if service_supplier == OSC:
+                para_ss = [
+                          'Jose.fuquene@osctelecoms.com',
+                          'marcela.rodriguez@osctelecoms.com',
+                          'angelica.dharo@osctelecoms.com',
+                          'andres.pacheco@osctelecoms.com',
+                          'julieth.caceres@osctelecoms.com',
+                          'esther.villegas@osctlecoms.com',
+                          ]
             if service_supplier == REDESYSERVICIOS:
-                para_ss = ['jheisson.alvarez@rseltda.com']
+                para_ss = [
+                          'jheisson.alvarez@rseltda.com',
+                          'rene.sanchez@rseltda.com',
+                          'jonnathan.cubillos@rseltda.com',
+                          'ibeth.quijano@rseltda.com',
+                          ]
+            if service_supplier == RES:
+                para_ss = [
+                          'jheisson.alvarez@rseltda.com',
+                          'rene.sanchez@rseltda.com',
+                          'jonnathan.cubillos@rseltda.com',
+                          'ibeth.quijano@rseltda.com',
+                          ]
             if service_supplier == SAI:
-                para_ss = ['operaciones@saisas.com.co',
-                          'proyectos@saisas.com.co']
+                para_ss = [
+                          'operaciones@saisas.com.co',
+                          'proyectos@saisas.com.co',
+                          'gerencia@saisas.com.co',
+                          'gerente.administracion@saisas.com.co',
+                          ]
             if service_supplier == SERVINTELCO:
-                para_ss = ['erick.amaya@servintelco.com',
-                          'carlos.bateman@servintelco.com']
+                para_ss = [
+                          'erick.amaya@servintelco.com',
+                          'carlos.bateman@servintelco.com',
+                          ]
             if service_supplier == SITCOM:
-                para_ss = ['maricela.rodriguez@sitcom.co',
-                          'alejandro.pinzon@sitcom.co']
+                para_ss = [
+                          'maricela.rodriguez@sitcom.co',
+                          'alejandro.pinzon@sitcom.co',
+                          'daniel.valderrama@sitcom.co',
+                          'ivan.diaz@sitcom.co',
+                          ]
             if service_supplier == YINDA:
-                para_ss = ['john.maldonado@yinda.com.co',
-                          'oscar.acosta@yinda.com.co']
+                para_ss = [
+                          'john.maldonado@yinda.com.co',
+                          'oscar.acosta@yinda.com.co',
+                          'torsten.kroeger@yindacorp.com',
+                          'kari.nikkinen@yinda.com.co',
+                          'leonardo.alarcon@yinda.com.co',
+                          ]
             if service_supplier == ZOOM:
-                para_ss = ['coord.proy.nk@zoom-cgr.com']
+                para_ss = [
+                          'coord.proy.nk@zoom-cgr.com',
+                          'vladimiryanes@zoom-cgr.com',
+                          'hrestrepo@zoom-cgr.com',
+                          'waltermolina@zoom-cgr.com',
+                          ]
 
             para = para_regional + para_ss
 

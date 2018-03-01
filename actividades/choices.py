@@ -200,4 +200,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('MSI', 'MSI'),
     ('YINDA', 'YINDA'),
     ('CELPLAN', 'CELPLAN'),
+    ('RSE', 'RSE'),
 )

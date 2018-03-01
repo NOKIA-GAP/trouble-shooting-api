@@ -44,6 +44,7 @@ class ListGi(LoginRequiredMixin, ListView):
 #     return HttpResponse(status=204)
 
 def actualizacion(request):
+    # if request.headers["X-Appengine-Cron"]:
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
 
@@ -60,6 +61,7 @@ def actualizacion(request):
     return HttpResponse(status=204)
 
 def creacion(request):
+    # if request.headers["X-Appengine-Cron"]:
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(estadoNOC__exact=PRODUCCION)
     actividades = Actividad.objects.all()
 
