@@ -27,19 +27,35 @@ class ListGi(LoginRequiredMixin, ListView):
         queryset = Gi.objects.exclude(fechaIntegracion__isnull=True)
         return queryset
 
+# def actualizacion(request):
+#     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
+#     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
+#
+#     for actividad in actividades:
+#         try:
+#             act = actividades_gi.get(wp=actividad.wp)
+#             if actividad.estado_noc != act.estadoNOC or actividad.subestado_noc != act.subEstadoNOC:
+#                 actividad.estado_noc = act.estadoNOC
+#                 actividad.subestado_noc = act.subEstadoNOC
+#                 actividad.fecha_estado_noc = act.fechaEstado.date()
+#                 actividad.save()
+#         except Gi.DoesNotExist:
+#             pass
+#     return HttpResponse(status=204)
+
 def actualizacion(request):
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
 
-    for actividad in actividades:
+    for actividad_gi in actividades_gi:
         try:
-            act = actividades_gi.get(wp=actividad.wp)
-            if actividad.estado_noc != act.estadoNOC or actividad.subestado_noc != act.subEstadoNOC:
-                actividad.estado_noc = act.estadoNOC
-                actividad.subestado_noc = act.subEstadoNOC
-                actividad.fecha_estado_noc = act.fechaEstado.date()
+            actividad = actividades.get(wp=actividad_gi.wp)
+            if actividad.estado_noc != actividad_gi.estadoNOC or actividad.subestado_noc != actividad_gi.subEstadoNOC:
+                actividad.estado_noc = actividad_gi.estadoNOC
+                actividad.subestado_noc = actividad_gi.subEstadoNOC
+                actividad.fecha_estado_noc = actividad_gi.fechaEstado.date()
                 actividad.save()
-        except Gi.DoesNotExist:
+        except Actividad.DoesNotExist:
             pass
     return HttpResponse(status=204)
 
@@ -49,7 +65,7 @@ def creacion(request):
 
     for actividad_gi in actividades_gi:
         try:
-            act = actividades.get(wp=actividad_gi.wp)
+            actividad = actividades.get(wp=actividad_gi.wp)
         except Actividad.DoesNotExist:
             try:
                 est = Estacion.objects.get(nombre=actividad_gi.siteName)
