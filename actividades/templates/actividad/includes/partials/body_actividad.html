@@ -17,8 +17,9 @@
   <th scope="row">{{ object.id }}</th>
   <td><a href="{% url 'actividades:detail_actividad' object.pk %}">{{ object.wp }}</a></td>
   <td>{{ object.id_notificacion_noc }}</td>
-  <td>{{ object.agrupador}}</td>
-  <td>{{ object.service_supplier}}</td>
+  <td>{{ object.agrupador }}</td>
+  <td>{{ object.service_supplier }}</td>
+  <td>{{ object.field_manager }}</td>
   {% if object.estacion.pk %}
       <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
   {% else %}

@@ -25,6 +25,7 @@ class ActividadAdmin(ImportExportModelAdmin):
     'id_notificacion_noc',
     'agrupador',
     'service_supplier',
+    'field_manager',
     'estacion',
     'banda',
     'valor_wp_eur',

@@ -23,6 +23,9 @@ class ActividadResource(resources.ModelResource):
     service_supplier = fields.Field(
         column_name='service supplier',
         attribute='service_supplier',)
+    field_manager = fields.Field(
+        column_name='field manager',
+        attribute='field_manager',)
     estacion = fields.Field(
         column_name='estacion',
         attribute='estacion',
@@ -151,6 +154,7 @@ class ActividadResource(resources.ModelResource):
         'id_notificacion_noc',
         'agrupador',
         'service_supplier',
+        'field_manager',
         'estacion',
         'regional',
         'ciudad',

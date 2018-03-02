@@ -20,15 +20,16 @@ PRODUCCION = 'Produccion'
 
 
 class Actividad(models.Model):
-    wp = models.BigIntegerField(blank=True, null=True, unique=True)#campo no editable
+    wp = models.BigIntegerField(blank=True, null=True, unique=True)
     id_notificacion_noc = models.IntegerField(blank=True, null=True)
-    agrupador = models.CharField(max_length=255, blank=True, null=True)#campo no editable
-    service_supplier = models.CharField(max_length=255, blank=True, choices=choices.SERVICE_SUPPLIER_CHOICES, null=True)#campo no editable
-    estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE,  blank=True, null=True, related_name='actividades')#campo no editable
-    banda = models.CharField(max_length=255, blank=True, null=True)#campo no editable
-    valor_wp_eur = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)#campo no editable
-    proyecto = models.CharField(max_length=255, blank=True, null=True)#campo no editable
-    escenario = models.CharField(max_length=255, blank=True, null=True)#campo no editable
+    agrupador = models.CharField(max_length=255, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, blank=True, choices=choices.SERVICE_SUPPLIER_CHOICES, null=True)
+    field_manager = models.CharField(max_length=255, blank=True, null=True)
+    estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE,  blank=True, null=True, related_name='actividades')
+    banda = models.CharField(max_length=255, blank=True, null=True)
+    valor_wp_eur = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    proyecto = models.CharField(max_length=255, blank=True, null=True)
+    escenario = models.CharField(max_length=255, blank=True, null=True)
     tipo_trabajo = models.CharField(max_length=255, choices=choices.TIPO_TRABAJO_CHOICES, blank=True, null=True)
     fecha_ingreso_onair = models.DateField(blank=True, null=True)
     realtifinish = models.DateField(blank=True, null=True)
