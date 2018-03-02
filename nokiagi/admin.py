@@ -14,6 +14,7 @@ class GiAdmin(admin.ModelAdmin):
     'banda',
     'escenario',
     'ss',
+    'fm',
     'onAir',
     'realTiFinish',
     'fechaIntegracion',

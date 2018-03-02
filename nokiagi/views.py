@@ -59,6 +59,8 @@ class SearchGi(ListGi):
                 reduce(operator.and_,
                           (Q(ss__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
+                          (Q(fm__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
                           (Q(onAir__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(realTiFinish__icontains=q) for q in query_list)) |
