@@ -118,12 +118,13 @@ def creacion(request):
             actividad = actividades.get(wp=actividad_gi.wp)
         except Actividad.DoesNotExist:
             try:
-                est = Estacion.objects.get(nombre=actividad_gi.siteName)
-                Actividad.objects.create(
+                estacion = Estacion.objects.get(nombre=actividad_gi.siteName)
+                actividad = Actividad.objects.create(
                     wp=actividad_gi.wp,
                     agrupador=actividad_gi.agrupadores,
                     service_supplier=actividad_gi.ss,
-                    estacion=est,
+                    field_manager=actividad_gi.fm,
+                    estacion=estacion,
                     banda=actividad_gi.banda,
                     proyecto=actividad_gi.proyecto,
                     escenario=actividad_gi.escenario,
@@ -140,10 +141,11 @@ def creacion(request):
                     ciudad=actividad_gi.ciudad,
                     responsable=GAP1,
                 )
-                Actividad.objects.create(
+                actividad = Actividad.objects.create(
                     wp=actividad_gi.wp,
                     agrupador=actividad_gi.agrupadores,
                     service_supplier=actividad_gi.ss,
+                    field_manager=actividad_gi.fm,
                     estacion=estacion,
                     banda=actividad_gi.banda,
                     proyecto=actividad_gi.proyecto,
