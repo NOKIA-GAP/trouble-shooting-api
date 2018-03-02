@@ -4,11 +4,13 @@ from .models import (
 NotificacionRequiereVisita,
 NotificacionFallaInstalacion,
 NotificacionFallaIntegracion,
+NotificacionFallaMalRechazo,
 )
 from .resources import (
 NotificacionRequiereVisitaResource,
 NotificacionFallaInstalacionResource,
 NotificacionFallaIntegracionResource,
+NotificacionFallaMalRechazoResource,
 )
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -174,4 +176,56 @@ def export_notificaciones_falla_integracion(request):
     dataset = notificaciones_falla_integracion.export()
     response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="NotificacionFallaIntegracion.xlsx"'
+    return response
+
+class ListNotificacionFallaMalRechazo(LoginRequiredMixin, ListView):
+    login_url = 'users:login_user'
+    model = NotificacionFallaMalRechazo
+    template_name = 'notificacion_falla_mal_rechazo/list_notificacion_falla_mal_rechazo.html'
+    paginate_by = 100
+
+class SearchNotificacionFallaMalRechazo(ListNotificacionFallaMalRechazo):
+
+    def get_queryset(self):
+        queryset = super(SearchNotificacionFallaMalRechazo, self).get_queryset()
+        query = self.request.GET.get('q')
+        if query:
+            query_list = query.split()
+            queryset = queryset.filter(
+                reduce(operator.and_,
+                          (Q(id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(asignacion_ni__id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(actividad__id__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(wp__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(service_supplier__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(estacion__nombre__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(banda__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(proyecto__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(escenario__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__nombre__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__apellido__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(ni_ingeniero__nombre_completo__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(creado__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(actualizado__icontains=q) for q in query_list))
+            )
+        return queryset
+
+def export_notificaciones_falla_mal_rechazo(request):
+    notificaciones_falla_mal_rechazo = NotificacionFallaMalRechazoResource()
+    dataset = notificaciones_falla_mal_rechazo.export()
+    response = HttpResponse(dataset.xlsx, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="NotificacionFallaMalRechazo.xlsx"'
     return response

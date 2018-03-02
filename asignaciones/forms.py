@@ -14,6 +14,7 @@ from notificaciones.models import (
 NotificacionRequiereVisita,
 NotificacionFallaInstalacion,
 NotificacionFallaIntegracion,
+NotificacionFallaMalRechazo,
 )
 from fallas.models import (
 Falla
@@ -839,6 +840,60 @@ class AsignacionNiIngenieroForm(ModelForm):
                 concepto=conceptos.last().contenido,
                 tipo_falla=INTEGRACION,
             )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == MALRECHAZO:
+
+            asunto = 'Falla Mal Rechazo' +' '+ \
+            estacion.nombre +' '+ \
+            actividad.banda +' '+ \
+            actividad.proyecto +' '+ \
+            actividad.escenario +' '+ \
+            'WP:' +' '+ \
+            str(actividad.wp)
+
+            contenido = 'Buen día Andrea Guerrero' +'\n'+'\n'+ \
+            conceptos.last().contenido +'\n'+'\n'+ \
+            'Ingeniero Nokia: ' + ni_ingeniero.nombre_completo.title() +'\n'+'\n'+ \
+            'Service Supplier: '+ service_supplier +'\n'+'\n'+ \
+            'Cordial Saludo,' +'\n'+'\n'+ 'OnAir Team'
+
+            de = 'notification_onair.noreply@gaponair.com'
+
+            para = ['ague.workforce@nokia.com']
+
+            copia = ['jbri.gap@nokia.com',
+                    'I_EXT_GAP_CLARO_COL@nokia.com',
+                    'jorge.baracaldo@nokia.com',
+                    'dtor.onair_claro@nokia.com',
+                    'jsan.onair_claro@nokia.com']
+
+            email = EmailMessage(asunto, contenido, de, para, cc=copia)
+            email.send(fail_silently=False)
+
+            NotificacionFallaMalRechazo.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+            )
+            Falla.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+                tipo_falla=MALRECHAZO,
+            )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == SOFTWARE:
             Falla.objects.create(
                 asignacion_ni=self.instance,
@@ -922,20 +977,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
                 tipo_falla=CAMBIODISENO,
-            )
-        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == MALRECHAZO:
-            Falla.objects.create(
-                asignacion_ni=self.instance,
-                actividad=actividad,
-                wp=actividad.wp,
-                service_supplier=actividad.service_supplier,
-                estacion=estacion,
-                banda=actividad.banda,
-                proyecto=actividad.proyecto,
-                escenario=actividad.escenario,
-                ni_ingeniero=ni_ingeniero,
-                concepto=conceptos.last().contenido,
-                tipo_falla=MALRECHAZO,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == TX:
             Falla.objects.create(

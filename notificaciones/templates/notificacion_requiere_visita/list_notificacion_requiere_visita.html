@@ -36,6 +36,9 @@
   <li role="presentation" {% if request.resolver_match.url_name == 'list_notificacion_falla_integracion' %}class="active"{% endif %}>
     <a href="{% url 'notificaciones:list_notificacion_falla_integracion' %}">Falla Integracion</a>
   </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_notificacion_falla_mal_rechazo' %}class="active"{% endif %}>
+    <a href="{% url 'notificaciones:list_notificacion_falla_mal_rechazo' %}">Falla Mal Rechazo</a>
+  </li>
 </ul><br>
 {% endblock nav_tab %}
 
