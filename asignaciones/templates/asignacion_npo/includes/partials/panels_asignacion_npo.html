@@ -5,6 +5,7 @@
   <p>Estado en monitoreo {{ asignaciones_npo_en_monitoreo }}</p>
   <p>Estado escalado a claro {{ asignaciones_npo_escalado_a_claro }}</p>
   <p>Estado enviado a seguimiento {{ asignaciones_npo_enviado_a_seguimiento }}</p> -->
+  {% if user.is_authenticated and perms.users.perm_gap_administrador or perms.users.perm_fm_lider %}
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,6 +36,7 @@
     </tbody>
 </table>
 </div>
+{% else %}
 <hr style="margin: 0px">
 <div class="panel-body">
   <a href="{% url 'asignaciones:list_asignacion_npo' %}?qs=asignaciones_npo_asignada_un_dia">Asignaciones sin Registro {{ asignaciones_npo_asignada_un_dia }}</a>
@@ -43,3 +45,4 @@
 <div class="panel-body">
   <a href="{% url 'asignaciones:list_asignacion_npo' %}?qs=asignaciones_npo_en_monitoreo_tres_dias">Asignaciones sin Avance {{ asignaciones_npo_en_monitoreo_tres_dias }}</a>
 </div>
+{% endif %}
