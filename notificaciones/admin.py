@@ -4,12 +4,14 @@ from .models import (
 NotificacionRequiereVisita,
 NotificacionFallaInstalacion,
 NotificacionFallaIntegracion,
+NotificacionFallaMalRechazo,
 )
 from import_export.admin import ImportExportModelAdmin
 from .resources import (
 NotificacionRequiereVisitaResource,
 NotificacionFallaInstalacionResource,
 NotificacionFallaIntegracionResource,
+NotificacionFallaMalRechazoResource,
 )
 
 @admin.register(NotificacionRequiereVisita)
@@ -60,6 +62,28 @@ class NotificacionFallaInstalacionAdmin(ImportExportModelAdmin):
 @admin.register(NotificacionFallaIntegracion)
 class NotificacionFallaIntegracionAdmin(ImportExportModelAdmin):
     resource_class = NotificacionFallaIntegracionResource
+    list_display = (
+    'id',
+    'asignacion_ni',
+    'actividad',
+    'wp',
+    'service_supplier',
+    'estacion',
+    'banda',
+    'proyecto',
+    'escenario',
+    'ni_ingeniero',
+    'concepto',
+    'creado',
+    'actualizado',
+    'estado',
+    'subestado',
+    )
+    search_fields = ['id']
+
+@admin.register(NotificacionFallaMalRechazo)
+class NotificacionFallaMalRechazoAdmin(ImportExportModelAdmin):
+    resource_class = NotificacionFallaMalRechazoResource
     list_display = (
     'id',
     'asignacion_ni',
