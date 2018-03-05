@@ -32,8 +32,8 @@ $("#form_modal").submit(function(event) {
     type: "POST",
     data: $(this).serialize(),
     success: function (data) {
-      if ( $(data).find('div.alert.alert-block.alert-error').length > 0 ) {
-        error = $(data).find('div.alert.alert-block.alert-error')
+      if ( $(data).find('div.alert.alert-block.alert-danger').length > 0 ) {
+        error = $(data).find('div.alert.alert-block.alert-danger')
         modal_body.append(error);
       } else {
           window.location.href = success_url;
