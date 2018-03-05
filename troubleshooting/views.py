@@ -96,6 +96,7 @@ AsignacionNpo,
 AsignacionNi,
 )
 import datetime
+from django.core.cache import cache, caches
 
 ASIGNADA = 'Asignada'
 REQUIERE_VISITA = 'Requiere visita'
@@ -112,6 +113,8 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        cache = caches['default']
+        cache.clear()
         # estaciones
         context['estaciones'] = estaciones.count()
         context['estaciones_estado_produccion'] = estaciones_estado_produccion.count()
@@ -204,4 +207,5 @@ class IndexView(TemplateView):
         context['fallas_comportamiento_previo'] = fallas_comportamiento_previo.count()
         context['fallas_ajuste_adyasencias'] = fallas_ajuste_adyasencias.count()
 
+        print(context)
         return context
