@@ -65,7 +65,7 @@ JANACOR = 'JANACOR'
 MSI = 'MSI'
 OSC = 'OSC'
 REDESYSERVICIOS = 'REDES Y SERVICIOS'
-RES = 'RES'
+RSE = 'RSE'
 SAI = 'SAI'
 SERVINTELCO = 'SERVINTELCO'
 SITCOM = 'SITCOM'
@@ -521,7 +521,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'jonnathan.cubillos@rseltda.com',
                           'ibeth.quijano@rseltda.com',
                           ]
-            if service_supplier == RES:
+            if service_supplier == RSE:
                 para_ss = [
                           'jheisson.alvarez@rseltda.com',
                           'rene.sanchez@rseltda.com',
@@ -704,7 +704,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'jonnathan.cubillos@rseltda.com',
                           'ibeth.quijano@rseltda.com',
                           ]
-            if service_supplier == RES:
+            if service_supplier == RSE:
                 para_ss = [
                           'jheisson.alvarez@rseltda.com',
                           'rene.sanchez@rseltda.com',
