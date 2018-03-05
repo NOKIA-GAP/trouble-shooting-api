@@ -30,6 +30,14 @@ class ListGi(LoginRequiredMixin, ListView):
         queryset = Gi.objects.exclude(fechaIntegracion__isnull=True)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super(ListGi, self).get_context_data(**kwargs)
+        fields = []
+        for field in Gi._meta.fields:
+            fields.append(field.name)
+        context['gi_fields'] = fields
+        return context
+
 class SearchGi(ListGi):
 
     def get_queryset(self):
@@ -74,6 +82,39 @@ class SearchGi(ListGi):
                           (Q(subEstadoNOC__icontains=q) for q in query_list))
             )
         return result
+
+class FilterGi(ListGi):
+    paginate_by = 100
+
+    def get_queryset(self):
+        queryset = super(FilterGi, self).get_queryset()
+        query_field = self.request.GET.get('field')
+        query_value = self.request.GET.get('value')
+        query_date = self.request.GET.get('date')
+        if query_field and query_value != '':
+            query_dict = { query_field + '__iexact': query_value }
+            queryset = queryset.filter(**query_dict)
+        if query_field and query_date != '':
+            query_dict = { query_field + '__iexact': query_date }
+            queryset = queryset.filter(**query_dict)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(FilterGi, self).get_context_data(**kwargs)
+        query_field = self.request.GET.get('field')
+        query_value = self.request.GET.get('value')
+        query_date = self.request.GET.get('date')
+        queryset = Gi.objects.exclude(fechaIntegracion__isnull=True)
+        if query_field and query_value:
+            query_dict = { query_field + '__iexact': query_value }
+            queryset = queryset.filter(**query_dict)
+        if query_field and query_date != '':
+            query_dict = { query_field + '__iexact': query_date }
+            queryset = queryset.filter(**query_dict)
+        result = queryset.count()
+        context['query_dict'] = query_dict
+        context['result'] = result
+        return context
 
 # def actualizacion(request):
 #     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
