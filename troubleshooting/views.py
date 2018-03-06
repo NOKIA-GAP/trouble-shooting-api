@@ -207,5 +207,4 @@ class IndexView(TemplateView):
         context['fallas_comportamiento_previo'] = fallas_comportamiento_previo.count()
         context['fallas_ajuste_adyasencias'] = fallas_ajuste_adyasencias.count()
 
-        print(context)
         return context
