@@ -65,7 +65,8 @@ class IncidenteIngenieroNpoForm(ModelForm):
 
 class IncidenteNiForm(ModelForm):
     ni_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NI Ingeniero'), required=True)
-    asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
+    asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
+    # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
 
     def __init__(self, *args, **kwargs):
         self.asignador = kwargs.pop('asignador', None)
