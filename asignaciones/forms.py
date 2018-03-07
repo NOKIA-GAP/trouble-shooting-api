@@ -512,7 +512,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'angelica.dharo@osctelecoms.com',
                           'andres.pacheco@osctelecoms.com',
                           'julieth.caceres@osctelecoms.com',
-                          'esther.villegas@osctlecoms.com',
+                          'esther.villegas@osctelecoms.com',
                           ]
             if service_supplier == REDESYSERVICIOS:
                 para_ss = [
@@ -695,7 +695,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'angelica.dharo@osctelecoms.com',
                           'andres.pacheco@osctelecoms.com',
                           'julieth.caceres@osctelecoms.com',
-                          'esther.villegas@osctlecoms.com',
+                          'esther.villegas@osctelecoms.com',
                           ]
             if service_supplier == REDESYSERVICIOS:
                 para_ss = [
