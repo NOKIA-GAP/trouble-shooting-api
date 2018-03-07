@@ -11,7 +11,7 @@
 
 {% block header_left %}
 <h1>
-  Lista De Notificaciones Falla Instalacion
+  Lista De Notificaciones Falla Instalacion {{ notificaciones_falla_instalacion_count }}
   <a href="{% url 'notificaciones:export_notificaciones_falla_instalacion' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
 </h1><br>
 {% endblock header_left %}
@@ -23,6 +23,7 @@
   </div>
    <button type="submit" class="btn btn-default">Buscar</button>
 </form>
+<h4>total en pagina {{ object_list.count }}</h4>
 {% endblock header_right %}
 
 {% block nav_tab %}

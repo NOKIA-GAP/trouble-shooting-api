@@ -36,6 +36,9 @@ class ListGi(LoginRequiredMixin, ListView):
         for field in Gi._meta.fields:
             fields.append(field.name)
         context['gi_fields'] = fields
+        context['gi_count'] = self.get_queryset().count()
+        return context
+
         return context
 
 class SearchGi(ListGi):

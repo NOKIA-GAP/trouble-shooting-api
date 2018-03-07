@@ -94,6 +94,11 @@ class ListSolicitudHW(LoginRequiredMixin, ListView):
             queryset = queryset.filter(estado_solicitud=query, ni_ingeniero=ingeniero)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super(ListSolicitudHW, self).get_context_data(**kwargs)
+        context['solicitudeshw_count'] = self.get_queryset().count()
+        return context
+
 class ListSolicitudHWSolicitado(ListSolicitudHW):
 
     def get_queryset(self, **kwargs):
@@ -214,6 +219,11 @@ class ListSolicitud(LoginRequiredMixin, ListView):
     model = Solicitud
     template_name = 'solicitud/list_solicitud.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListSolicitud, self).get_context_data(**kwargs)
+        context['solicitudes_count'] = self.get_queryset().count()
+        return context
 
 class ListSolicitudSolicitudHW(ListSolicitud):
 

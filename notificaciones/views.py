@@ -26,6 +26,11 @@ class ListNotificacionRequiereVisita(LoginRequiredMixin, ListView):
     template_name = 'notificacion_requiere_visita/list_notificacion_requiere_visita.html'
     paginate_by = 100
 
+    def get_context_data(self, **kwargs):
+        context = super(ListNotificacionRequiereVisita, self).get_context_data(**kwargs)
+        context['notificaciones_requiere_visita_count'] = self.get_queryset().count()
+        return context
+
 class SearchNotificacionRequiereVisita(ListNotificacionRequiereVisita):
 
     def get_queryset(self):
@@ -77,6 +82,11 @@ class ListNotificacionFallaInstalacion(LoginRequiredMixin, ListView):
     model = NotificacionFallaInstalacion
     template_name = 'notificacion_falla_instalacion/list_notificacion_falla_instalacion.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListNotificacionFallaInstalacion, self).get_context_data(**kwargs)
+        context['notificaciones_falla_instalacion_count'] = self.get_queryset().count()
+        return context
 
 class SearchNotificacionFallaInstalacion(ListNotificacionFallaInstalacion):
 
@@ -132,6 +142,11 @@ class ListNotificacionFallaIntegracion(LoginRequiredMixin, ListView):
     template_name = 'notificacion_falla_integracion/list_notificacion_falla_integracion.html'
     paginate_by = 100
 
+    def get_context_data(self, **kwargs):
+        context = super(ListNotificacionFallaIntegracion, self).get_context_data(**kwargs)
+        context['notificaciones_falla_integracion_count'] = self.get_queryset().count()
+        return context
+
 class SearchNotificacionFallaIntegracion(ListNotificacionFallaIntegracion):
 
     def get_queryset(self):
@@ -183,6 +198,11 @@ class ListNotificacionFallaMalRechazo(LoginRequiredMixin, ListView):
     model = NotificacionFallaMalRechazo
     template_name = 'notificacion_falla_mal_rechazo/list_notificacion_falla_mal_rechazo.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListNotificacionFallaMalRechazo, self).get_context_data(**kwargs)
+        context['notificaciones_falla_mal_rechazo_count'] = self.get_queryset().count()
+        return context
 
 class SearchNotificacionFallaMalRechazo(ListNotificacionFallaMalRechazo):
 

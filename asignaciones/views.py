@@ -122,6 +122,11 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
             queryset = asignaciones_npo_en_monitoreo_tres_dias
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super(ListAsignacionNpo, self).get_context_data(**kwargs)
+        context['asignaciones_npo_count'] = self.get_queryset().count()
+        return context
+
 class ListAsignacionNpoActividad(ListAsignacionNpo):
 
     def get_queryset(self, **kwargs):
@@ -474,6 +479,11 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
         if qs and qs == 'asignaciones_ni_en_monitoreo_tres_dias':
             queryset = asignaciones_ni_en_monitoreo_tres_dias
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ListAsignacionNi, self).get_context_data(**kwargs)
+        context['asignaciones_ni_count'] = self.get_queryset().count()
+        return context
 
 class ListAsignacionNiActividad(ListAsignacionNi):
 

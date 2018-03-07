@@ -46,6 +46,7 @@ class CreateIncidenteNpo(LoginRequiredMixin, CreateView):
         context['actividad'] = Actividad.objects.get(pk=self.kwargs['pk'])
         return context
 
+
     def get_form_kwargs(self):
         kwargs = super(CreateIncidenteNpo, self).get_form_kwargs()
         asignador = Perfil.objects.get(user=self.request.user)
@@ -81,6 +82,11 @@ class ListIncidenteNpo(LoginRequiredMixin, ListView):
         if query and perfil.perfil_usuario == NI_INGENIERO:
             queryset = queryset.filter(estado_incidente=query, npo_ingeniero=perfil)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ListIncidenteNpo, self).get_context_data(**kwargs)
+        context['incidentes_npo_count'] = self.get_queryset().count()
+        return context
 
 class ListIncidenteCerradoNpo(ListIncidenteNpo):
 
@@ -204,6 +210,11 @@ class ListIncidenteNi(LoginRequiredMixin, ListView):
         if query and perfil.perfil_usuario == NPO_INGENIERO:
             queryset = queryset.filter(estado_incidente=query, ni_ingeniero=perfil)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(ListIncidenteNi, self).get_context_data(**kwargs)
+        context['incidentes_ni_count'] = self.get_queryset().count()
+        return context
 
 class ListIncidenteCerradoNi(ListIncidenteNi):
 

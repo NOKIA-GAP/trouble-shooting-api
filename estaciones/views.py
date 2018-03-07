@@ -58,6 +58,7 @@ class ListEstacion(LoginRequiredMixin, ListView):
         fields = []
         for field in Estacion._meta.fields:
             fields.append(field.name)
+        context['estaciones_count'] = self.get_queryset().count()
         context['estacion_fields'] = fields
         return context
 

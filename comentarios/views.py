@@ -56,6 +56,11 @@ class ListComentarioNpo(LoginRequiredMixin, ListView):
     template_name = 'comentario_npo/list_comentario_npo.html'
     paginate_by = 100
 
+    def get_context_data(self, **kwargs):
+        context = super(ListComentarioNpo, self).get_context_data(**kwargs)
+        context['comentarios_npo_count'] = self.get_queryset().count()
+        return context
+
 class ListComentarioNpoActividad(ListComentarioNpo):
 
     def get_queryset(self, **kwargs):
@@ -182,6 +187,11 @@ class ListComentarioNi(LoginRequiredMixin, ListView):
     model = ComentarioNi
     template_name = 'comentario_ni/list_comentario_ni.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListComentarioNi, self).get_context_data(**kwargs)
+        context['comentarios_ni_count'] = self.get_queryset().count()
+        return context
 
 class ListComentarioNiActividad(ListComentarioNi):
 

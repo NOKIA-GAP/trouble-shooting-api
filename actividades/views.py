@@ -92,6 +92,7 @@ class ListActividad(LoginRequiredMixin, ListView):
         fields = []
         for field in Actividad._meta.fields:
             fields.append(field.name)
+        context['actividades_count'] = self.get_queryset().count()
         context['actividad_fields'] = fields
         return context
 
@@ -260,6 +261,11 @@ class ListDegradacion(LoginRequiredMixin, ListView):
     model = Degradacion
     template_name = 'degradacion/list_degradacion.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListDegradacion, self).get_context_data(**kwargs)
+        context['degradaciones_count'] = self.get_queryset().count()
+        return context
 
 class ListDegradacionActividad(ListDegradacion):
 

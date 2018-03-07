@@ -11,8 +11,27 @@
 
 {% block header_left %}
 <h1>
-  Lista De Fallas
-  <a href="{% url 'fallas:export_fallas' %}" class="btn btn-info btn-sm" role="button">Exportar</a>
+  Lista De Fallas {{ fallas_count }}
+  <div class="btn-group">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportar <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Instalacion">Instalacion</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Software">Software</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Hardware">Hardware</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Datafill">Datafill</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Ajuste Potencia">Ajuste Potencia</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Integracion">Integracion</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Interferencia externa">Interferencia externa</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Cambio diseno">Cambio diseno</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Mal rechazo">Mal rechazo</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=TX">TX</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Comportamiento esperado">Comportamiento esperado</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Comportamiento previo">Comportamiento previo</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Ajuste Adyacencias">Ajuste Adyacencias</a></li>
+  </ul>
+  </div>
 </h1><br>
 {% endblock header_left %}
 
@@ -23,10 +42,51 @@
   </div>
    <button type="submit" class="btn btn-default">Buscar</button>
 </form>
+<h4>total en pagina {{ object_list.count }}</h4>
 {% endblock header_right %}
 
 {% block nav_tab %}
-
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Instalacion">Instalacion</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Software">Software</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Hardware">Hardware</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Datafill">Datafill</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Ajuste Potencia">Ajuste Potencia</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Integracion">Integracion</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Interferencia externa">Interferencia externa</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Cambio diseno">Cambio diseno</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Mal rechazo">Mal rechazo</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=TX">TX</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Comportamiento esperado">Comportamiento esperado</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Comportamiento previo">Comportamiento previo</a>
+  </li>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
+    <a href="{% url 'fallas:list_falla' %}?qs=Ajuste Adyacencias">Ajuste Adyacencias</a>
+  </li>
+</ul><br>
 {% endblock nav_tab %}
 
 {% block content %}

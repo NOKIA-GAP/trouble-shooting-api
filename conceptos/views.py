@@ -59,6 +59,11 @@ class ListConceptoNpo(LoginRequiredMixin, ListView):
     template_name = 'concepto_npo/list_concepto_npo.html'
     paginate_by = 100
 
+    def get_context_data(self, **kwargs):
+        context = super(ListConceptoNpo, self).get_context_data(**kwargs)
+        context['conceptos_npo_count'] = self.get_queryset().count()
+        return context
+
 class ListConceptoNpoActividad(ListConceptoNpo):
 
     def get_queryset(self, **kwargs):
@@ -183,6 +188,11 @@ class ListConceptoNi(LoginRequiredMixin, ListView):
     model = ConceptoNi
     template_name = 'concepto_ni/list_concepto_ni.html'
     paginate_by = 100
+
+    def get_context_data(self, **kwargs):
+        context = super(ListConceptoNi, self).get_context_data(**kwargs)
+        context['conceptos_ni_count'] = self.get_queryset().count()
+        return context
 
 class ListConceptoNiActividad(ListConceptoNi):
 
