@@ -24,7 +24,7 @@
     <tbody>
       {% for ingeniero_ni in ingenieros_ni %}
       <tr>
-        <td>{{ ingeniero_ni.nombre_completo.title }}</td>
+        <td><a href="{% url 'asignaciones:list_asignacion_ni_perfil' ingeniero_ni.slug %}">{{ ingeniero_ni.nombre_completo.title }}</a></td>
         <td style="text-align: center;">{{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Local" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"Asignada,Local" }}) -
           {{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni:"Asignada,Remoto" }}({{ ingeniero_ni.asignaciones_ni_ingeniero|estado_asignacion_ni_estacion:"Asignada,Remoto" }})
         </td>
