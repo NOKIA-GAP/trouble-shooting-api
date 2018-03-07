@@ -135,6 +135,8 @@ def export_fallas(request):
         queryset = Falla.objects.filter(tipo_falla=MALRECHAZO)
     if qs == TX:
         queryset = Falla.objects.filter(tipo_falla=TX)
+    if qs == COMPORTAMIENTOESPERADO:
+        queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOESPERADO)
     if qs == COMPORTAMIENTOPREVIO:
         queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOPREVIO)
     if qs == AJUSTEADYACENCIAS:
