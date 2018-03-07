@@ -483,7 +483,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'auditor@ingetelsas.com.co',
                           'gerencia@ingetelsas.com.co',
                           'administrativo@ingetelsas.com.co',
-                          'supervision_cali@ingetelsas.com.co',
                           ]
             if service_supplier == INGYTELCOM:
                 para_ss = [
@@ -666,7 +665,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'auditor@ingetelsas.com.co',
                           'gerencia@ingetelsas.com.co',
                           'administrativo@ingetelsas.com.co',
-                          'supervision_cali@ingetelsas.com.co',
                           ]
             if service_supplier == INGYTELCOM:
                 para_ss = [
