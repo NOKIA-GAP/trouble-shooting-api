@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'fallas.apps.FallasConfig',
     'incidentes.apps.IncidentesConfig',
     'comentarios.apps.ComentariosConfig',
+    'alertas.apps.AlertasConfig',
     'nokiagi',
     'django_filters',
     'import_export',
@@ -186,7 +187,7 @@ CSRF_COOKIE_SECURE              = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
 SECURE_HSTS_SECONDS             = 1000000
 SECURE_FRAME_DENY               = True
-SECURE_REDIRECT_EXEMPT = ["actualizacion", "creacion"]
+SECURE_REDIRECT_EXEMPT = ["actualizacion", "creacion", "normalizacion"]
 # SECURE_REDIRECT_EXEMPT = ["^actualizacion/", "^creacion/"]
 
 try:

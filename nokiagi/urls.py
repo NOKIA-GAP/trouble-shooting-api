@@ -14,4 +14,5 @@ urlpatterns = [
     # url(r'^export/fallas/$', views.export_fallas, name='export_fallas'),
     url(r'^actualizacion/$', views.actualizacion, name='actualizacion'),
     url(r'^creacion/$', views.creacion, name='creacion'),
+    url(r'^normalizacion/$', views.normalizacion, name='normalizacion'),
 ]

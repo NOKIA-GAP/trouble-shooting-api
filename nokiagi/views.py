@@ -18,6 +18,8 @@ THREEDAYS = timezone.now() - datetime.timedelta(3)
 
 PRODUCCION = 'Produccion'
 GAP1 = 'GAP1'
+ABIERTO = 'Abierto'
+NORMALIZACION = 'Normalizacion'
 
 class ListGi(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
@@ -200,4 +202,37 @@ def creacion(request):
                     estado_noc=actividad_gi.estadoNOC,
                     subestado_noc=actividad_gi.subEstadoNOC,
                 )
+    return HttpResponse(status=204)
+
+def normalizacion(request):
+    # if request.headers["X-Appengine-Cron"]:
+    actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True)
+    actividades = Actividad.objects.all()
+    for actividad_gi in actividades_gi:
+        try:
+            actividad = actividades.get(wp=actividad_gi.wp)
+            # if not actividad.fecha_integracion:
+            #     mensaje = ''
+            #     print(actividad)
+                # alerta = Actividad.objects.create(
+                #     estacion=actividad.estacion,
+                #     actividad=actividad,
+                #     wp=actividad.wp,
+                #     mensaje=mensaje,
+                #     estado_alerta=ABIERTO,
+                #     tipo_alerta=NORMALIZACION,
+                # )
+            if actividad.fecha_integracion != actividad_gi.fechaIntegracion:
+                mensaje = ''
+                print(actividad)
+                # alerta = Actividad.objects.create(
+                #     estacion=actividad.estacion,
+                #     actividad=actividad,
+                #     wp=actividad.wp,
+                #     mensaje=mensaje,
+                #     estado_alerta=ABIERTO,
+                #     tipo_alerta=NORMALIZACION,
+                # )
+        except Actividad.DoesNotExist:
+            pass
     return HttpResponse(status=204)
