@@ -77,6 +77,7 @@ TEMPLATES = [
             'context_processors': [
                 'incidentes.context_processors.notificacion_incidentes_npo',
                 'incidentes.context_processors.notificacion_incidentes_ni',
+                'alertas.context_processors.alertas',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

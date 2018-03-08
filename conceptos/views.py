@@ -247,7 +247,7 @@ class DeleteConceptoNi(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         asignacion_ni = self.object.asignacion_ni
-        return reverse_lazy( 'conceptos:list_concepto_ni_asignacion', kwargs={'pk': asignacion_ni.pk})
+        return reverse_lazy('conceptos:list_concepto_ni_asignacion', kwargs={'pk': asignacion_ni.pk})
 
 
 class SearchConceptoNi(ListConceptoNi):

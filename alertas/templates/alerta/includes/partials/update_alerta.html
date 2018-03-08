@@ -3,10 +3,10 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="myModalLabel">Actualizar Incidente NI</h4>
+      <h4 class="modal-title" id="myModalLabel">Actualizar Alerta</h4>
     </div>
     <div class="modal-body">
-      <form method="POST" action="{% url 'incidentes:update_incidente_ni' object.pk %}" id="form_modal" class="">{% csrf_token %}
+      <form method="POST" action="{% url 'alertas:update_alerta' object.pk %}" id="form_modal" class="">{% csrf_token %}
         <div class="form-group">
           {{ form|crispy }}
         </div>
@@ -21,9 +21,8 @@
 
 <script>
 
-var success_url = "{% url 'estaciones:detail_estacion' actividad.estacion.pk %}"
 var modal_body = $(".modal-body");
-var modal_load_error = "Error occurred while loading";
+var modal_load_error = "ERROR! la informacion no fue cargada.";
 
 $("#form_modal").submit(function(event) {
   event.preventDefault();
@@ -36,7 +35,7 @@ $("#form_modal").submit(function(event) {
         error = $(data).find('div.alert.alert-block.alert-danger')
         modal_body.append(error);
       } else {
-          window.location.href = success_url;
+          window.location.href = window.location.href;
       }
     },
     error: function () {

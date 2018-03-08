@@ -8,6 +8,7 @@ ListView,
 from .models import Gi
 from actividades.models import Actividad
 from estaciones.models import Estacion
+from alertas.models import Alerta
 from django.utils import timezone
 import datetime
 import operator
@@ -211,28 +212,26 @@ def normalizacion(request):
     for actividad_gi in actividades_gi:
         try:
             actividad = actividades.get(wp=actividad_gi.wp)
-            # if not actividad.fecha_integracion:
-            #     mensaje = ''
-            #     print(actividad)
-                # alerta = Actividad.objects.create(
-                #     estacion=actividad.estacion,
-                #     actividad=actividad,
-                #     wp=actividad.wp,
-                #     mensaje=mensaje,
-                #     estado_alerta=ABIERTO,
-                #     tipo_alerta=NORMALIZACION,
-                # )
-            if actividad.fecha_integracion != actividad_gi.fechaIntegracion:
-                mensaje = ''
-                print(actividad)
-                # alerta = Actividad.objects.create(
-                #     estacion=actividad.estacion,
-                #     actividad=actividad,
-                #     wp=actividad.wp,
-                #     mensaje=mensaje,
-                #     estado_alerta=ABIERTO,
-                #     tipo_alerta=NORMALIZACION,
-                # )
+            if not actividad.fecha_integracion:
+                mensaje = 'La actividad no tiene una fecha de integración.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if actividad.fecha_integracion and actividad.fecha_integracion != actividad_gi.fechaIntegracion:
+                mensaje = 'La actividad tiene una fecha de integración diferente.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
         except Actividad.DoesNotExist:
             pass
     return HttpResponse(status=204)

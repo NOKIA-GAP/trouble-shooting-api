@@ -3,34 +3,16 @@
   <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
   <td>{{ object.actividad }}</td>
   <td><a href="{% url 'actividades:detail_actividad' object.actividad.pk %}">{{ object.wp }}</a></td>
-  <td>{{ object.estado_incidente }}</td>
-  <td><a href="{% url 'users:detail_perfil' object.ni_ingeniero.slug %}">{{ object.ni_ingeniero }}</a></td>
-  <td>
-    {%  if object.comentarios_ni.all %}
-      <a href="{% url 'comentarios:list_comentario_ni_incidente' object.pk %}">comentarios ni</a>
-    {% else %}
-      None
-    {% endif %}
-  </td>
+  <td>{{ object.mensaje }}</td>
+  <td>{{ object.estado_alerta }}</td>
+  <td>{{ object.tipo_alerta }}</td>
   <td>{{ object.creado }}</td>
   <td>{{ object.actualizado }}</td>
-  {% if object.estado_incidente == 'Abierto' %}
+  {% if object.estado_alerta == 'Abierto' %}
 
-    {% if perms.users.perm_ni_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
+    {% if perms.users.perm_gap_administrador %}
       <th>
-        <a onclick="return update_incidente_ni('{% url 'incidentes:update_incidente_ni' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
-      </th>
-    {% elif perms.users.perm_ni_ingeniero %}
-      <th>
-        <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Accion <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a onclick="return create_comentario_ni('{% url 'comentarios:create_comentario_ni' object.pk %}')">Comentario</a></li>
-          <li><a onclick="return update_incidente_ni('{% url 'incidentes:update_incidente_ingeniero_ni' object.pk %}')">Actualizar</a></li>
-        </ul>
-        </div>
+        <a onclick="return delete_alerta('{% url 'alertas:delete_alerta' object.pk %}')" class="btn btn-primary btn-sm" role="button">Borrar</a>
       </th>
     {% else %}
     {% endif %}

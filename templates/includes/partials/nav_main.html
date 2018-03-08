@@ -56,6 +56,12 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        {% if perms.users.perm_gap_administrador %}
+        {% if alertas %}
+        <li><a href="{% url 'alertas:list_alerta' %}">Alertas <span class="badge" style="background:orange">{{ alertas }}</span></a></li>
+        {% endif %}
+        {% endif %}
+
         {% if perms.users.perm_gap_administrador or perms.users.perm_npo_ingeniero %}
         {% if notificacion_incidentes_npo %}
         <li><a href="{% url 'incidentes:list_incidente_npo' %}">Incidentes Npo <span class="badge" style="background:red">{{ notificacion_incidentes_npo }}</span></a></li>

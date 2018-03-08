@@ -3,16 +3,16 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="myModalLabel">Actualizar Degradacion</h4>
+      <h4 class="modal-title" id="myModalLabel">Borrar Alerta</h4>
     </div>
     <div class="modal-body">
-      <form method="POST" action="{% url 'actividades:update_degradacion' object.pk %}" id="form_modal" class="">{% csrf_token %}
+      <form method="POST" action="{% url 'alertas:delete_alerta' object.pk %}" id="form_modal" class="">{% csrf_token %}
         <div class="form-group">
-          {{ form|crispy }}
+          <p>Estas seguro que quiers borrar Alerta "{{ object }}"?</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Actualizar</button>
+          <button type="submit" class="btn btn-primary">Confirmar</button>
         </div>
       </form>
     </div>
@@ -21,7 +21,6 @@
 
 <script>
 
-var success_url = "{% url 'actividades:list_degradacion_actividad' actividad.pk %}"
 var modal_body = $(".modal-body");
 var modal_load_error = "ERROR! la informacion no fue cargada.";
 
@@ -36,7 +35,7 @@ $("#form_modal").submit(function(event) {
         error = $(data).find('div.alert.alert-block.alert-danger')
         modal_body.append(error);
       } else {
-          window.location.href = success_url;
+          window.location.href = window.location.href;
       }
     },
     error: function () {

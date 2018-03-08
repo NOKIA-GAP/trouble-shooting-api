@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 from estaciones.models import Estacion
 from actividades.models import Actividad
 from . import choices
@@ -24,3 +24,6 @@ class Alerta(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    def get_absolute_url(self):
+        return reverse('alertas:detail_alerta', kwargs={'pk': self.pk})
