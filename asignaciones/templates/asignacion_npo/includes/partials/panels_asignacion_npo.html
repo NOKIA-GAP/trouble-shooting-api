@@ -24,12 +24,12 @@
     <tbody>
       {% for ingeniero_npo in ingenieros_npo %}
       <tr>
-        <td><a href="{% url 'asignaciones:list_asignacion_npo_perfil' ingeniero_npo.slug %}">{{ ingeniero_npo.nombre_completo.title }}</a></td>
-        <td style="text-align: center;">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada,Local" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"Asignada,Local" }}) -
+        <td>{{ ingeniero_npo.nombre_completo.title }}</td>
+        <td style="text-align: center;"><a href="{% url 'asignaciones:list_asignacion_npo_perfil' ingeniero_npo.slug %}">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada,Local" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"Asignada,Local" }}) -
           {{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"Asignada,Remoto" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"Asignada,Remoto" }})
-        </td>
-        <td style="text-align: center;">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"En monitoreo" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"En monitoreo" }})
-        </td>
+        </a></td>
+        <td style="text-align: center;"><a href="{% url 'asignaciones:list_asignacion_npo_estado_b' ingeniero_npo.slug %}">{{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo:"En monitoreo" }}({{ ingeniero_npo.asignaciones_npo_ingeniero|estado_asignacion_npo_estacion:"En monitoreo" }})
+        </a></td>
         <td style="text-align: center;">{{ ingeniero_npo.incidentes_npo|estado_incidente_npo:"Abierto" }}</td>
       </tr>
       {% endfor %}
