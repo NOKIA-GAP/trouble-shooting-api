@@ -37,7 +37,7 @@ $("#form_modal").submit(function(event) {
         error = $(data).find('div.alert.alert-block.alert-danger')
         modal_body.append(error);
       } else {
-          window.location.href = success_url;
+          window.location.href = window.location.href;
       }
     },
     error: function () {
