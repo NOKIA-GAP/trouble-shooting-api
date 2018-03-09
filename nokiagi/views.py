@@ -122,22 +122,6 @@ class FilterGi(ListGi):
         context['result'] = result
         return context
 
-# def actualizacion(request):
-#     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
-#     actividades = Actividad.objects.exclude(estado_noc=PRODUCCION)
-#
-#     for actividad in actividades:
-#         try:
-#             act = actividades_gi.get(wp=actividad.wp)
-#             if actividad.estado_noc != act.estadoNOC or actividad.subestado_noc != act.subEstadoNOC:
-#                 actividad.estado_noc = act.estadoNOC
-#                 actividad.subestado_noc = act.subEstadoNOC
-#                 actividad.fecha_estado_noc = act.fechaEstado.date()
-#                 actividad.save()
-#         except Gi.DoesNotExist:
-#             pass
-#     return HttpResponse(status=204)
-
 def actualizacion(request):
     # if request.headers["X-Appengine-Cron"]:
     actividades_gi = Gi.objects.exclude(fechaIntegracion__isnull=True).exclude(onAir__lte=THREEDAYS)
@@ -213,7 +197,7 @@ def normalizacion(request):
         try:
             actividad = actividades.get(wp=actividad_gi.wp)
             if not actividad.fecha_integracion:
-                mensaje = 'La actividad no tiene una fecha de integración.'
+                mensaje = 'La actividad no tiene fecha de integración.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
@@ -223,7 +207,87 @@ def normalizacion(request):
                     tipo_alerta=NORMALIZACION,
                 )
             if actividad.fecha_integracion and actividad.fecha_integracion != actividad_gi.fechaIntegracion:
-                mensaje = 'La actividad tiene una fecha de integración diferente.'
+                mensaje = 'La actividad tiene fecha de integración diferente.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if not actividad.estado_noc:
+                mensaje = 'La actividad no tiene estado noc.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if actividad.estado_noc and actividad.estado_noc != actividad_gi.estadoNOC:
+                mensaje = 'La actividad tiene estado noc diferente.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if not actividad.banda:
+                mensaje = 'La actividad no tiene banda.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if actividad.banda and actividad.banda != actividad_gi.banda:
+                mensaje = 'La actividad tiene banda diferente.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if not actividad.proyecto:
+                mensaje = 'La actividad no tiene una proyecto.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if actividad.proyecto and actividad.proyecto != actividad_gi.proyecto:
+                mensaje = 'La actividad tiene una proyecto diferente.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if not actividad.escenario:
+                mensaje = 'La actividad no tiene una escenario.'
+                alerta = Alerta.objects.create(
+                    estacion=actividad.estacion,
+                    actividad=actividad,
+                    wp=actividad.wp,
+                    mensaje=mensaje,
+                    estado_alerta=ABIERTO,
+                    tipo_alerta=NORMALIZACION,
+                )
+            if actividad.escenario and actividad.escenario != actividad_gi.escenario:
+                mensaje = 'La actividad tiene una escenario diferente.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
