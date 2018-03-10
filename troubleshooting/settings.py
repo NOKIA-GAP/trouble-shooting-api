@@ -27,6 +27,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+ADMINS = os.getenv('ADMINS')
+
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -163,10 +165,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-if os.getenv('GAE_INSTANCE'):
-    STATIC_URL = os.getenv('STATIC_URL')
-else:
-    STATIC_URL = '/static/'
+STATIC_URL = os.getenv('STATIC_URL')
 
 STATIC_ROOT = 'static/'
 IMPORT_EXPORT_USE_TRANSACTIONS = True
