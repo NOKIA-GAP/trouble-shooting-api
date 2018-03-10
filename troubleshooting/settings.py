@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ADMINS = os.getenv('ADMINS')
+ADMINS = [('Julio Brito', 'jucebridu@gmail.com')]
 
 ALLOWED_HOSTS = ['*']
 
