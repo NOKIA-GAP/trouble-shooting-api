@@ -426,11 +426,11 @@ class AsignacionNiIngenieroForm(ModelForm):
             para_regional = []
 
             if regional == CENTRO or regional == ORIENTE:
-                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
+                para_regional = ['andres.montano@nokia.com', 'mng1.claro@nokia.com']
             if regional == COSTA or regional == NORORIENTE:
                 para_regional = ['hubert.tafurt_hidalgo@nokia.com', 'rom1.claro@nokia.com']
             if regional == SUROCCIDENTE or regional == NOROCCIDENTE:
-                para_regional = ['catalina.ramirez@nokia.com', 'henry.neira@nokia.com']
+                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
 
             para_ss = []
 
@@ -608,11 +608,11 @@ class AsignacionNiIngenieroForm(ModelForm):
             para_regional = []
 
             if regional == CENTRO or regional == ORIENTE:
-                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
+                para_regional = ['andres.montano@nokia.com', 'mng1.claro@nokia.com']
             if regional == COSTA or regional == NORORIENTE:
                 para_regional = ['hubert.tafurt_hidalgo@nokia.com', 'rom1.claro@nokia.com']
             if regional == SUROCCIDENTE or regional == NOROCCIDENTE:
-                para_regional = ['catalina.ramirez@nokia.com', 'henry.neira@nokia.com']
+                para_regional = ['rafael.garcia@nokia.com', 'fernando.franco_soto@nokia.com']
 
             para_ss = []
 
