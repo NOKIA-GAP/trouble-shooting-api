@@ -20,27 +20,8 @@ THREEDAYS = timezone.now() - datetime.timedelta(3)
 NI_INGENIERO = 'NI Ingeniero'
 NPO_INGENIERO = 'NPO Ingeniero'
 
-asignaciones_npo = None
-asignaciones_npo_asignada = None
-asignaciones_npo_requiere_visita = None
-asignaciones_npo_en_monitoreo = None
-asignaciones_npo_escalado_a_claro = None
-asignaciones_npo_enviado_a_seguimiento = None
-asignaciones_npo_asignada_un_dia = None
-asignaciones_npo_en_monitoreo_tres_dias = None
-
-ingenieros_npo = None
-
-asignaciones_ni = None
-asignaciones_ni_asignada = None
-asignaciones_ni_requiere_visita = None
-asignaciones_ni_en_monitoreo = None
-asignaciones_ni_escalado_a_claro = None
-asignaciones_ni_enviado_a_seguimiento = None
-asignaciones_ni_asignada_un_dia = None
-asignaciones_ni_en_monitoreo_tres_dias = None
-
-ingenieros_ni = None
+asignaciones_npo = AsignacionNpo.objects.none()
+asignaciones_ni = AsignacionNi.objects.none()
 
 # asignaciones npo
 asignaciones_npo = AsignacionNpo.objects.all()
