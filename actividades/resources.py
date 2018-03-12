@@ -26,6 +26,9 @@ class ActividadResource(resources.ModelResource):
     field_manager = fields.Field(
         column_name='field manager',
         attribute='field_manager',)
+    valor_wp_eur = fields.Field(
+        column_name='valor wp eur',
+        attribute='valor_wp_eur',)
     estacion = fields.Field(
         column_name='estacion',
         attribute='estacion',
@@ -42,9 +45,6 @@ class ActividadResource(resources.ModelResource):
     prioridad = fields.Field(
         column_name='prioridad',
         attribute='estacion__prioridad',)
-    valor_wp_eur = fields.Field(
-        column_name='valor wp eur',
-        attribute='valor_wp_eur',)
     tipo_trabajo = fields.Field(
         column_name='tipo trabajo',
         attribute='tipo_trabajo',)
@@ -155,13 +155,13 @@ class ActividadResource(resources.ModelResource):
         'agrupador',
         'service_supplier',
         'field_manager',
+        'valor_wp_eur',
         'estacion',
         'regional',
         'ciudad',
         'responsable',
         'prioridad',
         'banda',
-        'valor_wp_eur',
         'proyecto',
         'escenario',
         'tipo_trabajo',

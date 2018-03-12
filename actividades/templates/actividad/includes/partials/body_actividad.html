@@ -20,6 +20,7 @@
   <td>{{ object.agrupador }}</td>
   <td>{{ object.service_supplier }}</td>
   <td>{{ object.field_manager }}</td>
+  <td>{{ object.valor_wp_eur }}</td>
   {% if object.estacion.pk %}
       <td><a href="{% url 'estaciones:detail_estacion' object.estacion.pk %}">{{ object.estacion }}</a></td>
   {% else %}
@@ -30,7 +31,6 @@
   <td>{{ object.estacion.responsable }}</td>
   <td>{{ object.estacion.prioridad }}</td>
   <td>{{ object.banda }}</td>
-  <td>{{ object.valor_wp_eur }}</td>
   <td>{{ object.proyecto }}</td>
   <td>{{ object.escenario }}</td>
   <td>{{ object.tipo_trabajo }}</td>

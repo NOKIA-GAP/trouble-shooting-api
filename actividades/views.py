@@ -160,13 +160,13 @@ class SearchActividad(ListActividad):
                 reduce(operator.and_,
                           (Q(id_notificacion_noc__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(estacion__nombre__icontains=q) for q in query_list)) |
+                          (Q(service_supplier__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(field_manager__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(banda__icontains=q) for q in query_list)) |
+                          (Q(estacion__nombre__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(valor_wp_eur__icontains=q) for q in query_list)) |
+                          (Q(banda__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
                           (Q(proyecto__icontains=q) for q in query_list)) |
                 reduce(operator.and_,

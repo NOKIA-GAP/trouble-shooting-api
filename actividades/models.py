@@ -25,9 +25,9 @@ class Actividad(models.Model):
     agrupador = models.CharField(max_length=255, blank=True, null=True)
     service_supplier = models.CharField(max_length=255, blank=True, choices=choices.SERVICE_SUPPLIER_CHOICES, null=True)
     field_manager = models.CharField(max_length=255, blank=True, null=True)
+    valor_wp_eur = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE,  blank=True, null=True, related_name='actividades')
     banda = models.CharField(max_length=255, blank=True, null=True)
-    valor_wp_eur = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)
     escenario = models.CharField(max_length=255, blank=True, null=True)
     tipo_trabajo = models.CharField(max_length=255, choices=choices.TIPO_TRABAJO_CHOICES, blank=True, null=True)
@@ -40,6 +40,7 @@ class Actividad(models.Model):
     subestado_noc = models.CharField(max_length=255, choices=choices.SUBESTADO_NOC_CHOICES, blank=True, null=True)
     impacto_degradacion = models.CharField(max_length=255, choices=choices.IMPACTO_DEGRADACION_CHOICES, blank=True, null=True)
     fecha_fc_visita = models.DateField(blank=True, null=True)
+
     estado = models.BooleanField(default=False, editable=False)
     subestado = models.BooleanField(default=False, editable=False)
     creado = models.DateTimeField(auto_now_add=True)
