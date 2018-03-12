@@ -206,16 +206,6 @@ def normalizacion(request):
                     estado_alerta=ABIERTO,
                     tipo_alerta=NORMALIZACION,
                 )
-            if actividad.fecha_integracion and actividad.fecha_integracion != actividad_gi.fechaIntegracion:
-                mensaje = 'La actividad tiene fecha de integración diferente.'
-                alerta = Alerta.objects.create(
-                    estacion=actividad.estacion,
-                    actividad=actividad,
-                    wp=actividad.wp,
-                    mensaje=mensaje,
-                    estado_alerta=ABIERTO,
-                    tipo_alerta=NORMALIZACION,
-                )
             if not actividad.estado_noc:
                 mensaje = 'La actividad no tiene estado noc.'
                 alerta = Alerta.objects.create(
