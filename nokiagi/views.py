@@ -247,7 +247,7 @@ def normalizacion(request):
                     tipo_alerta=NORMALIZACION,
                 )
             if not actividad.proyecto:
-                mensaje = 'La actividad no tiene una proyecto.'
+                mensaje = 'La actividad no tiene proyecto.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
@@ -257,7 +257,7 @@ def normalizacion(request):
                     tipo_alerta=NORMALIZACION,
                 )
             if actividad.proyecto and actividad.proyecto != actividad_gi.proyecto:
-                mensaje = 'La actividad tiene una proyecto diferente.'
+                mensaje = 'La actividad tiene proyecto diferente.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
@@ -267,7 +267,7 @@ def normalizacion(request):
                     tipo_alerta=NORMALIZACION,
                 )
             if not actividad.escenario:
-                mensaje = 'La actividad no tiene una escenario.'
+                mensaje = 'La actividad no tiene escenario.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
@@ -277,7 +277,7 @@ def normalizacion(request):
                     tipo_alerta=NORMALIZACION,
                 )
             if actividad.escenario and actividad.escenario != actividad_gi.escenario:
-                mensaje = 'La actividad tiene una escenario diferente.'
+                mensaje = 'La actividad tiene escenario diferente.'
                 alerta = Alerta.objects.create(
                     estacion=actividad.estacion,
                     actividad=actividad,
