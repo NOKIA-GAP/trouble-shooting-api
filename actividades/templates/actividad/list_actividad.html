@@ -12,7 +12,7 @@
 
 {% block header_left %}
 {% if perms.users.perm_gap_administrador %}
-<h1>Lista De Actividades {{ actividades_count }}
+<h1>Lista De Actividades
   <!-- <a href="{% url 'actividades:create_actividad' %}" class="btn btn-primary btn-sm" role="button">Crear</a> -->
   <a onclick="return create_actividad('{% url 'actividades:create_actividad' %}')" class="btn btn-primary btn-sm" role="button">Crear</a>
   <a href="{% url 'actividades:export_actividades' %}?{{query_dict|get_encoded_dict}}" class="btn btn-info btn-sm" role="button">Exportar</a>
@@ -32,7 +32,11 @@
   </div>
    <button type="submit" class="btn btn-default">Buscar</button>
 </form>
-<h4>total en pagina {{ object_list.count }}</h4>
+{% if result %}
+<h4>Se encontraron {{ result }} / {{ actividades_count }} Actividades</h4>
+{% else %}
+<h4>{{ actividades_count }} Actividades</h4>
+{% endif %}
 {% endblock header_right %}
 
 {% block filter_left %}
@@ -49,9 +53,6 @@
   </div>
   <button type="submit" class="btn btn-default">Filtrar</button>
 </form><br>
-{% if result %}
-<p>Se encontraron {{ result }} actividades</p>
-{% endif %}
 {% endblock filter_left %}
 
 {% block filter_right %}

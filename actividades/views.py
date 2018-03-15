@@ -92,7 +92,7 @@ class ListActividad(LoginRequiredMixin, ListView):
         fields = []
         for field in Actividad._meta.fields:
             fields.append(field.name)
-        context['actividades_count'] = self.get_queryset().count()
+        context['actividades_count'] = Actividad.objects.all().count()
         context['actividad_fields'] = fields
         return context
 
@@ -148,11 +148,11 @@ class DeleteActividad(LoginRequiredMixin, DeleteView):
 class SearchActividad(ListActividad):
 
     def get_queryset(self):
-        result = super(SearchActividad, self).get_queryset()
+        queryset = super(SearchActividad, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
-            result = result.filter(
+            queryset = queryset.filter(
                 reduce(operator.and_,
                           (Q(id__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
@@ -182,7 +182,13 @@ class SearchActividad(ListActividad):
                 reduce(operator.and_,
                           (Q(impacto_degradacion__icontains=q) for q in query_list))
             )
-        return result
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchActividad, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
 
 class FilterActividad(ListActividad):
     paginate_by = 100
@@ -264,7 +270,7 @@ class ListDegradacion(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListDegradacion, self).get_context_data(**kwargs)
-        context['degradaciones_count'] = self.get_queryset().count()
+        context['degradaciones_count'] = Degradacion.objects.all().count()
         return context
 
 class ListDegradacionActividad(ListDegradacion):
@@ -341,6 +347,12 @@ class SearchDegradacion(ListDegradacion):
                           (Q(actualizado__icontains=q) for q in query_list))
             )
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchDegradacion, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
 
 def export_degradaciones(request):
     degradaciones_resource = DegradacionResource()

@@ -58,7 +58,7 @@ class ListEstacion(LoginRequiredMixin, ListView):
         fields = []
         for field in Estacion._meta.fields:
             fields.append(field.name)
-        context['estaciones_count'] = self.get_queryset().count()
+        context['estaciones_count'] = Estacion.objects.all().count()
         context['estacion_fields'] = fields
         return context
 
@@ -97,12 +97,11 @@ class DeleteEstacion(LoginRequiredMixin, DeleteView):
 class SearchEstacion(ListEstacion):
 
     def get_queryset(self):
-        result = super(SearchEstacion, self).get_queryset()
-
+        queryset = super(SearchEstacion, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
-            result = result.filter(
+            queryset = queryset.filter(
                 reduce(operator.and_,
                           (Q(id__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
@@ -116,8 +115,13 @@ class SearchEstacion(ListEstacion):
                 reduce(operator.and_,
                           (Q(prioridad__icontains=q) for q in query_list))
             )
+        return queryset
 
-        return result
+    def get_context_data(self, **kwargs):
+        context = super(SearchEstacion, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
 
 class FilterEstacion(ListEstacion):
     paginate_by = 100

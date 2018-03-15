@@ -39,7 +39,7 @@ class ListGi(LoginRequiredMixin, ListView):
         for field in Gi._meta.fields:
             fields.append(field.name)
         context['gi_fields'] = fields
-        context['gi_count'] = self.get_queryset().count()
+        context['gi_count'] = Gi.objects.exclude(fechaIntegracion__isnull=True).count()
         return context
 
         return context
@@ -47,11 +47,11 @@ class ListGi(LoginRequiredMixin, ListView):
 class SearchGi(ListGi):
 
     def get_queryset(self):
-        result = super(SearchGi, self).get_queryset()
+        queryset = super(SearchGi, self).get_queryset()
         query = self.request.GET.get('q')
         if query:
             query_list = query.split()
-            result = result.filter(
+            queryset = queryset.filter(
                 reduce(operator.and_,
                           (Q(id__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
@@ -87,7 +87,13 @@ class SearchGi(ListGi):
                 reduce(operator.and_,
                           (Q(subEstadoNOC__icontains=q) for q in query_list))
             )
-        return result
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchGi, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
 
 class FilterGi(ListGi):
     paginate_by = 100
