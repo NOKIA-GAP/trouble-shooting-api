@@ -113,7 +113,9 @@ class SearchEstacion(ListEstacion):
                 reduce(operator.and_,
                           (Q(responsable__icontains=q) for q in query_list)) |
                 reduce(operator.and_,
-                          (Q(prioridad__icontains=q) for q in query_list))
+                          (Q(prioridad__icontains=q) for q in query_list)) |
+                reduce(operator.and_,
+                          (Q(estado_estacion__icontains=q) for q in query_list))
             )
         return queryset
 
