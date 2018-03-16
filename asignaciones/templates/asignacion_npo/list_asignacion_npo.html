@@ -7,7 +7,7 @@
 
 {% block header_left %}
 <h1>
-  Lista De Asignacion NPO {{ asignaciones_npo_count }}
+  Lista De Asignacion NPO
   <div class="btn-group">
   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Exportar <span class="caret"></span>
@@ -31,7 +31,11 @@
   </div>
    <button type="submit" class="btn btn-default">Buscar</button>
 </form>
-<h4>total en pagina {{ object_list.count }}</h4>
+{% if result %}
+<h4>Se encontraron {{ result }} / {{ asignaciones_npo_count }} Asignaciones NPO</h4>
+{% else %}
+<h4>{{ asignaciones_npo_count }} Asignaciones NPO</h4>
+{% endif %}
 {% endblock header_right %}
 
 {% block filter_left %}

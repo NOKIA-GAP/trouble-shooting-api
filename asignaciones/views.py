@@ -124,7 +124,7 @@ class ListAsignacionNpo(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListAsignacionNpo, self).get_context_data(**kwargs)
-        context['asignaciones_npo_count'] = self.get_queryset().count()
+        context['asignaciones_npo_count'] = AsignacionNpo.objects.all().count()
         return context
 
 class ListAsignacionNpoActividad(ListAsignacionNpo):
@@ -316,6 +316,12 @@ class SearchAsignacionNpo(ListAsignacionNpo):
             )
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super(SearchAsignacionNpo, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
+
 class DetailAsignacionNpo(LoginRequiredMixin, DetailView):
     login_url = 'users:login_user'
     model = AsignacionNpo
@@ -482,7 +488,7 @@ class ListAsignacionNi(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ListAsignacionNi, self).get_context_data(**kwargs)
-        context['asignaciones_ni_count'] = self.get_queryset().count()
+        context['asignaciones_ni_count'] = AsignacionNi.objects.all().count()
         return context
 
 class ListAsignacionNiActividad(ListAsignacionNi):
@@ -673,6 +679,12 @@ class SearchAsignacionNi(ListAsignacionNi):
                           (Q(actualizado__icontains=q) for q in query_list))
             )
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchAsignacionNi, self).get_context_data(**kwargs)
+        result = self.object_list.count()
+        context['result'] = result
+        return context
 
 class DetailAsignacionNi(LoginRequiredMixin, DetailView):
     login_url = 'users:login_user'
