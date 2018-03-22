@@ -47,6 +47,7 @@ SERVICE_SUPPLIER_CHOICES = (
     ('YINDA', 'YINDA'),
     ('CELPLAN', 'CELPLAN'),
     ('RSE', 'RSE'),
+    ('INMEL', 'INMEL'),
 )
 
 """ SOLVER_CHOICES  """
