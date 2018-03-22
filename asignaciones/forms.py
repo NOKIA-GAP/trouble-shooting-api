@@ -562,6 +562,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'hrestrepo@zoom-cgr.com',
                           'waltermolina@zoom-cgr.com',
                           ]
+            if service_supplier == INMEL:
+                para_ss = [
+                          'miguel.lopez@inmel.com.co'
+                          ]
 
             para = para_regional + para_ss
 
@@ -743,6 +747,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'vladimiryanes@zoom-cgr.com',
                           'hrestrepo@zoom-cgr.com',
                           'waltermolina@zoom-cgr.com',
+                          ]
+            if service_supplier == INMEL:
+                para_ss = [
+                          'miguel.lopez@inmel.com.co'
                           ]
 
             para = para_regional + para_ss
