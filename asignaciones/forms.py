@@ -461,7 +461,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'edison.santos@ezentis.com.co',
                           'fabio.cardenasr@ezentis.com.co',
                           'javier.amorocho@ezentis.com.co',
-                          'Fabio.cardenasr@ezentis.com.co',
                           ]
             if service_supplier == FIBRATERRA:
                 para_ss = [
@@ -647,7 +646,6 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'edison.santos@ezentis.com.co',
                           'fabio.cardenasr@ezentis.com.co',
                           'javier.amorocho@ezentis.com.co',
-                          'Fabio.cardenasr@ezentis.com.co',
                           ]
             if service_supplier == FIBRATERRA:
                 para_ss = [
