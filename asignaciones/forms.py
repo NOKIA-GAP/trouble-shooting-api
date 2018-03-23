@@ -442,6 +442,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'williamgrillo@adsm.com.co',
                           'heillerjimenez@adsm.com.co',
                           'gustavo@adsm.com.co',
+                          'adriancarbal@adsm.com.co',
                           ]
             if service_supplier == DECOM:
                 para_ss = [
@@ -627,6 +628,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'williamgrillo@adsm.com.co',
                           'heillerjimenez@adsm.com.co',
                           'gustavo@adsm.com.co',
+                          'adriancarbal@adsm.com.co',
                           ]
             if service_supplier == DECOM:
                 para_ss = [
