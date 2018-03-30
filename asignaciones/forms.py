@@ -72,6 +72,7 @@ SITCOM = 'SITCOM'
 YINDA = 'YINDA'
 ZOOM = 'ZOOM'
 INMEL = 'INMEL'
+CINCO = 'CINCO'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)

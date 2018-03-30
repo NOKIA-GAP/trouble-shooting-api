@@ -202,4 +202,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('CELPLAN', 'CELPLAN'),
     ('RSE', 'RSE'),
     ('INMEL', 'INMEL'),
+    ('CINCO', 'CINCO'),
 )
