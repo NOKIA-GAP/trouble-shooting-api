@@ -73,6 +73,7 @@ YINDA = 'YINDA'
 ZOOM = 'ZOOM'
 INMEL = 'INMEL'
 CINCO = 'CINCO'
+OPG = 'OPG'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -567,6 +568,20 @@ class AsignacionNiIngenieroForm(ModelForm):
                 para_ss = [
                           'miguel.lopez@inmel.com.co'
                           ]
+            if service_supplier == CINCO:
+                para_ss = [
+                          'Jacky.palacio@Gmail.com',
+                          'lidernokia@ci-nco.com.co',
+                          'colaya@une.net.co',
+                          'jacky.palacio@telmex.net.co',
+                          'victor.torres@ci-nco.com.co',
+                          'diana.zuluaga@ci-nco.com.co',
+                          ]
+            if service_supplier == OPG:
+                para_ss = [
+                          'hperez@opg.com.co',
+                          'jperez@opg.com.co',
+                          ]
 
             para = para_regional + para_ss
 
@@ -752,6 +767,20 @@ class AsignacionNiIngenieroForm(ModelForm):
             if service_supplier == INMEL:
                 para_ss = [
                           'miguel.lopez@inmel.com.co'
+                          ]
+            if service_supplier == CINCO:
+                para_ss = [
+                          'Jacky.palacio@Gmail.com',
+                          'lidernokia@ci-nco.com.co',
+                          'colaya@une.net.co',
+                          'jacky.palacio@telmex.net.co',
+                          'victor.torres@ci-nco.com.co',
+                          'diana.zuluaga@ci-nco.com.co',
+                          ]
+            if service_supplier == OPG:
+                para_ss = [
+                          'hperez@opg.com.co',
+                          'jperez@opg.com.co',
                           ]
 
             para = para_regional + para_ss
