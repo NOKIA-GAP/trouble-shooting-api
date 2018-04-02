@@ -74,6 +74,7 @@ ZOOM = 'ZOOM'
 INMEL = 'INMEL'
 CINCO = 'CINCO'
 OPG = 'OPG'
+NEWICT = 'NEWICT'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -582,6 +583,12 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'hperez@opg.com.co',
                           'jperez@opg.com.co',
                           ]
+            if service_supplier == NEWICT:
+                para_ss = [
+                          'newict_grupo2@anewict.com',
+                          'leidy.saldana@anewict.com',
+                          'agonzalez@anewict.com',
+                          ]
 
             para = para_regional + para_ss
 
@@ -781,6 +788,12 @@ class AsignacionNiIngenieroForm(ModelForm):
                 para_ss = [
                           'hperez@opg.com.co',
                           'jperez@opg.com.co',
+                          ]
+            if service_supplier == NEWICT:
+                para_ss = [
+                          'newict_grupo2@anewict.com',
+                          'leidy.saldana@anewict.com',
+                          'agonzalez@anewict.com',
                           ]
 
             para = para_regional + para_ss

@@ -68,4 +68,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('INMEL', 'INMEL'),
     ('CINCO', 'CINCO'),
     ('OPG', 'OPG'),
+    ('NEWICT', 'NEWICT'),
 )
