@@ -24,8 +24,8 @@ INTERFERENCIAEXTREMA = 'Interferencia externa'
 CAMBIODISENO = 'Cambio diseno'
 MALRECHAZO = 'Mal rechazo'
 TX = 'TX'
-COMPORTAMIENTOESPERADO = 'Comportamiento esperado'
-COMPORTAMIENTOPREVIO = 'Comportamiento previo'
+FALLAEXTERNA = 'Falla Externa'
+FALLATSS = 'Falla TSS'
 AJUSTEADYACENCIAS = 'Ajuste Adyacencias'
 
 class ListFalla(LoginRequiredMixin, ListView):
@@ -59,10 +59,10 @@ class ListFalla(LoginRequiredMixin, ListView):
             queryset = Falla.objects.filter(tipo_falla=MALRECHAZO)
         if qs == TX:
             queryset = Falla.objects.filter(tipo_falla=TX)
-        if qs == COMPORTAMIENTOESPERADO:
-            queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOESPERADO)
-        if qs == COMPORTAMIENTOPREVIO:
-            queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOPREVIO)
+        if qs == FALLAEXTERNA:
+            queryset = Falla.objects.filter(tipo_falla=FALLAEXTERNA)
+        if qs == FALLATSS:
+            queryset = Falla.objects.filter(tipo_falla=FALLATSS)
         if qs == AJUSTEADYACENCIAS:
             queryset = Falla.objects.filter(tipo_falla=AJUSTEADYACENCIAS)
         return queryset
@@ -137,10 +137,10 @@ def export_fallas(request):
         queryset = Falla.objects.filter(tipo_falla=MALRECHAZO)
     if qs == TX:
         queryset = Falla.objects.filter(tipo_falla=TX)
-    if qs == COMPORTAMIENTOESPERADO:
-        queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOESPERADO)
-    if qs == COMPORTAMIENTOPREVIO:
-        queryset = Falla.objects.filter(tipo_falla=COMPORTAMIENTOPREVIO)
+    if qs == FALLAEXTERNA:
+        queryset = Falla.objects.filter(tipo_falla=FALLAEXTERNA)
+    if qs == FALLATSS:
+        queryset = Falla.objects.filter(tipo_falla=FALLATSS)
     if qs == AJUSTEADYACENCIAS:
         queryset = Falla.objects.filter(tipo_falla=AJUSTEADYACENCIAS)
 

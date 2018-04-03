@@ -24,8 +24,8 @@ ORIGEN_FALLA_CHOICES = (
     ('Cambio diseno', 'Cambio diseno'),
     ('Mal rechazo', 'Mal rechazo'),
     ('TX', 'TX'),
-    ('Comportamiento esperado', 'Comportamiento esperado'),
-    ('Comportamiento previo', 'Comportamiento previo'),
+    ('Falla Externa', 'Falla Externa'),
+    ('Falla TSS', 'Falla TSS'),
     ('Ajuste Adyacencias', 'Ajuste Adyacencias'),
 )
 

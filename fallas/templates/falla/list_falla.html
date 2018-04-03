@@ -27,8 +27,8 @@
     <li><a href="{% url 'fallas:export_fallas' %}?qs=Cambio diseno">Cambio diseno</a></li>
     <li><a href="{% url 'fallas:export_fallas' %}?qs=Mal rechazo">Mal rechazo</a></li>
     <li><a href="{% url 'fallas:export_fallas' %}?qs=TX">TX</a></li>
-    <li><a href="{% url 'fallas:export_fallas' %}?qs=Comportamiento esperado">Comportamiento esperado</a></li>
-    <li><a href="{% url 'fallas:export_fallas' %}?qs=Comportamiento previo">Comportamiento previo</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Falla Externa">Falla Externa</a></li>
+    <li><a href="{% url 'fallas:export_fallas' %}?qs=Falla TSS">Falla TSS</a></li>
     <li><a href="{% url 'fallas:export_fallas' %}?qs=Ajuste Adyacencias">Ajuste Adyacencias</a></li>
   </ul>
   </div>
@@ -78,10 +78,10 @@
     <a href="{% url 'fallas:list_falla' %}?qs=TX">TX</a>
   </li>
   <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
-    <a href="{% url 'fallas:list_falla' %}?qs=Comportamiento esperado">Comportamiento esperado</a>
+    <a href="{% url 'fallas:list_falla' %}?qs=Falla Externa">Falla Externa</a>
   </li>
   <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
-    <a href="{% url 'fallas:list_falla' %}?qs=Comportamiento previo">Comportamiento previo</a>
+    <a href="{% url 'fallas:list_falla' %}?qs=Falla TSS">Falla TSS</a>
   </li>
   <li role="presentation" {% if request.resolver_match.url_name == 'list_falla' %}class="active"{% endif %}>
     <a href="{% url 'fallas:list_falla' %}?qs=Ajuste Adyacencias">Ajuste Adyacencias</a>

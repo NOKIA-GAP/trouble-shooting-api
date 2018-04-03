@@ -37,8 +37,8 @@ INTERFERENCIAEXTREMA = 'Interferencia externa'
 CAMBIODISENO = 'Cambio diseno'
 MALRECHAZO = 'Mal rechazo'
 TX = 'TX'
-COMPORTAMIENTOESPERADO = 'Comportamiento esperado'
-COMPORTAMIENTOPREVIO = 'Comportamiento previo'
+FALLAEXTERNA = 'Falla Externa'
+FALLATSS = 'Falla TSS'
 AJUSTEADYACENCIAS = 'Ajuste Adyacencias'
 
 NI_ASIGNADOR = 'NI Asignador'
@@ -1044,7 +1044,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 concepto=conceptos.last().contenido,
                 tipo_falla=TX,
             )
-        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOESPERADO:
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == FALLAEXTERNA:
             Falla.objects.create(
                 asignacion_ni=self.instance,
                 actividad=actividad,
@@ -1056,21 +1056,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                 escenario=actividad.escenario,
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
-                tipo_falla=COMPORTAMIENTOESPERADO,
-            )
-        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == COMPORTAMIENTOPREVIO:
-            Falla.objects.create(
-                asignacion_ni=self.instance,
-                actividad=actividad,
-                wp=actividad.wp,
-                service_supplier=actividad.service_supplier,
-                estacion=estacion,
-                banda=actividad.banda,
-                proyecto=actividad.proyecto,
-                escenario=actividad.escenario,
-                ni_ingeniero=ni_ingeniero,
-                concepto=conceptos.last().contenido,
-                tipo_falla=COMPORTAMIENTOPREVIO,
+                tipo_falla=FALLAEXTERNA,
             )
         if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == AJUSTEADYACENCIAS:
             Falla.objects.create(
@@ -1085,5 +1071,19 @@ class AsignacionNiIngenieroForm(ModelForm):
                 ni_ingeniero=ni_ingeniero,
                 concepto=conceptos.last().contenido,
                 tipo_falla=AJUSTEADYACENCIAS,
+            )
+        if estado_asignacion == ENVIADO_A_SEGUIMIENTO and origen_falla == FALLATSS:
+            Falla.objects.create(
+                asignacion_ni=self.instance,
+                actividad=actividad,
+                wp=actividad.wp,
+                service_supplier=actividad.service_supplier,
+                estacion=estacion,
+                banda=actividad.banda,
+                proyecto=actividad.proyecto,
+                escenario=actividad.escenario,
+                ni_ingeniero=ni_ingeniero,
+                concepto=conceptos.last().contenido,
+                tipo_falla=FALLATSS,
             )
         return cleaned_data
