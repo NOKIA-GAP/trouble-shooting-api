@@ -205,4 +205,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('CINCO', 'CINCO'),
     ('OPG', 'OPG'),
     ('NEWICT', 'NEWICT'),
+    ('CAT', 'CAT'),
 )
