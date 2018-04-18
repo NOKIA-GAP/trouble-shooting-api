@@ -421,7 +421,11 @@ class AsignacionNiIngenieroForm(ModelForm):
             que el equipo Nokia realizará visita correctiva atendiendo escalamiento del \
             NOC producto de la actividad mencionada en el asunto. \
             De encontrarse falla de instalación se realizará el reporte para proceder \
-            con el conducto regular para este tipo de casos.' +'\n'+'\n'+ \
+            con el conducto regular para este tipo de casos.' +'\n'+'\n'+ 'Si aun hay personal \
+            en campo y requiere soporte remoto para atender la falla por favor llamar a Julie \
+            Sandoval para Centro/Occidente (3003008309) \
+            o a Dolcey Torres para Costa/Oriente (3008623682).' +'\n'+'\n'+ \
+
             'Detalle Solicitud Visita:' +'\n'+'\n'+ detalle_solicitud_visita +'\n'+'\n'+ \
             'Ingeniero Nokia: ' + ni_ingeniero.nombre_completo.title() +'\n'+'\n'+ \
             'Cordial Saludo,' +'\n'+'\n'+ 'OnAir Team'
