@@ -75,7 +75,8 @@ INMEL = 'INMEL'
 CINCO = 'CINCO'
 OPG = 'OPG'
 NEWICT = 'NEWICT'
-CAT ='CAT'
+CAT = 'CAT'
+STI = 'STI'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -599,6 +600,12 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'jnino@catgrupo.com',
                           'jcaballero@catgrupo.com',
                           ]
+            if service_supplier == STI:
+                para_ss = [
+                          'felipe.rojas@sti.com.co',
+                          'carolina.pineros@sti.com.co',
+                          'anyelo.moncada@sti.com.co',
+                          ]
 
             para = para_regional + para_ss
 
@@ -810,6 +817,12 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'ehenriquez@catgrupo.com',
                           'jnino@catgrupo.com',
                           'jcaballero@catgrupo.com',
+                          ]
+            if service_supplier == STI:
+                para_ss = [
+                          'felipe.rojas@sti.com.co',
+                          'carolina.pineros@sti.com.co',
+                          'anyelo.moncada@sti.com.co',
                           ]
 
             para = para_regional + para_ss

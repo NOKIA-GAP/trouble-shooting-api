@@ -70,4 +70,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('OPG', 'OPG'),
     ('NEWICT', 'NEWICT'),
     ('CAT', 'CAT'),
+    ('STI', 'STI'),
 )
