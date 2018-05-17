@@ -53,6 +53,7 @@ SERVICE_SUPPLIER_CHOICES = (
     ('NEWICT', 'NEWICT'),
     ('CAT', 'CAT'),
     ('STI', 'STI'),
+    ('PRECOOM', 'PRECOOM'),
 )
 
 """ SOLVER_CHOICES  """

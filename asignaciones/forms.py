@@ -77,6 +77,7 @@ OPG = 'OPG'
 NEWICT = 'NEWICT'
 CAT = 'CAT'
 STI = 'STI'
+PRECOOM = 'PRECOOM'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -606,6 +607,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'carolina.pineros@sti.com.co',
                           'anyelo.moncada@sti.com.co',
                           ]
+            if service_supplier == PRECOOM:
+                para_ss = [
+                          'alejandro.mosquera@precoom.com'
+                          ]
 
             para = para_regional + para_ss
 
@@ -823,6 +828,10 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'felipe.rojas@sti.com.co',
                           'carolina.pineros@sti.com.co',
                           'anyelo.moncada@sti.com.co',
+                          ]
+            if service_supplier == PRECOOM:
+                para_ss = [
+                          'alejandro.mosquera@precoom.com'
                           ]
 
             para = para_regional + para_ss
