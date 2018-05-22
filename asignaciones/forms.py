@@ -845,7 +845,17 @@ class AsignacionNiIngenieroForm(ModelForm):
                     'omar.gugliesi@nokia.com',
                     'john.guerrero_rivera@nokia.com',
                     'jose.herrera_gomez@nokia.com',
-                    'maria_fernanda.pacheco@nokia.com']
+                    'maria_fernanda.pacheco@nokia.com',
+                    'jose.castillo@osctelecoms.com.co',
+                    'Irwin.Perez.col@msiamericas.com',
+                    'Jhonnatan.Acosta.col@msiamericas.com',
+                    'Jimmy.Ballen.col@msiamericas.com',
+                    'Nestor.Martinez.col@msiamericas.com',
+                    'Riderth.Chona.col@msiamericas.com',
+                    'Rinson.Rivera.col@msiamericas.com',
+                    'Robinson.Naranjo.col@msiamericas.com',
+                    'said.lopez.col@msiamericas.com',
+                    ]
 
             email = EmailMessage(asunto, contenido, de, para, cc=copia)
             email.send(fail_silently=False)
