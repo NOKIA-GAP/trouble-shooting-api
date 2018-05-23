@@ -41,16 +41,10 @@ class CreateIncidenteNpo(LoginRequiredMixin, CreateView):
     form_class = IncidenteNpoForm
     template_name = 'incidente_npo/includes/partials/create_incidente_npo.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(CreateIncidenteNpo, self).get_context_data(**kwargs)
-        context['actividad'] = Actividad.objects.get(pk=self.kwargs['pk'])
-        return context
-
-
     def get_form_kwargs(self):
         kwargs = super(CreateIncidenteNpo, self).get_form_kwargs()
-        asignador = Perfil.objects.get(user=self.request.user)
         actividad = Actividad.objects.get(pk=self.kwargs['pk'])
+        asignador = Perfil.objects.get(user=self.request.user)
         kwargs.update({'actividad': actividad})
         kwargs.update({'asignador': asignador})
         return kwargs
@@ -62,6 +56,11 @@ class CreateIncidenteNpo(LoginRequiredMixin, CreateView):
         form.instance.actividad = actividad
         form.instance.wp = actividad.wp
         return super(CreateIncidenteNpo, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateIncidenteNpo, self).get_context_data(**kwargs)
+        context['actividad'] = Actividad.objects.get(pk=self.kwargs['pk'])
+        return context
 
 class ListIncidenteNpo(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
@@ -146,6 +145,14 @@ class UpdateIncidenteNpo(LoginRequiredMixin, UpdateView):
     form_class = IncidenteNpoForm
     template_name = 'incidente_npo/includes/partials/update_incidente_npo.html'
 
+    def get_form_kwargs(self):
+        kwargs = super(UpdateIncidenteNpo, self).get_form_kwargs()
+        actividad = self.object.actividad
+        asignador = Perfil.objects.get(user=self.request.user)
+        kwargs.update({'actividad': actividad})
+        kwargs.update({'asignador': asignador})
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super(UpdateIncidenteNpo, self).get_context_data(**kwargs)
         context['actividad'] = self.object.actividad
@@ -161,11 +168,6 @@ class CreateIncidenteNi(LoginRequiredMixin, CreateView):
     login_url = 'users:login_user'
     form_class = IncidenteNiForm
     template_name = 'incidente_ni/includes/partials/create_incidente_ni.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(CreateIncidenteNi, self).get_context_data(**kwargs)
-        context['actividad'] = Actividad.objects.get(pk=self.kwargs['pk'])
-        return context
 
     def get_form_kwargs(self):
         kwargs = super(CreateIncidenteNi, self).get_form_kwargs()
@@ -190,6 +192,11 @@ class CreateIncidenteNi(LoginRequiredMixin, CreateView):
                 npo_ingeniero=ni_ingeniero.par.perfil,
             )
         return super(CreateIncidenteNi, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateIncidenteNi, self).get_context_data(**kwargs)
+        context['actividad'] = Actividad.objects.get(pk=self.kwargs['pk'])
+        return context
 
 class ListIncidenteNi(LoginRequiredMixin, ListView):
     login_url = 'users:login_user'
@@ -273,6 +280,14 @@ class UpdateIncidenteNi(LoginRequiredMixin, UpdateView):
     model = IncidenteNi
     form_class = IncidenteNiForm
     template_name = 'incidente_ni/includes/partials/update_incidente_ni.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateIncidenteNi, self).get_form_kwargs()
+        actividad = self.object.actividad
+        asignador = Perfil.objects.get(user=self.request.user)
+        kwargs.update({'actividad': actividad})
+        kwargs.update({'asignador': asignador})
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(UpdateIncidenteNi, self).get_context_data(**kwargs)

@@ -25,7 +25,7 @@ class IncidenteNpoForm(ModelForm):
 
     class Meta:
         model = IncidenteNpo
-        fields = ('npo_ingeniero',)
+        fields = ('npo_ingeniero', 'estado_incidente')
 
     def clean(self):
         cleaned_data = super(IncidenteNpoForm, self).clean()
@@ -75,7 +75,7 @@ class IncidenteNiForm(ModelForm):
 
     class Meta:
         model = IncidenteNi
-        fields = ('ni_ingeniero', 'asignar_par')
+        fields = ('ni_ingeniero', 'estado_incidente', 'asignar_par')
 
     def clean(self):
         cleaned_data = super(IncidenteNiForm, self).clean()

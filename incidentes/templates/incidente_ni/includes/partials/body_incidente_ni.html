@@ -15,7 +15,6 @@
   <td>{{ object.creado }}</td>
   <td>{{ object.actualizado }}</td>
   {% if object.estado_incidente == 'Abierto' %}
-
     {% if perms.users.perm_ni_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
       <th>
         <a onclick="return update_incidente_ni('{% url 'incidentes:update_incidente_ni' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
@@ -34,7 +33,12 @@
       </th>
     {% else %}
     {% endif %}
-
   {% else %}
+    {% if perms.users.perm_ni_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
+      <th>
+        <a onclick="return update_incidente_ni('{% url 'incidentes:update_incidente_ni' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
+      </th>
+    {% else %}
+    {% endif %}
   {% endif %}
 </tr>
