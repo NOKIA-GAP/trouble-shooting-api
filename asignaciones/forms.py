@@ -393,6 +393,7 @@ class AsignacionNiIngenieroForm(ModelForm):
                   'origen_falla',
                   'detalle_falla_instalacion',
                   'detalle_solicitud_visita',
+                  'detalle_falla_hardware',
                   'hardware_propietario',
                   'solver',
                   )

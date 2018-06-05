@@ -194,6 +194,7 @@ class AsignacionNi(models.Model):
     estado_asignacion = models.CharField(max_length=255, choices=choices.ESTADO_ASIGNACION_CHOICES, default='Asignada', blank=True, null=True)
     origen_falla = models.CharField(max_length=255, choices=choices.ORIGEN_FALLA_CHOICES, blank=True, null=True)
     detalle_falla_instalacion = models.TextField(blank=True, null=True)
+    detalle_falla_hardware = models.TextField(blank=True, null=True)
     detalle_solicitud_visita = models.TextField(blank=True, null=True)
     solver = models.CharField(max_length=255, choices=choices.SOLVER_CHOICES, blank=True, null=True)
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
