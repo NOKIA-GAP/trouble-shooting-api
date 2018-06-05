@@ -222,6 +222,7 @@ class AsignacionNiForm(ModelForm):
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     fecha_asignacion = forms.DateField(widget=forms.DateInput(attrs={'class':'form-inline','type':'date'}), input_formats=settings.DATE_INPUT_FORMATS, required=True)
     # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
+    clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -231,7 +232,7 @@ class AsignacionNiForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'asignar_par')
+        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'clasificacion_previa', 'asignar_par')
 
     def clean(self):
         cleaned_data = super(AsignacionNiForm, self).clean()
@@ -287,6 +288,7 @@ class AsignacionNiAsignadorForm(ModelForm):
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
+    clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -296,7 +298,7 @@ class AsignacionNiAsignadorForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'asignar_par')
+        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'clasificacion_previa', 'asignar_par')
         widgets = {
             'fecha_asignacion': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'required':'true'}),
         }
@@ -382,6 +384,7 @@ class AsignacionNiAsignadorForm(ModelForm):
 class AsignacionNiIngenieroForm(ModelForm):
     estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=True)
     origen_falla = forms.ChoiceField(choices=choices.ORIGEN_FALLA_CHOICES, required=False)
+    hardware_propietario = forms.ChoiceField(choices=choices.HARDWARE_PROPIETARIO_CHOICES, required=False)
     solver = forms.ChoiceField(choices=choices.SOLVER_CHOICES, required=False)
 
     class Meta:
@@ -390,7 +393,9 @@ class AsignacionNiIngenieroForm(ModelForm):
                   'origen_falla',
                   'detalle_falla_instalacion',
                   'detalle_solicitud_visita',
-                  'solver')
+                  'hardware_propietario',
+                  'solver',
+                  )
 
     def clean(self):
         cleaned_data = super(AsignacionNiIngenieroForm, self).clean()

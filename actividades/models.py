@@ -65,6 +65,7 @@ class Actividad(models.Model):
     ni_tipo_intervencion = models.CharField(max_length=255, blank=True, null=True, editable=False)
     ni_fecha_asignacion = models.DateField(blank=True, null=True, editable=False)
     ni_fm_supervisor = models.CharField(max_length=255, blank=True, null=True, editable=False)
+    clasificacion_previa = models.CharField(max_length=255, blank=True, null=True, editable=False)
 
     # asignaciones npo y asignaciones ni
     estado_ultimo = models.CharField(max_length=255, blank=True, null=True, editable=False)

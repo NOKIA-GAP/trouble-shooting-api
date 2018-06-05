@@ -131,6 +131,9 @@ class ActividadResource(resources.ModelResource):
     ni_fm_supervisor = fields.Field(
         column_name='ni fm supervisor',
         attribute='ni_fm_supervisor',)
+    clasificacion_previa = fields.Field(
+        column_name='clasificacion previa',
+        attribute='clasificacion_previa',)
 
     # asignaciones npo y asignaciones ni
     estado_ultimo = fields.Field(
@@ -191,6 +194,7 @@ class ActividadResource(resources.ModelResource):
         'ni_tipo_intervencion',
         'ni_fecha_asignacion',
         'ni_fm_supervisor',
+        'clasificacion_previa',
         # asignaciones npo y asignaciones ni
         'estado_ultimo',
         'estado_unico',

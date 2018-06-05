@@ -78,6 +78,7 @@
       None
     {% endif %}
   </td>
+  <td>{{ object.clasificacion_previa }}</td>
   <td>
     {%  if object.solicitudeshw.all %}
       <a href="{% url 'solicitudeshw:list_solicitudhw_actividad' object.pk %}">solicitudes hw</a>

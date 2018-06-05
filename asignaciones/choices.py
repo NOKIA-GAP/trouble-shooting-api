@@ -42,3 +42,24 @@ TIPO_INTERVENCION_CHOICES = (
     ('Local', 'Local'),
     ('Remoto', 'Remoto'),
 )
+
+""" HARDWARE_PROPIETARIO_CHOICES  """
+HARDWARE_PROPIETARIO_CHOICES = (
+    ('', '---------'),
+    ('NOKIA', 'NOKIA'),
+    ('CLARO', 'CLARO'),
+    ('TERCEROS', 'TERCEROS'),
+)
+
+""" CLASIFICACION_PREVIA_CHOICES  """
+CLASIFICACION_PREVIA_CHOICES = (
+    ('', '---------'),
+    ('Instalacion', 'Instalacion'),
+    ('Quality', 'Quality'),
+    ('Perdida de Trafico', 'Perdida de Trafico'),
+    ('Denied/Drop', 'Denied/Drop'),
+    ('Software', 'Software'),
+    ('Handover', 'Handover'),
+    ('Configuracion', 'Configuracion'),
+    ('Mal Rechazo', 'Mal Rechazo'),
+)

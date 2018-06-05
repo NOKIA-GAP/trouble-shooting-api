@@ -26,15 +26,18 @@ var origen_falla = $('#id_origen_falla');
 var detalle_falla_instalacion = $('#id_detalle_falla_instalacion');
 var detalle_solicitud_visita = $('#id_detalle_solicitud_visita');
 var solver = $('#id_solver');
+var hardware_propietario = $('#id_hardware_propietario');
 var div_origen_falla = $('#div_id_origen_falla');
 var div_detalle_falla_instalacion = $('#div_id_detalle_falla_instalacion');
 var div_detalle_solicitud_visita = $('#div_id_detalle_solicitud_visita');
 var div_solver = $('#div_id_solver');
+var div_hardware_propietario = $('#div_id_hardware_propietario');
 
 div_origen_falla.hide()
 div_detalle_falla_instalacion.hide()
 div_detalle_solicitud_visita.hide()
 div_solver.hide()
+div_hardware_propietario.hide()
 
 $('#id_estado_asignacion').on('change', function()
 {
@@ -67,6 +70,11 @@ $('#id_estado_asignacion').on('change', function()
     if (solver.val()) {
       solver.val('')
     }
+    div_hardware_propietario.hide()
+    $('#id_hardware_propietario').removeAttr('required')
+    if (hardware_propietario.val()) {
+      hardware_propietario.val('')
+    }
   }
 });
 
@@ -87,6 +95,16 @@ $('#id_origen_falla').on('change', function()
     $('#id_solver').removeAttr('required')
     if (solver.val()) {
       solver.val('')
+    }
+  }
+  if (this.value === 'Hardware') {
+    div_hardware_propietario.show()
+    $('#id_hardware_propietario').attr('required', true)
+  } else {
+    div_hardware_propietario.hide()
+    $('#id_hardware_propietario').removeAttr('required')
+    if (hardware_propietario.val()) {
+      hardware_propietario.val('')
     }
   }
 });

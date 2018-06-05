@@ -199,6 +199,8 @@ class AsignacionNi(models.Model):
     tipo_intervencion = models.CharField(max_length=255, choices=choices.TIPO_INTERVENCION_CHOICES, blank=True, null=True)
     fecha_asignacion = models.DateField(blank=True, null=True)
     asignar_par = models.BooleanField(default=False)
+    hardware_propietario = models.CharField(max_length=255, choices=choices.HARDWARE_PROPIETARIO_CHOICES, blank=True, null=True)
+    clasificacion_previa = models.CharField(max_length=255, choices=choices.CLASIFICACION_PREVIA_CHOICES, blank=True, null=True)
     estado = models.BooleanField(default=False)
     subestado = models.BooleanField(default=False)
     creado = models.DateTimeField(auto_now_add=True)
@@ -262,6 +264,10 @@ class AsignacionNi(models.Model):
             _actividad.ni_fm_supervisor = self.fm_supervisor.nombre_completo
         except Exception:
             _actividad.ni_fm_supervisor = None
+        try:
+            _actividad.clasificacion_previa = self.clasificacion_previa
+        except Exception:
+            _actividad.clasificacion_previa = None
         try:
             _actividad.estado_ultimo = self.estado_asignacion
             if _actividad.estado_noc == PRODUCCION:

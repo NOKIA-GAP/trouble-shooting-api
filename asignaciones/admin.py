@@ -59,6 +59,8 @@ class AsignacionNiAdmin(ImportExportModelAdmin):
     'tipo_intervencion',
     'fecha_asignacion',
     'asignar_par',
+    'hardware_propietario',
+    'clasificacion_previa',
     'estado',
     'subestado',
     'creado',
