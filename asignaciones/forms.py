@@ -222,7 +222,7 @@ class AsignacionNiForm(ModelForm):
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     fecha_asignacion = forms.DateField(widget=forms.DateInput(attrs={'class':'form-inline','type':'date'}), input_formats=settings.DATE_INPUT_FORMATS, required=True)
     # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
-    clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
+    # clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -288,7 +288,7 @@ class AsignacionNiAsignadorForm(ModelForm):
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
-    clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
+    # clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
     def __init__(self, *args, **kwargs):
