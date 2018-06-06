@@ -208,4 +208,5 @@ SERVICE_SUPPLIER_CHOICES = (
     ('CAT', 'CAT'),
     ('STI', 'STI'),
     ('PRECOOM', 'PRECOOM'),
+    ('CAM', 'CAM'),
 )

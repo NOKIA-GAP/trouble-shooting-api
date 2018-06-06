@@ -4,12 +4,13 @@ from actividades.models import Actividad
 from estaciones.models import Estacion
 from users.models import Perfil
 from . import choices
+from actividades import choices as actividades_choices
 
 class Falla(models.Model):
     asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='fallas')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='fallas')
     wp = models.BigIntegerField(blank=True, null=True)
-    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=actividades_choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='fallas')
     banda = models.CharField(max_length=255, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)

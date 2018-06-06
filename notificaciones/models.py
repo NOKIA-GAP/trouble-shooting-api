@@ -4,12 +4,13 @@ from actividades.models import Actividad
 from estaciones.models import Estacion
 from users.models import Perfil
 from . import choices
+from actividades import choices as actividades_choices
 
 class NotificacionRequiereVisita(models.Model):
     asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_requiere_visita')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_requiere_visita')
     wp = models.BigIntegerField(blank=True, null=True)
-    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=actividades_choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_requiere_visita')
     banda = models.CharField(max_length=255, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)
@@ -34,7 +35,7 @@ class NotificacionFallaInstalacion(models.Model):
     asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_instalacion')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_instalacion')
     wp = models.BigIntegerField(blank=True, null=True)
-    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=actividades_choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_instalacion')
     banda = models.CharField(max_length=255, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)
@@ -60,7 +61,7 @@ class NotificacionFallaIntegracion(models.Model):
     asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_integracion')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_integracion')
     wp = models.BigIntegerField(blank=True, null=True)
-    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=actividades_choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_integracion')
     banda = models.CharField(max_length=255, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)
@@ -85,7 +86,7 @@ class NotificacionFallaMalRechazo(models.Model):
     asignacion_ni = models.ForeignKey(AsignacionNi, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_mal_rechazo')
     actividad = models.ForeignKey(Actividad, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_mal_rechazo')
     wp = models.BigIntegerField(blank=True, null=True)
-    service_supplier = models.CharField(max_length=255, choices=choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
+    service_supplier = models.CharField(max_length=255, choices=actividades_choices.SERVICE_SUPPLIER_CHOICES, blank=True, null=True)
     estacion = models.ForeignKey(Estacion, on_delete=models.CASCADE, blank=True, null=True, related_name='notificaciones_falla_mal_rechazo')
     banda = models.CharField(max_length=255, blank=True, null=True)
     proyecto = models.CharField(max_length=255, blank=True, null=True)
