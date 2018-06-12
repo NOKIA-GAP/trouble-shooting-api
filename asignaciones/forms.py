@@ -79,6 +79,7 @@ CAT = 'CAT'
 STI = 'STI'
 PRECOOM = 'PRECOOM'
 CAM = 'CAM'
+FUREL = 'FUREL'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -622,6 +623,11 @@ class AsignacionNiIngenieroForm(ModelForm):
                 para_ss = [
                           'jdiaz@cam.com.co'
                           ]
+            if service_supplier == FUREL:
+                para_ss = [
+                          'gabriel.vasquez@furel.com.co',
+                          'juanc.cardenas@furel.com.co',
+                          ]
 
             para = para_regional + para_ss
 
@@ -847,6 +853,11 @@ class AsignacionNiIngenieroForm(ModelForm):
             if service_supplier == CAM:
                 para_ss = [
                           'jdiaz@cam.com.co'
+                          ]
+            if service_supplier == FUREL:
+                para_ss = [
+                          'gabriel.vasquez@furel.com.co',
+                          'juanc.cardenas@furel.com.co',
                           ]
 
             para = para_regional + para_ss
