@@ -80,6 +80,7 @@ STI = 'STI'
 PRECOOM = 'PRECOOM'
 CAM = 'CAM'
 FUREL = 'FUREL'
+ELETCOL = 'ELETCOL'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -628,6 +629,13 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'gabriel.vasquez@furel.com.co',
                           'juanc.cardenas@furel.com.co',
                           ]
+            if service_supplier == ELETCOL:
+                para_ss = [
+                          'adrianmirabal@gmail.com',
+                          'eletcol@gmail.com',
+                          'ljimenez@eletcol.com',
+                          'gcomercial@eletcol.com',
+                          ]
 
             para = para_regional + para_ss
 
@@ -858,6 +866,13 @@ class AsignacionNiIngenieroForm(ModelForm):
                 para_ss = [
                           'gabriel.vasquez@furel.com.co',
                           'juanc.cardenas@furel.com.co',
+                          ]
+            if service_supplier == ELETCOL:
+                para_ss = [
+                          'adrianmirabal@gmail.com',
+                          'eletcol@gmail.com',
+                          'ljimenez@eletcol.com',
+                          'gcomercial@eletcol.com',
                           ]
 
             para = para_regional + para_ss

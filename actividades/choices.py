@@ -173,7 +173,6 @@ SERVICE_SUPPLIER_CHOICES = (
     ('SAI', 'SAI'),
     ('GAMMA', 'GAMMA'),
     ('PACIFIC ENERGY', 'PACIFIC ENERGY'),
-    ('FUREL', 'FUREL'),
     ('NEOSTAR', 'NEOSTAR'),
     ('DASCON', 'DASCON'),
     ('ATENA', 'ATENA'),
@@ -209,4 +208,6 @@ SERVICE_SUPPLIER_CHOICES = (
     ('STI', 'STI'),
     ('PRECOOM', 'PRECOOM'),
     ('CAM', 'CAM'),
+    ('FUREL', 'FUREL'),
+    ('ELETCOL', 'ELETCOL'),
 )
