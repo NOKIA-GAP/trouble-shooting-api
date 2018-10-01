@@ -44,13 +44,13 @@
   <td>{{ object.fecha_asignacion }}</td>
   <td>{{ object.creado }}</td>
   <td>{{ object.actualizado }}</td>
-  {% if object.estado_asignacion == 'Asignada' or object.estado_asignacion == 'En monitoreo' %}
+  {% if object.estado_asignacion == 'Asignada' or object.estado_asignacion == 'En monitoreo' or object.estado_asignacion == 'Requiere segunda revision' %}
 
     {% if perms.users.perm_ni_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
       <th>
         <a onclick="return update_asignacion_ni('{% url 'asignaciones:update_asignacion_ni_asignador' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
       </th>
-    {% elif perms.users.perm_ni_ingeniero %}
+    {% elif perms.users.perm_ni_ingeniero or perms.users.perm_gap_monitoreo %}
     <th>
       <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +59,11 @@
       <ul class="dropdown-menu">
         <li><a onclick="return create_concepto_ni('{% url 'conceptos:create_concepto_ni' object.pk %}')">Concepto</a></li>
         <li><a onclick="return create_solicitudhw('{% url 'solicitudeshw:create_solicitudhw' object.pk %}')">Solicitud HW</a></li>
+        {% if perms.users.perm_gap_monitoreo %}
+        <li><a onclick="return update_asignacion_ni('{% url 'asignaciones:update_asignacion_ni_asignador' object.pk %}')">Actualizar</a></li>
+        {% else %}
         <li><a onclick="return update_asignacion_ni('{% url 'asignaciones:update_asignacion_ni_ingeniero' object.pk %}')">Actualizar</a></li>
+        {% endif %}
       </ul>
       </div>
     </th>

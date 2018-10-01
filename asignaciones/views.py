@@ -46,6 +46,7 @@ ENVIADO_A_SEGUIMIENTO = 'Enviado a seguimiento'
 REQUIERE_VISITA = 'Requiere visita'
 NO_EXITOSA = 'No exitosa'
 ESCALADO_A_CLARO = 'Escalado a claro'
+REQUIERE_SEGUNDA_VISITA = 'Requiere segunda visita'
 
 TODAY = datetime.date.today()
 YESTERDAY = datetime.date.today() - datetime.timedelta(1)
@@ -238,6 +239,22 @@ class ListAsignacionNpoEstadoF(ListAsignacionNpo):
         queryset = super(ListAsignacionNpo, self).get_queryset()
         perfil = Perfil.objects.get(slug=self.kwargs['slug'])
         query = ESCALADO_A_CLARO
+        if query and perfil.perfil_usuario == GAP_ADMINISTRADOR:
+            queryset = queryset.filter(estado_asignacion=query)
+        if query and perfil.perfil_usuario == FM_LIDER:
+            queryset = queryset.filter(estado_asignacion=query, npo_asignador=perfil)
+        if query and perfil.perfil_usuario == NPO_ASIGNADOR:
+            queryset = queryset.filter(estado_asignacion=query, npo_asignador=perfil)
+        if query and perfil.perfil_usuario == NPO_INGENIERO:
+            queryset = queryset.filter(estado_asignacion=query, npo_ingeniero=perfil)
+        return queryset
+
+class ListAsignacionNpoEstadoG(ListAsignacionNpo):
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListAsignacionNpo, self).get_queryset()
+        perfil = Perfil.objects.get(slug=self.kwargs['slug'])
+        query = REQUIERE_SEGUNDA_VISITA
         if query and perfil.perfil_usuario == GAP_ADMINISTRADOR:
             queryset = queryset.filter(estado_asignacion=query)
         if query and perfil.perfil_usuario == FM_LIDER:
@@ -602,6 +619,22 @@ class ListAsignacionNiEstadoF(ListAsignacionNi):
         queryset = super(ListAsignacionNi, self).get_queryset()
         perfil = Perfil.objects.get(slug=self.kwargs['slug'])
         query = ESCALADO_A_CLARO
+        if query and perfil.perfil_usuario == GAP_ADMINISTRADOR:
+            queryset = queryset.filter(estado_asignacion=query)
+        if query and perfil.perfil_usuario == FM_LIDER:
+            queryset = queryset.filter(estado_asignacion=query, ni_asignador=perfil)
+        if query and perfil.perfil_usuario == NI_ASIGNADOR:
+            queryset = queryset.filter(estado_asignacion=query, ni_asignador=perfil)
+        if query and perfil.perfil_usuario == NI_INGENIERO:
+            queryset = queryset.filter(estado_asignacion=query, ni_ingeniero=perfil)
+        return queryset
+
+class ListAsignacionNiEstadoG(ListAsignacionNi):
+
+    def get_queryset(self, **kwargs):
+        queryset = super(ListAsignacionNi, self).get_queryset()
+        perfil = Perfil.objects.get(slug=self.kwargs['slug'])
+        query = REQUIERE_SEGUNDA_VISITA
         if query and perfil.perfil_usuario == GAP_ADMINISTRADOR:
             queryset = queryset.filter(estado_asignacion=query)
         if query and perfil.perfil_usuario == FM_LIDER:

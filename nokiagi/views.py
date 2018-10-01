@@ -139,7 +139,8 @@ def actualizacion(request):
             if actividad.estado_noc != actividad_gi.estadoNOC or actividad.subestado_noc != actividad_gi.subEstadoNOC:
                 actividad.estado_noc = actividad_gi.estadoNOC
                 actividad.subestado_noc = actividad_gi.subEstadoNOC
-                actividad.fecha_estado_noc = actividad_gi.fechaEstado.date()
+                actividad.fecha_estado_noc = actividad_gi.fechaEstado
+                # actividad.fecha_estado_noc = actividad_gi.fechaEstado.date()
                 actividad.save()
         except Actividad.DoesNotExist:
             pass

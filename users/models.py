@@ -36,7 +36,8 @@ class Perfil(models.Model):
                        ('perm_npo_asignador', 'Permisos para NPO Asignador'),
                        ('perm_fm_lider', 'Permisos para FM Lider'),
                        ('perm_fm_permisos', 'Permisos para FM Permisos'),
-                       ('perm_fm_supervisor', 'Permisos para FM Supervisor'),)
+                       ('perm_fm_supervisor', 'Permisos para FM Supervisor'),
+                       ('perm_gap_monitoreo', 'Permisos para GAP Monitoreo'),)
 
     # def __unicode__(self):
     #     return u'%s %s' % (self.nombre, self.apellido)

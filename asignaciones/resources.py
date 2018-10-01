@@ -42,6 +42,9 @@ class AsignacionNpoResource(resources.ModelResource):
         column_name='actividad',
         attribute='actividad',
         widget=ForeignKeyWidget(Actividad, 'pk'))
+    estado_noc = fields.Field(
+       column_name='estado_noc',
+       attribute='actividad__estado_noc',)
     banda = fields.Field(
        column_name='banda',
        attribute='actividad__banda',)
@@ -100,6 +103,7 @@ class AsignacionNpoResource(resources.ModelResource):
         'estacion',
         'actividad',
         'wp',
+        'estado_noc',
         'banda',
         'proyecto',
         'escenario',
@@ -146,6 +150,9 @@ class AsignacionNiResource(resources.ModelResource):
         column_name='actividad',
         attribute='actividad',
         widget=ForeignKeyWidget(Actividad, 'pk'),)
+    estado_noc = fields.Field(
+       column_name='estado_noc',
+       attribute='actividad__estado_noc',)
     banda = fields.Field(
        column_name='banda',
        attribute='actividad__banda',)
@@ -204,6 +211,7 @@ class AsignacionNiResource(resources.ModelResource):
         'estacion',
         'actividad',
         'wp',
+        'estado_noc',
         'banda',
         'proyecto',
         'escenario',

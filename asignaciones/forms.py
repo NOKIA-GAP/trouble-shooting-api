@@ -45,6 +45,7 @@ NI_ASIGNADOR = 'NI Asignador'
 NPO_ASIGNADOR = 'NPO Asignador'
 FM_LIDER = 'FM Lider'
 GAP_ADMINISTRADOR = 'GAP Administrador'
+GAP_MONITOREO = 'GAP Monitoreo'
 
 CENTRO = 'Centro'
 ORIENTE = 'Oriente'
@@ -81,6 +82,14 @@ PRECOOM = 'PRECOOM'
 CAM = 'CAM'
 FUREL = 'FUREL'
 ELETCOL = 'ELETCOL'
+OFG = 'OFG'
+SFERAONE = 'SFERAONE'
+DYG = 'DYG'
+MASTEC = 'MASTEC'
+SOLINTEL = 'SOLINTEL'
+PRODATEL = 'PRODATEL'
+COMSA = 'COMSA'
+ELECTRICA = 'ELECTRICA'
 
 class AsignacionNpoForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
@@ -105,6 +114,7 @@ class AsignacionNpoForm(ModelForm):
 
         if (npo_asignador.perfil_usuario == NPO_ASIGNADOR
             or npo_asignador.perfil_usuario == FM_LIDER
+            or npo_asignador.perfil_usuario == GAP_MONITOREO
             or npo_asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
@@ -131,6 +141,7 @@ class AsignacionNpoAsiganadorForm(ModelForm):
     npo_ingeniero = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='NPO Ingeniero'), required=True)
     fm_supervisor = forms.ModelChoiceField(queryset=Perfil.objects.filter(perfil_usuario='FM Supervisor'), required=False)
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
+    estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=False)
     fecha_asignacion = forms.DateField(widget=forms.DateInput(attrs={'class':'form-inline','type':'date'}), input_formats=settings.DATE_INPUT_FORMATS, required=True)
 
     def __init__(self, *args, **kwargs):
@@ -140,7 +151,7 @@ class AsignacionNpoAsiganadorForm(ModelForm):
 
     class Meta:
         model = AsignacionNpo
-        fields = ('npo_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion')
+        fields = ('npo_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'estado_asignacion', 'fecha_asignacion')
 
     def clean(self):
         cleaned_data = super(AsignacionNpoAsiganadorForm, self).clean()
@@ -151,19 +162,20 @@ class AsignacionNpoAsiganadorForm(ModelForm):
 
         if (npo_asignador.perfil_usuario == NPO_ASIGNADOR
             or npo_asignador.perfil_usuario == FM_LIDER
+            or npo_asignador.perfil_usuario == GAP_MONITOREO
             or npo_asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
             raise forms.ValidationError('Su perfil no esta habilitado para asignar.')
-        try:
-            asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
-            id=pk,
-            actividad=actividad,
-            estado_asignacion=EN_MONITOREO,
-            )
-            raise forms.ValidationError('la Actividad se encuentra En monitoreo.')
-        except AsignacionNpo.DoesNotExist:
-            pass
+        # try:
+        #     asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
+        #     id=pk,
+        #     actividad=actividad,
+        #     estado_asignacion=EN_MONITOREO,
+        #     )
+        #     raise forms.ValidationError('la Actividad se encuentra En monitoreo.')
+        # except AsignacionNpo.DoesNotExist:
+        #     pass
         try:
             asignacion_npo_asignanada_actividad = AsignacionNpo.objects.get(
             id=pk,
@@ -246,6 +258,7 @@ class AsignacionNiForm(ModelForm):
 
         if (ni_asignador.perfil_usuario == NI_ASIGNADOR
             or ni_asignador.perfil_usuario == FM_LIDER
+            or ni_asignador.perfil_usuario == GAP_MONITOREO
             or ni_asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
@@ -292,6 +305,7 @@ class AsignacionNiAsignadorForm(ModelForm):
     tipo_intervencion = forms.ChoiceField(choices=choices.TIPO_INTERVENCION_CHOICES, required=True)
     # asignar_par = forms.BooleanField(widget=forms.CheckboxInput(attrs={'class':'form-check-input','style':'margin-left: 100px'}), required=False)
     # clasificacion_previa = forms.ChoiceField(choices=choices.CLASIFICACION_PREVIA_CHOICES, required=True)
+    estado_asignacion = forms.ChoiceField(choices=choices.ESTADO_ASIGNACION_CHOICES, required=False)
     asignar_par = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
 
     def __init__(self, *args, **kwargs):
@@ -301,7 +315,7 @@ class AsignacionNiAsignadorForm(ModelForm):
 
     class Meta:
         model = AsignacionNi
-        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'fecha_asignacion', 'clasificacion_previa', 'asignar_par')
+        fields = ('ni_ingeniero', 'fm_supervisor', 'tipo_intervencion', 'estado_asignacion', 'fecha_asignacion', 'clasificacion_previa', 'asignar_par')
         widgets = {
             'fecha_asignacion': forms.DateInput(format='%Y-%m-%d',attrs={'type': 'date', 'required':'true'}),
         }
@@ -316,19 +330,20 @@ class AsignacionNiAsignadorForm(ModelForm):
 
         if (ni_asignador.perfil_usuario == NI_ASIGNADOR
             or ni_asignador.perfil_usuario == FM_LIDER
+            or ni_asignador.perfil_usuario == GAP_MONITOREO
             or ni_asignador.perfil_usuario == GAP_ADMINISTRADOR):
             pass
         else:
             raise forms.ValidationError('Su perfil no esta habilitado para asignar.')
-        try:
-            asignacion_ni_asignanada_actividad = AsignacionNi.objects.get(
-            id=pk,
-            actividad=actividad,
-            estado_asignacion=EN_MONITOREO,
-            )
-            raise forms.ValidationError('la Actividad se encuentra En monitoreo.')
-        except AsignacionNi.DoesNotExist:
-            pass
+        # try:
+        #     asignacion_ni_asignanada_actividad = AsignacionNi.objects.get(
+        #     id=pk,
+        #     actividad=actividad,
+        #     estado_asignacion=EN_MONITOREO,
+        #     )
+        #     raise forms.ValidationError('la Actividad se encuentra En monitoreo.')
+        # except AsignacionNi.DoesNotExist:
+        #     pass
         try:
             asignacion_ni_asignanada_actividad = AsignacionNi.objects.get(
             id=pk,
@@ -636,11 +651,68 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'ljimenez@eletcol.com',
                           'gcomercial@eletcol.com',
                           ]
+            if service_supplier == OFG:
+                para_ss = [
+                          'csuarez@ofgsa.com',
+                          'joel.rivera@ofgsa.com',
+                          'jjvitoro@ofgsa.com',
+                          'nohelia.velandria@ofgsa.com',
+                          ]
+            if service_supplier == SFERAONE:
+                para_ss = [
+                          'diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com',
+                          'paola.garzon@gammasg.com',
+                          'josedomingo.gomez@gammasg.com',
+                          ]
+            if service_supplier == DYG:
+                para_ss = [
+                          'pcamacho@dyg.com.co',
+                          'cpineda@dyg.com.co',
+                          'mgonzalez@dyg.com.co',
+                          ]
+            if service_supplier == MASTEC:
+                para_ss = [
+                          'andres.rojas@mastec.com',
+                          'alvaro.cantillo@mastec.com',
+                          ]
+            if service_supplier == SOLINTEL:
+                para_ss = [
+                          'leonardo.aguilar@solintel.com.co',
+                          'alexander.trujillo@solintel.com.co',
+                          'administracion@solintel.com.co',
+                          'jennifer.bolanos@solintel.com.co',
+                          ]
+            if service_supplier == PRODATEL:
+                para_ss = [
+                          'gerencia@prodatel.co',
+                          'proyectos2@prodatel.co',
+                          'proyectos4@prodatel.co',
+                          'sg-sst@prodatel.co',
+                          'asistentegerencia@prodatel.co',
+                          'administrativo@prodatel.co',
+                          ]
+            if service_supplier == COMSA:
+                para_ss = [
+                          'joaquin.carvajal@comsa.com',
+                          'marco.cappiello@comsa.com',
+                          'antonio.martinl@comsa.com',
+                          'jaime.escacena@gmail.com',
+                          'ifranch@comsa.com',
+                          ]
+            if service_supplier == ELECTRICA:
+                para_ss = [
+                          'contabilidad@electrica-sa.com',
+                          'jose.lora@electrica-sa.com',
+                          'e.salcedo@electrica-sa.com',
+                          'kelly.villalobos@electrica-sa.com',
+                          'rc.salcedo@electrica-sa.com',
+                          ]
+                          
 
             para = para_regional + para_ss
 
-            copia = ['jbri.gap@nokia.com',
-                    'I_EXT_GAP_CLARO_COL@nokia.com',
+            copia = ['I_EXT_GAP_CLARO_COL@nokia.com',
                     'I_EXT_FIELD_MANAGEMENT_CLARO_COL@nokia.com',
                     'jorge.baracaldo@nokia.com',
                     'leopoldo.morales_cabrales@nokia.com',
@@ -874,11 +946,67 @@ class AsignacionNiIngenieroForm(ModelForm):
                           'ljimenez@eletcol.com',
                           'gcomercial@eletcol.com',
                           ]
+            if service_supplier == OFG:
+                para_ss = [
+                          'csuarez@ofgsa.com',
+                          'joel.rivera@ofgsa.com',
+                          'jjvitoro@ofgsa.com',
+                          'nohelia.velandria@ofgsa.com',
+                          ]
+            if service_supplier == SFERAONE:
+                para_ss = [
+                          'diego.vargas@gammasg.com',
+                          'andres.bonilla@gammasg.com',
+                          'paola.garzon@gammasg.com',
+                          'josedomingo.gomez@gammasg.com',
+                          ]
+            if service_supplier == DYG:
+                para_ss = [
+                          'pcamacho@dyg.com.co',
+                          'cpineda@dyg.com.co',
+                          'mgonzalez@dyg.com.co',
+                          ]
+            if service_supplier == MASTEC:
+                para_ss = [
+                          'andres.rojas@mastec.com',
+                          'alvaro.cantillo@mastec.com',
+                          ]
+            if service_supplier == SOLINTEL:
+                para_ss = [
+                          'leonardo.aguilar@solintel.com.co',
+                          'alexander.trujillo@solintel.com.co',
+                          'administracion@solintel.com.co',
+                          'jennifer.bolanos@solintel.com.co',
+                          ]
+            if service_supplier == PRODATEL:
+                para_ss = [
+                          'gerencia@prodatel.co',
+                          'proyectos2@prodatel.co',
+                          'proyectos4@prodatel.co',
+                          'sg-sst@prodatel.co',
+                          'asistentegerencia@prodatel.co',
+                          'administrativo@prodatel.co',
+                          ]
+            if service_supplier == COMSA:
+                para_ss = [
+                          'joaquin.carvajal@comsa.com',
+                          'marco.cappiello@comsa.com',
+                          'antonio.martinl@comsa.com',
+                          'jaime.escacena@gmail.com',
+                          'ifranch@comsa.com',
+                          ]
+            if service_supplier == ELECTRICA:
+                para_ss = [
+                          'contabilidad@electrica-sa.com',
+                          'jose.lora@electrica-sa.com',
+                          'e.salcedo@electrica-sa.com',
+                          'kelly.villalobos@electrica-sa.com',
+                          'rc.salcedo@electrica-sa.com',
+                          ]
 
             para = para_regional + para_ss
 
-            copia = ['jbri.gap@nokia.com',
-                    'I_EXT_GAP_CLARO_COL@nokia.com',
+            copia = ['I_EXT_GAP_CLARO_COL@nokia.com',
                     'I_EXT_FIELD_MANAGEMENT_CLARO_COL@nokia.com',
                     'jorge.baracaldo@nokia.com',
                     'leopoldo.morales_cabrales@nokia.com',
@@ -947,8 +1075,7 @@ class AsignacionNiIngenieroForm(ModelForm):
 
             para = ['ivan.jimenez_robayo@nokia.com']
 
-            copia = ['jbri.gap@nokia.com',
-                    'I_EXT_GAP_CLARO_COL@nokia.com',
+            copia = ['I_EXT_GAP_CLARO_COL@nokia.com',
                     'jorge.baracaldo@nokia.com',
                     'dtor.onair_claro@nokia.com',
                     'jsan.onair_claro@nokia.com']
@@ -1001,8 +1128,7 @@ class AsignacionNiIngenieroForm(ModelForm):
 
             para = ['ague.workforce@nokia.com']
 
-            copia = ['jbri.gap@nokia.com',
-                    'I_EXT_GAP_CLARO_COL@nokia.com',
+            copia = ['I_EXT_GAP_CLARO_COL@nokia.com',
                     'jorge.baracaldo@nokia.com',
                     'dtor.onair_claro@nokia.com',
                     'jsan.onair_claro@nokia.com']

@@ -210,4 +210,12 @@ SERVICE_SUPPLIER_CHOICES = (
     ('CAM', 'CAM'),
     ('FUREL', 'FUREL'),
     ('ELETCOL', 'ELETCOL'),
+    ('OFG', 'OFG'),
+    ('SFERAONE', 'SFERAONE'),
+    ('DYG', 'DYG'),
+    ('MASTEC', 'MASTEC'),
+    ('SOLINTEL', 'SOLINTEL'),
+    ('PRODATEL', 'PRODATEL'),
+    ('COMSA', 'COMSA'),
+    ('ELECTRICA', 'ELECTRICA'),
 )

@@ -35,14 +35,14 @@
   <td>{{ object.fecha_asignacion }}</td>
   <td>{{ object.creado }}</td>
   <td>{{ object.actualizado }}</td>
-  {% if object.estado_asignacion == 'Asignada' or object.estado_asignacion == 'En monitoreo' %}
+  {% if object.estado_asignacion == 'Asignada' or object.estado_asignacion == 'En monitoreo' or object.estado_asignacion == 'Requiere segunda revision' %}
 
     {% if perms.users.perm_npo_asignador or perms.users.perm_fm_lider or perms.users.perm_gap_administrador %}
       <th>
         <!-- <a href="{% url 'asignaciones:update_asignacion_npo' object.pk %}" class="fm-update btn btn-success btn-sm" role="button" data-fm-head="Actualizar Asignacion NI" data-fm-callback="reload">Actualizar</a> -->
         <a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_asignador' object.pk %}')" class="btn btn-primary btn-sm" role="button">Actualizar</a>
       </th>
-    {% elif perms.users.perm_npo_ingeniero %}
+    {% elif perms.users.perm_npo_ingeniero or perms.users.perm_gap_monitoreo %}
     <th>
       <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +50,11 @@
       </button>
       <ul class="dropdown-menu">
         <li><a onclick="return create_concepto_npo('{% url 'conceptos:create_concepto_npo' object.pk %}')">Concepto</a></li>
+        {% if perms.users.perm_gap_monitoreo %}
+        <li><a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_asignador' object.pk %}')">Actualizar</a></li>
+        {% else %}
         <li><a onclick="return update_asignacion_npo('{% url 'asignaciones:update_asignacion_npo_ingeniero' object.pk %}')">Actualizar</a></li>
+        {% endif %}
       </ul>
       </div>
     </th>

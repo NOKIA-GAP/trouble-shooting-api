@@ -9,6 +9,7 @@ ESTADO_ASIGNACION_CHOICES = (
     ('Requiere visita', 'Requiere visita'),
     # ('No exitosa', 'No exitosa'),
     ('Escalado a claro', 'Escalado a claro'),
+    ('Requiere segunda revision', 'Requiere segunda revision'),
 )
 
 """ ORIGEN_FALLA_CHOICES  """

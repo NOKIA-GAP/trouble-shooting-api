@@ -10,6 +10,7 @@ PERFIL_USUARIO_CHOICES = (
     ('FM Lider', 'FM Lider'),
     ('FM Permisos', 'FM Permisos'),
     ('FM Supervisor', 'FM Supervisor'),
+    ('GAP Monitoreo', 'GAP Monitoreo'),
 )
 
 """ EMPRESA_CHOICES  """

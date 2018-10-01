@@ -77,8 +77,8 @@
   <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_f' %}class="active"{% endif %}>
     <a href="{% url 'asignaciones:list_asignacion_ni_estado_f' user.perfil.slug %}">Escalado a claro</a>
   </li>
-  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_hoy' %}class="active"{% endif %}>
-    <a href="{% url 'asignaciones:list_asignacion_ni_hoy' user.perfil.slug %}">Hoy</a>
+  <li role="presentation" {% if request.resolver_match.url_name == 'list_asignacion_ni_estado_g' %}class="active"{% endif %}>
+    <a href="{% url 'asignaciones:list_asignacion_ni_estado_g' user.perfil.slug %}">Requiere segunda revision</a>
   </li>
 </ul>
 {% endblock nav_tab %}
